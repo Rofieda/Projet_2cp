@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="stylesheet" href="../styles/BARS.css">
+  <script src="../javascript/BARS.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+  <link rel="stylesheet" href="../styles/infosluimeme.css">
+  <link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
+  <title>Profil</title>
+</head>
+
+<body>
+
+    <button class="left-button" onclick="goBack()"><img src="../images/Left1.png"></button>
+
+    <div class="left">
+        <div class="left-title">
+            <img src="../images/Profile 1.png">
+            <p class="ttt">Informations personnelles</p>
+        </div>
+        <div class="left-content">
+            <button class="photo-button"><img src="../images//blank-profile-picture-973460_1280 copy.png">
+            </button>
+            <hr class="line">
+            <div class="info-container">
+                <div class="left-info">
+                    <p  >Nom :</p>
+                    <p >Prénom :</p>
+                    <p >Sexe :</p>
+                    <p >Etablissement :</p>
+                    <p >Diplome :</p>
+                    <p >Numéro de téléphone :</p>
+                    <p >DPLP lien :</p>
+                    <p>Research gate lien :</p>
+                    <p >Google scholar lien:</p>
+                    <p >ORCIDE :</p>
+                    <p >Site web:</p>
+                    <p >H-index :</p>
+                    <p >Equipe :</p>
+                    <p >Qualite :</p>
+                    <p >Grade-enseignement :</p>
+                    <p >Grade-recherche :</p>
+                </div>
+                <div class="right-info">
+                    <p id="nom">Amina</p>
+                    <p id="prenom">Medabis</p>
+                    <p id="sexe">Femme</p>
+                    <p id="etablissement">ESI</p>
+                    <p id="diplome">XXXXXX</p>
+                    <p id="tel">0550187963</p>
+                    <p id="dblp_lien_chercheur"><a href="http://joiskzadjazpod" class="redirect-link">Cliquez ici</a>
+                    </p>
+                    <p id="research_gate_lien_chercheur"><a href="http://joiskzadjazpod" class="redirect-link">Cliquez
+                            ici</a></p>
+                    <p id="google_scholar_lien_chercheur"><a href="http://joiskzadjazpod" class="redirect-link">Cliquez
+                            ici</a></p>
+                    <p id="orcide_chercheur">XXXX XXXX XXXX</p>
+                    <p id="site_web"><a href="http://joiskzadjazpod" class="redirect-link">Cliquez ici</a></p>    
+                 
+                    <p id="h_index">XXX</p>
+                    <p id="equipe">XXX</p>
+                    <p id="qualite">XXX</p>
+                    <p id="grade_ensignement">XXXXXX</p>
+                    <p id="grade_recherche">XXXXXX</p>
+                </div>
+            </div>
+            <button class="modifier-button" onclick="modifierInfos()"><img src="../images/Edit 1.png">Modifier</button>
+
+        </div>
+    </div>
+    <div class="right">
+        <div class="right-title">
+            <img src="../images/Chart.png">
+            <p class="ttt">Statistiques personnelles</p>
+        </div>
+                        <div class="stat">
+                            <div class="num-sta" id="pubb" >
+                                    <p id="pubb" class="number">0</p>
+                                    <p >Publications</p>
+
+                            </div>
+                            <div class="num-sta"  id="enc">
+                                    <p  id="enc" class="number">0</p>
+                                    <p >Encadrement</p>
+
+                            </div>
+                            <div class="num-sta" id="pr">
+                                    <p  id="pr" class="number">0</p>
+                                    <p >Projets</p>
+
+                            </div>        
+
+                        </div>
+    </div>
+    <div class="security">
+        <div class="security-title">
+            <img src="../images/lock 3.png" alt="icône de sécurité">
+            <p>Mot de passe et Sécurité</p>
+        </div>
+        <div class="email-input">
+            <label for="email1">Email 1 :</label>
+            <p>a_balla@esi.dz</p>
+            <button class="modify-button"><img src="../images/Edit 1.png">Modifier</button>
+        </div>
+        <div class="email-input2">
+            <label for="email2">Email 2 :</label>
+            <input type="email" id="email2" name="email2" placeholder="Tapez ici votre email">
+            <button class="ajouter-button" onclick="replaceParagraphWithInput()">Ajouter</button>
+        </div>
+        <div class="password-input">
+            <label for="password">Mot de passe :</label>
+            <p>Pour modifier le mot de passe cliquer sur modifer</p>
+            <button class="modify-button"><img src="../images/Edit 1.png">Modifier</button>
+            <div class="forgot-password">
+                <span id="overlay"></span>
+                <div id="modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h3 id="forgot-password-title">Changement de mot de passe:</h3>
+                        <input id="reset-email" name="email" placeholder="Votre adresse e-mail" type="email">
+                        <div id="reset-email-error" class="error-message"></div>
+                        <button id="reset-password-btn">Réinitialiser votre mot de passe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="forgot-password">
+                <span id="overlay"></span>
+                <div id="modal-red-password" class="modal modal-large">
+                    <div class="modal-content">
+                        <h3 id="red-password-title">Redéfinition de votre mot de passe</h3>
+                        <div class="password-container">
+                            <input id="new-password" name="new-password" placeholder="Nouveau mot de passe" type="password">
+                            <span class="toggle-password2">
+                                <img src="../images/hide.png" class="icon2 visible" alt="Icône password visible">
+                            </span>
+                            <span class="error-message" id="new-password-error"></span>
+                            <input id="confirm-new-password" name="confirm-new-password"
+                                placeholder="Confirmer le nouveau mot de passe" type="password">
+                            <span class="toggle-password2">
+                                <img src="../images/hide.png" class="icon2 visible" alt="Icône password visible">
+                            </span>
+                            <span class="error-message" id="confirm-new-password-error"></span>
+                            <div>
+                                <input class="reset-email" id="uidb64" name="uidb64" placeholder="Code de confirmation" type="text">
+                                <input class="reset-email" id="token" name="token" placeholder="Code d'autorisation" type="text">
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <button id="red-password-btn" onclick="applyChange('Votre mot de passe a été modifié avec succès !')">Enregistrer</button>
+                            <button id="cancel-reset-btn">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    <div id="mess" class="popup">
+        <p><img src="../images/appliquer.png">Vos Informations ont été <br>modifié avec succès !</p>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/ajout.js"></script>
+    <script src="../javascript/infosluimeme.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script>
+            async function getAccessToken() {
+        await refreshAccessToken();
+        return sessionStorage.getItem('access_token');
+    }
+
+    async function refreshAccessToken() {
+        const refreshToken = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+        if (refreshToken) {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ refresh: refreshToken })
+                });
+                const data = await response.json();
+                const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+                sessionStorage.setItem('access_token', data.access);
+                sessionStorage.setItem('user_info', JSON.stringify(userInfo));
+            } catch (error) {
+                console.error('Error refreshing token:', error);
+            }
+        }
+    }
+
+
+    async function fetchChercheurDashboard() {
+    try {
+        const accessToken = await getAccessToken();
+        const response = await fetch('http://localhost:8000/api/chercheur_dashboard/', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+        const data = await response.json();
+        // Log the fetched data to check if it's coming correctly
+        console.log(data);
+        // Update HTML content with fetched data
+        displayChercheurDashboard(data);
+    } catch (error) {
+        console.error('Error fetching Chercheur dashboard:', error);
+    }
+}
+
+
+function displayChercheurDashboard(data) {
+    document.getElementById('pubb').innerHTML = `
+        <p class="number">${data.publications_count}</p>
+        <p class="number" style="font-size: 1.5vw; font-family: 'Poppins', sans-serif; font-weight:600;">Publications</p>
+        `;
+    document.getElementById('enc').innerHTML = `
+        <p class="number">${data.encadrement_count}</p>
+        <p class="number" style="font-size: 1.5vw; font-family: 'Poppins', sans-serif;  font-weight:600;">Encadrements</p>
+    `;
+    document.getElementById('pr').innerHTML = `
+        <p class="number">${data.projects_count}</p>
+        <p class="number" style="font-size: 1.5vw; font-family: 'Poppins', sans-serif;  font-weight:600;">Projets</p>
+    `;
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', function () {
+    fetchChercheurDashboard();
+});
+
+
+        async function fetchChercheurInfo() {
+            try {
+                const accessToken = await getAccessToken();
+                const response = await fetch('http://127.0.0.1:8000/api/chercheur/info/', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': 'Bearer ' + accessToken
+                    }
+                });
+                const data = await response.json();
+                // Log the fetched data to check if it's coming correctly
+                console.log(data);
+                // Update HTML content with fetched data
+                displayChercheurInfo(data);
+            } catch (error) {
+                console.error('Error fetching Chercheur info:', error);
+            }
+        }
+
+        function displayChercheurInfo(data) {
+            if (document.getElementById('orcid')) {
+        document.getElementById('orcid').innerText = data.orcid || 'xxxxxxxxx';
+    }
+    document.getElementById('nom').innerText = data.nom_chercheur || 'xxxxxxxxx';
+    document.getElementById('prenom').innerText = data.prenom_chercheur || 'xxxxxxxxx';
+    document.getElementById('sexe').innerText = data.sexe || 'xxxxxxxxx';
+    document.getElementById('etablissement').innerText = data.etablissement || 'xxxxxxxxx';
+    document.getElementById('diplome').innerText = data.diplome || 'xxxxxxxxx';
+    document.getElementById('tel').innerText = data.tel || 'xxxxxxxxx';
+    document.getElementById('dblp_lien_chercheur').innerHTML = `<a href="${data.dblp_lien || '#'}" class="redirect-link">${data.dblp_lien ? 'Cliquez ici' : 'xxxxxxxxx'}</a>`;
+    document.getElementById('research_gate_lien_chercheur').innerHTML = `<a href="${data.research_gate_lien || '#'}" class="redirect-link">${data.research_gate_lien ? 'Cliquez ici' : 'xxxxxxxxx'}</a>`;
+    document.getElementById('google_scholar_lien_chercheur').innerHTML = `<a href="${data.google_scholar_lien || '#'}" class="redirect-link">${data.google_scholar_lien ? 'Cliquez ici' : 'xxxxxxxxx'}</a>`;
+   
+   
+
+    document.getElementById('site_web').innerHTML = `<a href="${data.site_web || '#'}" class="redirect-link">${data.site_web ? 'Cliquez ici' : 'xxxxxxxxx'}</a>`
+    document.getElementById('h_index').innerText = data.h_index || 'xxxxxxxxx';
+    document.getElementById('equipe').innerText = data.equipe || 'xxxxxxxxx';
+    document.getElementById('qualite').innerText = data.Qualite || 'xxxxxxxxx';
+    document.getElementById('grade_ensignement').innerText = data.grade_ensignement || 'xxxxxxxxx';
+    document.getElementById('grade_recherche').innerText = data.grade_recherche || 'xxxxxxxxx';
+     
+}
+
+        // Call the function when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            fetchChercheurInfo();
+        });
+
+
+        
+        </script>
+
+
+
+
+
+     <script>
+
+
+         function resetPassword() {
+    // Récupérer l'email de réinitialisation
+    const resetEmail = document.getElementById('reset-email').value.trim();
+
+
+    // Envoyer une requête AJAX au backend pour réinitialiser le mot de passe
+    $.ajax({
+        url: 'http://127.0.0.1:8000/api/v1/auth/password-reset/',
+        method: 'POST',
+
+        data: { email: resetEmail },
+        success: function (response) {
+            // Afficher un message de succès ou rediriger l'utilisateur
+            console.log('Mot de passe réinitialisé avec succès !');
+
+            // Rediriger vers la page de confirmation ou afficher la fenêtre de redéfinition de mot de passe
+            // En fonction de votre implémentation backend
+
+            // Une fois que la réinitialisation est réussie, appeler la fonction pour mettre à jour le mot de passe
+
+        },
+        error: function (xhr, status, error) {
+            // Gérer les erreurs de réinitialisation du mot de passe
+            console.error('Erreur lors de la réinitialisation du mot de passe :', error);
+        }
+    });
+}
+document.getElementById('reset-password-btn').addEventListener('click', function (event) {
+    event.preventDefault(); // Empêche la soumission du formulaire
+    resetPassword();
+});
+function closeModal() {
+    const modalRedPassword = document.getElementById('modal-red-password');
+    const overlay = document.getElementById('overlay');
+    modalRedPassword.style.display = 'none';
+    overlay.style.display = 'none';
+}
+function updatePassword() {
+    // Récupérer les valeurs saisies pour le nouveau mot de passe
+    const newPassword = document.getElementById('new-password').value.trim();
+    const confirmNewPassword = document.getElementById('confirm-new-password').value.trim();
+    const uidb64 = document.getElementById('uidb64').value.trim(); // Get uidb64 from input field
+    const token = document.getElementById('token').value.trim(); // Get token from input field
+
+    // Vérifier si les mots de passe correspondent
+    if (newPassword !== confirmNewPassword) {
+        console.error('Les mots de passe ne correspondent pas.');
+        return;
+    }
+
+    // Envoyer une requête PATCH au backend pour mettre à jour le mot de passe
+    $.ajax({
+        url: 'http://127.0.0.1:8000/api/v1/auth/set-new-password/',
+        method: 'PATCH',
+
+        data: {
+            password: newPassword,
+            confirm_password: confirmNewPassword,
+            uidb64: uidb64,
+            token: token
+        },
+        success: function (response) {
+            // Traiter la réponse du serveur en cas de succès
+            console.log('Mot de passe mis à jour avec succès !');
+            alert('Votre mot de passe a été modifié avec succès !');
+            closeModal();
+        },
+        error: function (xhr, status, error) {
+            // Gérer les erreurs en cas d'échec de la mise à jour du mot de passe
+            console.error('Erreur lors de la mise à jour du mot de passe :', error);
+        }
+    });
+}
+
+// Attach event listener to the "Enregistrer" button
+document.getElementById('red-password-btn').addEventListener('click', function (event) {
+    event.preventDefault(); // Empêche la soumission du formulaire
+    updatePassword(); // Call the updatePassword function
+});
+
+
+
+
+
+function animateCount(element, start, end, duration) {
+    let range = end - start;
+    let current = start;
+    let increment = end > start ? 1 : -1;
+    let stepTime = Math.abs(Math.floor(duration / range));
+    let timer = setInterval(function() {
+        current += increment;
+        element.textContent = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+
+function displayChercheurDashboard(data) {
+    const pubbElement = document.getElementById('pubb').querySelector('.number');
+const encElement = document.getElementById('enc').querySelector('.number');
+const prElement = document.getElementById('pr').querySelector('.number');
+
+const pubbValue = data.publications_count;
+const encValue = data.encadrement_count;
+const prValue = data.projects_count;
+
+if (pubbValue === 0) {
+    pubbElement.textContent = pubbValue;
+} else {
+    animateCount(pubbElement, 0, pubbValue, 2000);
+}
+
+if (encValue === 0) {
+    encElement.textContent = encValue;
+} else {
+    animateCount(encElement, 0, encValue, 2000);
+}
+
+if (prValue === 0) {
+    prElement.textContent = prValue;
+} else {
+    animateCount(prElement, 0, prValue, 2000);
+}
+
+
+    document.getElementById('pubb').querySelector('.label').textContent = "Publications";
+    document.getElementById('enc').querySelector('.label').textContent = "Encadrements";
+    document.getElementById('pr').querySelector('.label').textContent = "Projets";
+}
+
+</script>
+
+</body>
+
+</html>

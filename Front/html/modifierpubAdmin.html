@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+    
+    <button class="left-button" onclick="goBack()"><img src="../images/Left1.png"></button>
+
+    <div class="pub">
+        <div class="pub-title">
+            <p>Publication</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="originalInfo">
+                <div class="left-pub-info">
+                    <p>Titre :</p>
+                    <p>Année de publication :</p>
+                    <p>Acronyme de la revue/conférence :</p>
+                    <p>lien de publication :</p>
+                    <p>Chercheur(s):</p>
+                    <p>Votre rang dans la Publication :</p>
+                    <p>Volume :</p>
+                    <p>Prolongements pages :</p>
+                    <p>Citations :</p>
+                </div>
+                <div class="right-pub-info">
+                    <p>l’intellegence artificielle</p>
+                    <p>2019</p>
+                    <p>JSHJZ</p>
+                    <p>http://uhshsoahsuuza</p>
+                    <p>Medabis Amina</p>
+                    <p>Premier</p>
+                    <p>XXXXX</p>
+                    <p>9999</p>
+                </div>
+            </div>
+
+            <div class="pub-container" id="alternateInfo" style="display: none;">
+                <div class="left-pub-info">
+                    <p>Titre de conférence-journal :</p>
+                    <p>Type :</p>
+                    <p>Périodicité:</p>
+                    <p>Acronyme :</p>
+                    <p>lien de site Conférence-Journal :</p>
+                    <p>Core Classification :</p>
+                    <p>Scimago Classification :</p>
+                    <p>Qualis Classification :</p>
+                    <p>Dgrsdt Classification :</p>
+                    <p>Maison d'édition</p>
+
+                </div>
+                <div class="right-pub-info" id="publicationDetails">
+                    <!-- Encadrement details will be dynamically inserted here -->
+                </div>
+                    
+            </div>
+
+            <div class="fix">
+                <button class="en-dessous" onclick="toggleIcon(this)">
+                    <img src="../images/Down Circle 2.png">
+                </button>
+
+                <hr class="line2 ">
+                <div class="citations-container">
+                    <p>Citations :</p>
+                    <p>30</p>
+                </div>
+            </div>
+            <button class="modifier-button" onclick="redirectToModPublication()"><img
+                    src="../images/Edit 1.png">Modifier</button>
+
+        </div>
+
+
+    </div>
+    </div>
+
+
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/BARSAdmin.js"></script>
+<script src="../javascript/notificationadmin.js"></script>
+<script src="../javascript/ajout.js"></script>
+    <script>
+
+
+
+    async function getAccessToken() {
+        await refreshAccessToken();
+        return sessionStorage.getItem('access_token');
+    }
+
+
+        
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchPublicationDetails();
+        });
+    
+    async function fetchPublicationDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const publicationID = urlParams.get('publicationID');
+
+    try {
+        const accessToken = await getAccessToken(); // Retrieve access token
+        const response = await fetch(`http://localhost:8000/api/pub_avant_modify/${publicationID}/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            displayPublicationDetails(data);
+        } else {
+            console.error('Error fetching publication details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching publication details:', error);
+    }
+}
+
+    
+function displayPublicationDetails(publication) {
+    console.log(publication); // Debugging - check the publication object
+    const publicationDetailsContainer = document.getElementById('originalInfo');
+    const citationsElement = document.querySelector('.citations-container p:last-child');
+    citationsElement.textContent = publication.publication.citations;
+
+    publicationDetailsContainer.innerHTML = `
+        <div class="left-pub-info">
+            <p>Titre :</p>
+            <p>Année de publication :</p>
+            <p>Acronyme de la revue/conférence :</p>
+            <p>Lien de publication :</p>
+            <p>Chercheur(s):</p>
+            <p>Votre rang dans la Publication :</p>
+            <p>Volume :</p>
+            <p>Prolongements pages :</p>
+            <p>Citations :</p>
+        </div>
+        <div class="right-pub-info">
+            <p>${publication.publication.titre_publication ? publication.publication.titre_publication.slice(0, 40) : 'xxxxxx'}</p>
+            <p>${publication.publication.annee ? publication.publication.annee : 'xxxxxx'}</p>
+            <p>${publication.publication.acronyme ? publication.publication.acronyme : 'xxxxxx'}</p>
+            <p>${publication.publication.lien_publie ? publication.publication.lien_publie : 'xxxxxx'}</p>
+            <p>${publication.publication.chercheur ? publication.publication.chercheur : 'xxxxxx'}</p>
+            <p>${publication.publication.rang_chercheur ? publication.publication.rang_chercheur : 'xxxxxx'}</p>
+            <p>${publication.publication.volume ? publication.publication.volume : 'xxxxxx'}</p>
+            <p>${publication.publication.nombre_page ? publication.publication.nombre_page : 'xxxxxx'}</p>
+            <p>${publication.publication.citations ? publication.publication.citations : 'xxxxxx'}</p>
+        </div>
+    `;
+
+    const alternateInfoContainer = document.getElementById('alternateInfo');
+    const publicationDetails = document.getElementById('publicationDetails');
+    publicationDetails.innerHTML = `
+        <p>${publication.conf_journal.nom ? publication.conf_journal.nom.slice(0, 40) : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.p_type ? publication.conf_journal.p_type : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.periodicite ? publication.conf_journal.periodicite : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.acronyme ? publication.conf_journal.acronyme : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.lien ? publication.conf_journal.lien : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.core_classification ? publication.conf_journal.core_classification : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.scimago_classification ? publication.conf_journal.scimago_classification : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.qualis_classification ? publication.conf_journal.qualis_classification : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.dgrsdt_classification ? publication.conf_journal.dgrsdt_classification : 'xxxxxx'}</p>
+        <p>${publication.conf_journal.maison_edition ? publication.conf_journal.maison_edition : 'xxxxxx'}</p>
+    `;
+
+    alternateInfoContainer.style.display = 'none'; // Hide the alternate info initially
+}
+
+
+    
+function redirectToModPublication() {
+            // Get the publication ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const publicationID = urlParams.get('publicationID');
+            
+            // Redirect to the modification page with the publication ID
+            window.location.href = `../html/modifierpubliactionaprescliqueAdmin.html?publicationID=${publicationID}`;
+        }
+        /*
+        async function getAccessToken() {
+    await refreshAccessToken();
+    return sessionStorage.getItem('access_token');
+}
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+      document.addEventListener("DOMContentLoaded", async function () {
+    await fetchPublicationDetails();
+});
+
+async function fetchPublicationDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const publicationID = urlParams.get('publicationID');
+
+    try {
+        const accessToken = await getAccessToken(); // Retrieve access token
+        const response = await fetch(`http://localhost:8000/api/pub_avant_modify/${publicationID}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            displayPublicationDetails(data);
+        } else {
+            console.error('Error fetching publication details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching publication details:', error);
+    }
+}
+
+function displayPublicationDetails(publication) {
+    const publicationDetailsContainer = document.getElementById('originalInfo');
+    const citationsElement = document.querySelector('.citations-container p:last-child');
+    citationsElement.textContent = publication.citations;
+
+    publicationDetailsContainer.innerHTML = `
+        <div class="left-pub-info">
+            <p>Titre :</p>
+            <p>Année de publication :</p>
+            <p>Acronyme de la revue/conférence :</p>
+            <p>Lien de publication :</p>
+            <p>Chercheur(s):</p>
+            <p>Votre rang dans la Publication :</p>
+            <p>Volume :</p>
+            <p>Prolongements pages :</p>
+        </div>
+        <div class="right-pub-info">
+            <p>${publication.titre_publication}</p>
+            <p>${publication.annee}</p>
+            <p>${publication.acronyme}</p>
+            <p>${publication.lien_publie}</p>
+            <p>${publication.chercheur}</p>
+            <p>${publication.rang_chercheur}</p>
+            <p>${publication.volume}</p>
+            <p>${publication.nombre_page}</p>
+        </div>
+    `;
+}
+
+function redirectToModPublication() {
+    // Get the publication ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const publicationID = urlParams.get('publicationID');
+
+    // Redirect to the modification page with the publication ID
+    window.location.href = `mod pub apres click.html?publicationID=${publicationID}`;
+}
+
+         */
+    </script>
+    
+
+</body>
+
+</html>

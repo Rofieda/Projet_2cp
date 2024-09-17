@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat filtres.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+   
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    
+    <div class="stati-filtrés-top2 ">
+        <div class="stati-title-left">
+            <p>Statistiques filtrées</p>
+            <div class="sous-titre">
+                <p>critère 1 : encadrement , critère 2 : encadré par </p>
+            </div>
+        </div>
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati2">
+                <p id="big"><span class=" value"></span> Encadrements</p>
+                <p><span class="value1"></span> Chercheur en tant que : encadreur </p>
+                <p><span class="value2"></span> Chercheur en tant que : co-encadreur</p>
+            </div>
+        </div>
+    </div>
+    <div class="vertical-line"></div>
+    <div class="stati-filtrés-down2">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="recherchechart6"></canvas>
+        </div>
+        <div class="legend">
+            <p id="droite">Chercheur en tant que :</p>
+            <div class="legend-item">
+                <div class="legend-circle circle1"></div>
+                <div class="legend-label">Encadreur</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle2"></div>
+                <div class="legend-label">Co-encadreur</div>
+            </div>
+        </div>
+    </div>
+    <div class="stati-générales-top">
+        <div class="stati-title-right">
+            <p>Statistiques générales</p>
+        </div>
+        <div class="left-content-stati-title-top">
+            <p>Role des chercheurs LMCS dans les
+                encadrements</p>
+        </div>
+        <div class="right-content-stati-top">
+            <canvas id="membership2-chart"></canvas>
+            <div>
+                <div class="label-container2">
+                    <div class="label label1"></div>
+                    <p class="label-text">Encadreur</p>
+                </div>
+                <div class="label-container2">
+                    <div class="label label2"></div>
+                    <p class="label-text">Co-encadreur</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-encadrements"></span>
+            <p>Encadrement</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+        <canvas id="ratio-chart"></canvas>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+    <script src="../javascript/BARSAss.js"></script>
+    <script src="../javascript/notificationass.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Function to update the statistics and graph
+            function updateStatisticsAndGraph(data) {
+        // Update total encadrements
+        document.querySelector('.nombre-encadrements').innerText = data.total_encadrements;
+        document.querySelector('.value').innerText = data.encadrements_par_chercheur.somme;
+        document.querySelector('.value1').innerText = data.encadrements_par_chercheur.encadrements_encadreur;
+        document.querySelector('.value2').innerText = data.encadrements_par_chercheur.encadrements_co_encadreur;
+
+        // Update the graph for distribution roles
+        var distribution_roles = data.distribution_roles;
+        var labels = Object.keys(distribution_roles);
+        var dataValues = Object.values(distribution_roles);
+
+        var colors = ['#C39EF3', '#75E8E7'];
+
+        var membershipData = {
+            labels: labels,
+            datasets: [{
+                label: 'Role des chercheurs LMCS dans les encadrements depuis 2019',
+                data: dataValues,
+                backgroundColor: colors,
+                borderColor: colors,
+                borderWidth: 1
+            }]
+        };
+
+        var membershipOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    display: false
+                },
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        };
+
+        var membershipCanvas = document.getElementById('membership2-chart');
+        var membershipContext = membershipCanvas.getContext('2d');
+        var membershipChart = new Chart(membershipContext, {
+            type: 'bar',
+            data: membershipData,
+            options: membershipOptions
+        });
+
+        // Diminuer la largeur des colonnes
+        membershipChart.data.datasets.forEach((dataset) => {
+            dataset.barPercentage = 0.5; // Réglage de la largeur des colonnes (50% de la largeur disponible)
+        });
+
+        membershipChart.update(); // Mettre à jour le graphique avec les nouvelles options
+
+        // Update the graph for ratio encadrement
+        var ratioChartData = {
+            labels: Object.keys(data.ratio_encadrement),
+            datasets: [{
+                borderColor: "#365486",
+                backgroundColor: "rgba(54, 84, 134, 0.2)",
+                pointBackgroundColor: "#365486",
+                pointBorderColor: "#fff",
+                borderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+                data: Object.values(data.ratio_encadrement)
+            }]
+        };
+
+        var ratioChartCtx = document.getElementById("ratio-chart").getContext("2d");
+
+        if (window.ratioChart) {
+            window.ratioChart.destroy();
+        }
+
+        window.ratioChart = new Chart(ratioChartCtx, {
+            type: 'line',
+            data: ratioChartData,
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: 'gray'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'lightgray'
+                        },
+                        ticks: {
+                            color: 'gray'
+                        }
+                    }
+                },
+                elements: {
+                    line: {
+                        tension: 0.4
+                    }
+                },
+                layout: {
+                    padding: {
+                        left: 10,
+                        right: 10,
+                        top: 10,
+                        bottom: 10
+                    }
+                }
+            }
+        });
+
+        // Update the graph for encadrement distribution
+        var encadrementData = {
+            labels: ['Encadreur', 'Co-encadreur'],
+            datasets: [{
+                data: [data.encadrements_par_chercheur.encadrements_encadreur, data.encadrements_par_chercheur.encadrements_co_encadreur],
+                backgroundColor: ['#DDACF5', '#75E8E7']
+            }]
+        };
+
+        var encadrementOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            cutoutPercentage: 70,
+            elements: {
+                arc: {
+                    borderRadius: 10
+                }
+            }
+        };
+
+        var encadrementCtx = document.getElementById('recherchechart6').getContext('2d');
+        var encadrementChart = new Chart(encadrementCtx, {
+            type: 'doughnut',
+            data: encadrementData,
+            options: encadrementOptions
+        });
+
+        // Mettre à jour les légendes avec les pourcentages
+        var legendItems = document.querySelectorAll('.legend-item');
+        legendItems.forEach(function (item, index) {
+            var label = item.querySelector('.legend-label');
+            var colorCircle = item.querySelector('.legend-circle');
+            var percentage = encadrementData.datasets[0].data[index];
+
+            // Ajouter la couleur à gauche du label
+            colorCircle.style.float = 'left';
+            colorCircle.style.marginRight = '25px';
+
+            // Mettre à jour le texte du label avec le pourcentage
+            label.innerHTML = '<span style="color: black;">' + label.textContent + '</span>';
+            label.innerHTML += '<span style="margin-left: 80px; color: black;">' + percentage + '%</span>';
+        });
+    }
+
+    // Fetch data from your API and update the statistics and graph
+    function fetchDataAndUpdateStatistics() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            updateStatisticsAndGraph(data);
+        }
+    };
+
+    // Extract chercheur name from URL parameters
+    var searchParams = new URLSearchParams(window.location.search);
+    var chercheurName = searchParams.get('chercheur');
+
+    // Prepare parameters to send to the API view
+    var params = {
+        critere1: 'Encadrement',
+        critere2: 'encadrepar',
+        nom_complet: chercheurName ? chercheurName : 'default_name'
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+
+    // Call fetchDataAndUpdateStatistics to fetch and update the statistics and graph
+    fetchDataAndUpdateStatistics();
+});
+    </script>
+</body>
+
+</html>

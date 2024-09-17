@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+   
+    <button class="left-button" onclick="goBack()"><img src="../images/Left1.png"></button>
+
+    <div class="pub">
+        <div class="pub-title">
+            <p>Encadrement</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="originalInfo">
+                <div class="left-pub-info2">
+                    <p>Titre :</p>
+                    <p>Type :</p>
+                    <p>Date de debut d’encadrement :</p>
+                    <p>Date de fin d’encadrement :</p>
+                    <p>Etudiant1:</p>
+                    <p>Etudiant2:</p>
+                    <p>Role de premier chercheur :</p>
+                    <p>Role de deuxième chercheur :</p>
+                </div>
+                <div>
+                    <input type="text" id="titre" name="titre" >
+                    <select id="type" name="type">
+                        <option value="" disabled selected></option>
+                        <option value="PFE" selected>PFE</option>
+                        <option value="Master">Master</option>
+                        <option value="Doctorat">Doctorat</option>
+                        <option value="Autre">Autre</option>
+                    </select>
+    
+                    <input type="number" id="debut" name="debut" min="1900" max="2099" step="1" placeholder="Année">
+                    <input type="number" id="fin" name="fin" min="1900" max="2099" step="1" placeholder="Année">
+                    <input type="text" id="etudiant1" name="etudiant1" >
+                    <input type="text" id="etudiant2" name="etudiant2" >
+                    <select id="role1" name="role1">
+                        <option value="" disabled selected></option>
+                        <option value="encadreur" selected>encadreur</option>
+                        <option value="co_encadreur">co-encadreur</option>
+                    </select>
+                    <select id="role2" name="role2">
+                        <option value="" disabled selected></option>
+                        <option value="encadreur">encadreur</option>
+                        <option value="co_encadreur">co-encadreur</option>
+                    </select>   
+                </div>
+            </div>
+            <button class="Appliquer-button" onclick="modifyEncadrement(),applychange('votre encadrement a été modifié avec succès !')"><img src="../images/Tick white.png">Appliquer</button>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <p><img src="../images/appliquer.png">Votre encadrement a été <br>modifié avec succès !</p>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/ajout.js"></script>
+<script src="../javascript/BARSS.js"></script>
+<script src="../javascript/notification.js"></script>
+
+    <script>
+        async function getAccessToken() {
+    await refreshAccessToken();
+    return sessionStorage.getItem('access_token');
+}
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encadrementID = urlParams.get('encadrementID');
+    try {
+        const accessToken = await getAccessToken(); // Retrieve access token
+        const response = await fetch(`http://localhost:8000/api/encadrement/${encadrementID}/modify/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            // Populate input fields with retrieved data
+            document.getElementById('titre').value = data.intitule;
+            document.getElementById('type').value = data.type_encadrement;
+            document.getElementById('debut').value = data.annee_debut;
+            document.getElementById('fin').value = data.annee_fin;
+            document.getElementById('etudiant1').value = data.nom_prenom_etd1;
+            document.getElementById('etudiant2').value = data.nom_prenom_etd2;
+            document.getElementById('role1').value = data.role_chercheur;
+            document.getElementById('role2').value = data.role_chercheur2;
+        } else {
+            console.error('Error fetching encadrement details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching encadrement details:', error);
+    }
+}); 
+async function modifyEncadrement() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encadrementID = urlParams.get('encadrementID');
+    var titre = document.getElementById('titre').value;
+    var type = document.getElementById('type').value;
+    var annee_debut = document.getElementById('debut').value;
+    var annee_fin = document.getElementById('fin').value;
+    var nom1 = document.getElementById('etudiant1').value;
+    var nom2 = document.getElementById('etudiant2').value;
+    var role = document.getElementById('role1').value;
+    var role2 = document.getElementById('role2').value;
+
+    var data = {
+        intitule: titre,
+        type_encadrement: type,
+        annee_debut: annee_debut,
+        annee_fin: annee_fin,
+        nom_prenom_etd1: nom1,
+        nom_prenom_etd2: nom2,
+        role_chercheur: role,
+        role_chercheur2: role2,
+    };
+
+    console.log('Request data:', data); // Log request data
+
+    try {
+        // Get the access token
+        const accessToken = await getAccessToken();
+
+        // Make the fetch request with the access token
+        const response = await fetch(`http://localhost:8000/api/encadrement/${encadrementID}/modify/`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify(data)
+        });
+
+        // Handle the response as needed
+        if (response.ok) {
+            showPopup();
+        } else {
+            console.error('Error modifying encadrement:', response.statusText);
+            response.text().then(text => console.error(text)); // Log response body if available
+        }
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
+}
+
+/*
+
+document.addEventListener("DOMContentLoaded", async function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const encadrementID = urlParams.get('encadrementID');
+    try {
+        const accessToken = await getAccessToken(); // Retrieve access token
+        const response = await fetch(`http://localhost:8000/api/encadrement/${encadrementID}/modify/`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+        if (response.ok) {
+            const data = await response.json();
+            // Populate input fields with retrieved data
+            document.getElementById('titre').value = data.intitule;
+            document.getElementById('type').value = data.type_encadrement;
+            document.getElementById('debut').value = data.annee_debut;
+            document.getElementById('fin').value = data.annee_fin;
+            document.getElementById('etudiant1').value = data.nom_prenom_etd1;
+            document.getElementById('etudiant2').value = data.nom_prenom_etd2;
+            document.getElementById('role1').value = data.role_chercheur;
+            document.getElementById('role2').value = data.role_chercheur2;
+        } else {
+            console.error('Error fetching encadrement details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching encadrement details:', error);
+    }
+});
+
+*/
+        </script>
+</body>
+
+</html>

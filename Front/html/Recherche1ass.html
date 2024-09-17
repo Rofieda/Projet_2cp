@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <link rel="stylesheet" href="../styles/Recherche1.css">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <script src="../javascript/BARS.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>La recherche d'un chercheur </h1>
+    <div class="part1">
+        <div class="partie-recherche">
+            <div class="search-bar">
+                <form action="/search" method="get">
+                    <div class="search-input">
+                        <span><img class="recherche-icon" src="../images/search-normal.png" alt="search Icon" /></span>
+                        <input class="rechercher" type="search" placeholder="Rechercher ici" name="search">
+                    </div>
+                </form>
+            </div>
+            <div class="div-filtre">
+                <button class="button-filtrer" type="submit">
+                    <img class="filtre-icon" src="../images/filtrer.png" alt="filtrer Icon" />
+                    <p class="p-filtre">Filtrer</p>
+                </button>
+            </div>
+        </div>
+        <div class="partie-filtre">
+            <div class="dropdown">
+                <div class="filtre1">
+                    <div class="textBox-with-icon">
+                      <input type="text" class="textBox" placeholder="   Grade" readonly>
+                      <img class="menu-icon" src="../images/Down2.png" alt="menu-icon Icon" />
+                    </div>
+                    <div class="option">
+                        <div onclick="showGrade('  Professeur')">Professeur</div>
+                        <div onclick="showGrade('  MCA')">MCA</div>
+                        <div onclick="showGrade('  MCB')">MCB</div>
+                        <div onclick="showGrade('  MAA')">MAA</div>
+                        <div onclick="showGrade('  MAB')">MAB</div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="filtre2">
+                    <div class="textBox-with-icon">
+                        <input type="text" class="textBox" placeholder="   Diplôme" readonly>
+                        <img class="menu-icon" src="../images/Down2.png" alt="menu-icon Icon" />
+                      </div>
+                     <div class="option">
+                        <div onclick="showDiplome('  Licence')">Licence</div>
+                        <div onclick="showDiplome('  Master')">Master</div>
+                        <div onclick="showDiplome('  Ingéniorat')">Ingéniorat</div>
+                        <div onclick="showDiplome('  Doctorat')">Doctorat</div>
+                        <div onclick="showDiplome('  D.É Supérieures')">Diplôme d'Études Supérieures</div>
+                        <div onclick="showDiplome('  D.F Approfondie')">Diplôme de Formation Approfondie</div>
+                        <div onclick="showDiplome('  D.É Approfondies')">Diplôme d'Études Approfondies</div>
+
+                     </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="filtre3">
+                    <div class="textBox-with-icon">
+                        <input type="text" class="textBox" placeholder="   Etablissement" readonly>
+                        <img class="menu-icon" src="../images/Down2.png" alt="menu-icon Icon" />
+                      </div>
+                     <div class="option">
+                        <div onclick="showEtablissement('  ESI')">Esi</div>
+                        <div onclick="showEtablissement('  USTHB')">USTHB</div>
+                        <div onclick="showEtablissement('  Autre')">Autre</div>
+                     </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <div class="filtre4">
+                    <div class="textBox-with-icon">
+                        <input type="text" class="textBox" placeholder="   Sexe" readonly>
+                        <img class="menu-icon" src="../images/Down2.png" alt="menu-icon Icon" />
+                      </div>
+                     <div class="option">
+                        <div onclick="showSexe('  Femme')">Femme</div>
+                        <div onclick="showSexe('  Homme')">Homme</div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="champ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nom &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Grade&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Adresse email  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equipe  </p>
+    <ul class="publication-list">
+        <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">Medabis Amina</span>
+            <span>Professeur</span>
+            <span>ma_medabis@evi.dz</span>
+            <span>Artificial intllegence</span>
+            <span class="more">details</span>
+        </li>
+        <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">Rezzoug Amira</span>
+            <span>MAB</span>
+            <span>mr_amira@esi.dz</span>
+            <span>Optimisation Multi-objectif des Systèmes Embarqués </span>
+            <span class="more">details</span>
+        </li>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/BARSAss.js"></script>
+    <script src="../javascript/notificationass.js"></script>
+    <script>
+
+
+        let selectedOptions = {
+            grade: null,
+            diplome: null,
+            etablissement: null,
+            sexe: null
+        };
+
+        function showGrade(grade) {
+            selectedOptions.grade = (selectedOptions.grade === grade) ? null : grade;
+            document.querySelector('.filtre1 .textBox').value = selectedOptions.grade ? grade : '';
+        }
+
+        function showDiplome(diplome) {
+            selectedOptions.diplome = (selectedOptions.diplome === diplome) ? null : diplome;
+            document.querySelector('.filtre2 .textBox').value = selectedOptions.diplome ? diplome : '';
+        }
+
+        function showEtablissement(etablissement) {
+            selectedOptions.etablissement = (selectedOptions.etablissement === etablissement) ? null : etablissement;
+            document.querySelector('.filtre3 .textBox').value = selectedOptions.etablissement ? etablissement : '';
+        }
+
+        function showSexe(sexe) {
+            selectedOptions.sexe = (selectedOptions.sexe === sexe) ? null : sexe;
+            document.querySelector('.filtre4 .textBox').value = selectedOptions.sexe ? sexe : '';
+        }
+
+        let dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            let menuIcon = dropdown.querySelector('.menu-icon');
+
+            dropdown.onclick = function () {
+                menuIcon.classList.toggle('active');
+                dropdown.classList.toggle('active');
+            };
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector('.partie-recherche form');
+            const resultList = document.querySelector('.publication-list');
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Empêche le formulaire de se soumettre normalement
+
+                const searchQuery = document.querySelector('.rechercher').value.trim();
+
+                // Envoi de la requête AJAX avec Fetch
+                fetch(`http://127.0.0.1:8000/api/chercheur-generalesearch/?q=${searchQuery}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        //'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjUyNjUyLCJpYXQiOjE3MTQ2NTIwNTIsImp0aSI6IjMyZjYzZWVhYTgxZTQ5YjlhOGNjMGVhODUwZDVjNGZiIiwidXNlcl9pZCI6MjJ9.NUz3cEKX79BrCyc-93c0abq6EAbeB9Ma6KHLVGEV6_k'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+
+
+
+
+                        if (data.length === 0) {
+                            // No results found, redirect to notFound.html
+                            window.location.href = '../html/notFound1.html';
+                        } else {
+                            resultList.innerHTML = '';
+
+
+
+                            // Boucle à travers les résultats et les affiche sur la page
+                            data.forEach(item => {
+                                const chercheurHTML = `
+                    <li>
+                        <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+                        <span class="nom">${item.nom_chercheur} ${item.prenom_chercheur}</span>
+                        <span>${item.grade_ensignement}</span>
+                        <span>${item.email}</span>
+                        <span>${item.equipe}</span>
+                        <span class="more" onclick="redirectToDetails('${item.detail_url}')">details</span>
+                    </li>
+                `;
+                                resultList.insertAdjacentHTML('beforeend', chercheurHTML);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        window.location.href = '../html/notFound1.html';
+                    });
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector('.partie-recherche form');
+            const resultList = document.querySelector('.publication-list');
+            const filterButton = document.querySelector('.button-filtrer');
+
+            filterButton.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the form from submitting normally
+
+                const searchQuery = document.querySelector('.rechercher').value.trim();
+
+                // Retrieve selected values from filters
+                const gradeEnseignement = document.querySelector('.filtre1 .textBox').value.trim();
+                const diplome = document.querySelector('.filtre2 .textBox').value.trim();
+                const etablissement = document.querySelector('.filtre3 .textBox').value.trim();
+                const sexe = document.querySelector('.filtre4 .textBox').value.trim();
+
+                // Send AJAX request using Fetch
+                fetch(`http://127.0.0.1:8000/api/chercheur-search/?q=${searchQuery}&grade_ensignement=${gradeEnseignement}&diplome=${diplome}&etablissement=${etablissement}&sexe=${sexe}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjU0MDQwLCJpYXQiOjE3MTQ2NTM0NDAsImp0aSI6ImRjOTE3YjlmZWMyZTQ2MTZiY2UxZWQxMDE2NjhiMmViIiwidXNlcl9pZCI6MjJ9.fqRA7HMCYq5Eg1tbPuhtBa6Ba_4HHVm87rru-B3QW1Y'
+                    }
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+
+
+
+                        if (data.length === 0) {
+                            // No results found, redirect to notFound.html
+                            window.location.href = '../html/notFound1.html';
+                        } else {
+                            resultList.innerHTML = '';
+                            // Loop through the results and display them on the page
+                            data.forEach(item => {
+                                const chercheurHTML = `
+                    <li>
+                        <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+                        <span class="nom">${item.nom_chercheur} ${item.prenom_chercheur}</span>
+                        <span>${item.grade_ensignement}</span>
+                        <span>${item.email}</span>
+                        <span>${item.equipe}</span>
+                        <span class="more" onclick="redirectToDetails('${item.detail_url}')">details</span>
+                    </li>
+                `;
+                                resultList.insertAdjacentHTML('beforeend', chercheurHTML);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching data:', error);
+                        window.location.href = '../html/notFound1.html';
+                    });
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            const resultList = document.querySelector('.publication-list');
+
+            // Fetch pour récupérer les données de l'API
+            fetch('http://127.0.0.1:8000/api/chercheurs/', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Autres en-têtes requis, par exemple pour l'authentification
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Votre code pour générer dynamiquement la liste des chercheurs à partir des données récupérées
+                    // Par exemple :
+                    resultList.innerHTML = ''; // Effacer le contenu précédent de la liste
+                    data.forEach(item => {
+                        const chercheurHTML = `
+                <li>
+                    <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+                    <span class="nom">${item.nom_chercheur} ${item.prenom_chercheur}</span>
+                    <span>${item.grade_ensignement}</span>
+                    <span>${item.email}</span>
+                    <span>${item.equipe}</span>
+                    <span class="more" onclick="redirectToDetails('${item.detail_url}')">details</span>
+                </li>
+            `;
+                        resultList.insertAdjacentHTML('beforeend', chercheurHTML);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    // Gérer les erreurs, par exemple afficher un message d'erreur à l'utilisateur
+                });
+        });
+
+
+        function redirectToDetails(detailUrl) {
+            const chercheurId = detailUrl.match(/\/(\d+)\/$/)[1]; // Extraire l'ID du chercheur à partir de l'URL
+            sessionStorage.setItem('id_chercheur', chercheurId); // Stocker l'ID du chercheur dans la session
+            window.location.href = '../html/voirprofilautrechercheur.html'; // Rediriger l'utilisateur vers une autre page
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques</title>
+    <link rel="stylesheet" href="../styles/statVisiteur2.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/visiteurNAV.css">
+    <link rel="stylesheet" href="../styles/stat filtres.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600
+;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Statistiques </title>
+</head>
+
+<body>
+
+
+    <div class="stat-produit">
+
+            <div class="partie-pub">
+
+
+                        <div class="stati-filtrés-top3 ">
+                            <div class="stati-title-left">
+                                <p>Type de publications</p>
+                            </div>
+                            <div class="left-content-stati">
+                                <div class="left-content-stati-title">
+                                    <p>Numériques</p>
+                                </div>
+                                <div class="left-cont-stati3">
+                                    <p><span class="value">272</span> Conférence</p>
+                                    <p><span class="value">107</span> Journal</p>
+                                </div>
+                            </div>
+                    
+                        </div>
+                        
+                        <div class="stati-filtrés-down3">
+                            <div class="left-content-stati-title">
+                                <p>Graphiques</p>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="recherchechart4"></canvas>
+                            </div>
+                            <div class="legend">
+                                <div class="legend-item">
+                                    <div class="legend-circle circle1"></div>
+                                    <div class="legend-label">Conférence</div>
+                                </div>
+                                <div class="legend-item">
+                                    <div class="legend-circle circle2"></div>
+                                    <div class="legend-label">Journal</div>
+                                </div>
+                    
+                            </div>
+                        </div>
+           </div>
+        
+
+        <div class="partie-encadrement">
+            
+                    <div class="stati-filtrés-top">
+                        <div class="stati-title-left">
+                            <p>Type d'encadrement</p>
+                        </div>
+                        <div class="left-content-stati">
+                            <div class="left-content-stati-title">
+                                <p>Numériques</p>
+                            </div>
+                            <div class="left-cont-stati6">
+                                <p><span class="label-color color1"></span><span class="value"></span> Doctorat</p>
+                                <p><span class="label-color color2"></span><span class="value"></span> Master </p>
+                                <p><span class="label-color color3"></span><span class="value"></span> Ingéniorat</p>
+                                <p><span class="label-color color4"></span><span class="value"></span>Autre</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="stati-filtrés-down">
+                        <div class="left-content-stati-title">
+                            <p>Graphiques</p>
+                        </div>
+                        <div class="left-cnt-stati">
+                            <div class="chart-title">Type d'encadrement</div>
+
+                            <canvas id="column4-chart"></canvas>
+                        </div>
+                    </div>
+
+        </div>        
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+<script src="../javascript/visiteurNAV.js"></script> 
+<script src="../javascript/VisiteurNAVsuite.js">
+    </script>
+</body>
+</html>

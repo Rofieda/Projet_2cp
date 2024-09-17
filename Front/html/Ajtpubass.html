@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+    
+  
+    <div class="pub">
+        <div class="pub-title">
+            <img src="../images/news violet.png">
+            <p> données bibliographiques - Publication</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="originalInfo">
+                <div class="left-pub-info2">
+                    <p>Titre :</p>
+                    <p>Année de publication :</p>
+                    <p>Acronyme de la revue/conférence :</p>
+                    <p>Lien de publication :</p>
+                    <p>Votre rang dans la publication :</p>
+                    <p>Volume :</p>
+                    <p>Prolongements pages :</p>
+                    <p>Conférence-journal :</p>
+                    <p>Citations :</p>
+                    <p>Nom du chercheur :</p> <!-- Added field -->
+                    <p>Prénom du chercheur :</p> <!-- Added field -->
+                </div>
+                <div class="input-select">
+                    <input type="text" id="titre" name="titre">
+                    <input type="number" id="annee" name="annee" min="1900" max="2099" step="1" placeholder="Année">
+                    <input type="text" id="acronyme" name="acronyme">
+                    <input type="text" id="lien" name="lien">
+                    <select id="rang2" name="rang2" placeholder="Rang">
+                        <option value="" disabled selected></option>
+                        <option value="1">Premier</option>
+                        <option value="2">Deuxième</option>
+                        <option value="3">Troisième</option>
+                        <option value="4">Quatrième</option>
+                        <option value="5">Cinquième</option>
+                        <option value="6">Sixième</option>
+                        <option value="7">Septième</option>
+                        <option value="8">Huitième</option>
+                        <option value="9">Neuvième</option>
+                        <option value="10">Dixième</option>
+                    </select>
+                    <input type="text" id="volume" name="volume">
+                    <input type="text" id="prolongements" name="prolongements">
+                    <input type="text" id="conf-journal" name="conf-journal">
+                    <input type="text" id="citations" name="citations">
+                    <input type="text" id="nom_chercheur" name="nom_chercheur" placeholder="Nom">
+                    <input type="text" id="prenom_chercheur" name="prenom_chercheur" placeholder="Prénom">
+                </div>
+            </div>
+        </div>
+            <button class="Ajouter-button" onclick="addPublication()"><img src="../images/Tick white.png">Ajouter</button>
+        </div>
+    </div>
+    <div id="popup" class="popup">
+        <p><img src="../images/appliquer.png">Votre publication a été <br>ajouté avec succès !</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    
+
+</body>
+
+</html>
+
+<script src="../javascript/BARSAss.js"></script>
+<script src="../javascript/notificationass.js"></script>
+<script src="../javascript/ajout.js"></script>
+
+<script>
+    
+    
+    async function getAccessToken() {
+    await refreshAccessToken();
+    return sessionStorage.getItem('access_token');
+}
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+
+async function addPublication() {
+    var titre = document.getElementById('titre').value;
+    var annee = document.getElementById('annee').value;
+    var acronyme = document.getElementById('acronyme').value;
+    var lien = document.getElementById('lien').value;
+    var rang = document.getElementById('rang2').value;
+    var volume = document.getElementById('volume').value;
+    var prolongements = document.getElementById('prolongements').value;
+    var conf_journal = document.getElementById('conf-journal').value;
+    var nom_chercheur = document.getElementById('nom_chercheur').value; // Corrected variable name
+    var prenom_chercheur = document.getElementById('prenom_chercheur').value; // Corrected variable name
+    var citations = document.getElementById('citations').value;
+
+    var data = {
+        titre_publication: titre,
+        annee: annee,
+        conf_journal_acronym: acronyme,
+        lien_publie: lien,
+        rang_chercheur: rang,
+        volume: volume,
+        nombre_page: prolongements,
+        conf_journ: conf_journal,
+        nom_chercheur: nom_chercheur, // Corrected variable name
+        prenom_chercheur: prenom_chercheur, // Corrected variable name
+        citations: citations
+    };
+
+    try {
+        const accessToken = await getAccessToken(); // Get access token
+        const response = await fetch('http://localhost:8000/api/publicationsCreateAdmine/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            // Clear form fields after successful addition
+            document.getElementById('titre').value = '';
+            document.getElementById('annee').value = '';
+            document.getElementById('acronyme').value = '';
+            document.getElementById('lien').value = '';
+            document.getElementById('rang2').value = '';
+            document.getElementById('volume').value = '';
+            document.getElementById('prolongements').value = '';
+            document.getElementById('conf-journal').value = '';
+            document.getElementById('nom_chercheur').value = '';
+            document.getElementById('prenom_chercheur').value = '';
+            document.getElementById('citations').value = '';
+            showPopup();
+        } else {
+            const errorResponse = await response.json(); // Parse error response
+            throw new Error('Erreur lors de l\'ajout de la publication: ' + JSON.stringify(errorResponse)); // Log detailed error message
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+    }
+}
+
+
+     
+</script>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat filtres.css">
+    <script src="../javascript/BARS.js"></script>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest </title>
+</head>
+
+<body>
+    <button class="download-button" onclick="downloadData()">Exporter</button>
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    
+    <div class="stati-filtrés-top3 ">
+        <div class="stati-title-left">
+            <p>Statistiques filtrées</p>
+        </div>
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati3">
+                <p><span class="value-femme">0</span> Femme</p>
+                <p><span class="value-homme">0</span> Homme</p>
+            </div>
+        </div>
+
+    </div>
+ 
+    <div class="stati-filtrés-down3">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="recherchechart3"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-circle circle1"></div>
+                <div class="legend-label">  Femme</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle2"></div>
+                <div class="legend-label">  Homme</div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="stati-générales-top">
+        <div class="stati-title-right">
+            <p>Statistiques générales</p>
+        </div>
+        <h2 class="titreenplus">Classement des chercheurs</h2>
+        <h2 class="titreenplus"> (critère de classement ; citation )</h2>
+        <div class="right-content-stati">
+            <p>meilleures chercheurs (critère de classement ; citation )</p>
+            <p>#</p>
+            <p>Citations</p>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-chercheurs"></span>
+            <p>chercheurs</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+        <div class="left-content-stati-title-down">
+            <p>Distribution des chercheurs par qualité :</p>
+            
+        </div>
+        <div class="right-content-stati-down">
+            <canvas id="membership-chart"></canvas>
+            <div class=" labels-container">
+                <div class="label-container">
+                    <div class="label label1"></div>
+                    <p class="label-text">Enseignant-chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label2"></div>
+                    <p class="label-text">Chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label3"></div>
+                    <p class="label-text">Doctorant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+
+    <script>
+function downloadData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var jsonData = xhr.response;
+            var csvContent = "data:text/csv;charset=utf-8,";
+
+            // Add headers
+            csvContent += "Total researchers: " + jsonData.total_researchers + "\r\n";
+            csvContent += "Distribution:\r\n";
+            csvContent += "Quality,Count\r\n";
+
+            // Add distribution data
+            for (var key in jsonData.distribution) {
+                csvContent += key + "," + jsonData.distribution[key] + "\r\n";
+            }
+
+            // Add top researchers
+            csvContent += "\r\nTop researchers:\r\n";
+            csvContent += "Researcher,Citations\r\n";
+            jsonData.top_researchers.forEach(function (researcher) {
+                var name = Object.keys(researcher)[0];
+                var citation = researcher[name];
+                csvContent += name + "," + citation + "\r\n";
+            });
+
+            // Add sexe data
+            csvContent += "\r\nSexe:\r\n";
+            csvContent += "Gender,Count\r\n";
+            csvContent += "homme," + jsonData.sexe.homme + "\r\n";
+            csvContent += "femme," + jsonData.sexe.Femme + "\r\n";
+
+            // Create and trigger download
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            console.log('Failed to fetch data. Status code: ', xhr.status);
+        }
+    };
+
+    var params = {
+        critere1: 'chercheur',
+        critere2: 'sexe' // Change this to the desired criteria
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+      
+      document.addEventListener('DOMContentLoaded', function () {
+    function fetchStatistics() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+                updateStatistics(data);
+                updateMembershipChart(data.distribution);
+                updateGenderCharts(data.sexe);
+            }
+        };
+
+        var params = {
+            critere1: 'chercheur',
+            critere2: 'sexe' // Change this to the desired criteria
+        };
+
+        xhr.send(JSON.stringify(params));
+    }
+
+    function updateStatistics(data) {
+        document.querySelector('.nombre-chercheurs').innerText = data.total_researchers;
+        document.querySelector('.value-femme').innerText = data.sexe.Femme; // Corrected
+        document.querySelector('.value-homme').innerText = data.sexe.homme; // Corrected
+
+        var topResearchersContainer = document.querySelector('.stati-générales-top .right-content-stati');
+        topResearchersContainer.innerHTML = '';
+
+        var topResearchers = data.top_researchers;
+        topResearchers.forEach(function (researcher, index) {
+            var researcherName = Object.keys(researcher)[0];
+            var citations = researcher[researcherName];
+
+            var researcherElement = document.createElement('div');
+            researcherElement.classList.add('researcher');
+            researcherElement.innerHTML = '<p style="display:inline-block;">' + (index + 1) + '</p><p style="display:inline-block;">' + researcherName + '</p><p style="display:inline-block;">' + citations + '</p>';
+
+            topResearchersContainer.appendChild(researcherElement);
+        });
+    }
+
+    function updateMembershipChart(distribution) {
+        var labels = Object.keys(distribution);
+        var dataValues = Object.values(distribution);
+        var colors = ['#C39EF3', '#75E8E7', '#407BFF'];
+
+        var data = {
+            labels: labels,
+            datasets: [{
+                data: dataValues,
+                backgroundColor: colors
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            cutoutPercentage: 70,
+            elements: {
+                arc: {
+                    borderRadius: 10
+                }
+            }
+        };
+
+        var ctx = document.getElementById('membership-chart').getContext('2d');
+        var rechercheChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+    }
+
+    function updateGenderCharts(sexe) {
+        var homme = sexe.homme;
+        var femme = sexe.Femme;
+
+        var data = {
+            labels: ['Femme', 'Homme'],
+            datasets: [{
+                data: [femme, homme],
+                backgroundColor: ['#DDACF5', '#75E8E7']
+            }]
+        };
+
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                display: false
+            },
+            tooltips: {
+                enabled: false
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            cutoutPercentage: 70,
+            elements: {
+                arc: {
+                    borderRadius: 10
+                }
+            }
+        };
+
+        var ctx = document.getElementById('recherchechart3').getContext('2d');
+        var rechercheChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
+        });
+
+        var legendItems = document.querySelectorAll('.legend-item');
+        legendItems.forEach(function (item, index) {
+            var label = item.querySelector('.legend-label');
+            var colorCircle = item.querySelector('.legend-circle');
+            var percentage = data.datasets[0].data[index];
+
+            colorCircle.style.float = 'left';
+            colorCircle.style.marginRight = '25px';
+
+            label.innerHTML = '<span style="color: black;">' + label.textContent + '</span>';
+            label.innerHTML += '<span style="margin-left: 80px; color: black;">' + percentage + '%</span>';
+        });
+    }
+
+    fetchStatistics();
+});
+
+    </script>
+</body>
+</html>

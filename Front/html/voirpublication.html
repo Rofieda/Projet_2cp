@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+   
+    
+    <button class="left-button" onclick="goBack()"><img src="../images/Left1.png"></button>
+
+    <div class="pub">
+        <div class="pub-title">
+            <p>Publication</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="originalInfo">
+                <div class="left-pub-info">
+                    <p>Titre :</p>
+                    <p>Année de publication :</p>
+                    <p>Acronyme de la revue/conférence :</p>
+                    <p>lien de publication :</p>
+                    <p>Chercheur(s):</p>
+                    <p>Votre rang dans la Publication :</p>
+                    <p>Volume :</p>
+                    <p>Prolongements pages :</p>
+                    <p>Maison d'édition :</p>
+
+                </div>
+                <div class="right-pub-info">
+                    <p id="titre-publication">l’intelligence artificielle</p>
+    <p id="annee-publication">2019</p>
+    <p id="acronyme-publication">JSHJZ</p>
+    <p><a href="http://uhshsoahsuuza" class="redirect-link" id="lien-publication">Cliquez ici</a></p>
+    <p id="chercheur-nom">Medabis Amina</p>
+    <p id="rang-publication">---</p>
+    <p id="volume-publication">9999</p>
+    <p id="prolongements-pages">XXXXX</p>
+                     <p id="maison-edition">XXXXX</p>
+                </div>
+            </div>
+
+            <div class="pub-container" id="alternateInfo" style="display: none;">
+                <div class="left-pub-info">
+                    <p>Titre de conférence-journal :</p>
+                    <p>Type :</p>
+                    <p>Périodicité:</p>
+                    <p>Acronyme :</p>
+                    <p>lien de site Conférence-Journal :</p>
+                    <p>Core Classification :</p>
+                    <p>Scimago Classification :</p>
+                    <p>Qualis Classification :</p>
+                    <p>Dgrsdt Classification :</p>
+                </div>
+                <div class="right-pub-info">
+                        <p id="titre-conf">international design & test symposium</p>
+                        <p id="type-conf">Conférence</p>
+                        <p id="periodicite-conf">Mensuelle</p>
+                        <p id="acronyme-conf">JSHJZ</p>
+                        <p><a href="http://uhshsoahsuuza" class="redirect-link" id="lien-conf">Cliquez ici</a></p>
+                        <p id="core-classification">A</p>
+                        <p id="scimago-classification">Q1</p>
+                        <p id="qualis-classification">A1</p>
+                        <p id="dgrsdt-classification">A</p>
+                </div>
+            </div>
+
+            <div class="fix">
+                <button class="en-dessous" onclick="toggleIcon(this)">
+                    <img src="../images/Down Circle 2.png">
+                </button>
+
+                <hr class="line2 ">
+                <div class="citations-container">
+                    <p>Citations :</p>
+                    <p id="citation-pub">30</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/ajout.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    
+
+<script>
+       document.addEventListener('DOMContentLoaded', function () {
+            // Récupérer les données de la publication depuis la session
+            const idPublication = sessionStorage.getItem('id_publication');
+
+
+
+            // Vérifier si les données sont présentes dans la session
+            if (idPublication) {
+                // Récupérer les données de la publication depuis l'API
+                fetch(`http://127.0.0.1:8000/api/publicationprofile2/${idPublication}/`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('La requête a échoué.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Afficher les données de la publication dans la page HTML
+                    document.getElementById('titre-publication').innerText =  (data.titre_publication || 'xxxxxxxxx').substring(0, 40);
+                    document.getElementById('annee-publication').innerText = data.annee || 'xxxxxxxxx';
+                    document.getElementById('acronyme-publication').innerText = data.acronyme || 'xxxxxxxxx';
+                    document.getElementById('lien-publication').href = data.lien_publie || 'xxxxxxxxx';
+                    document.getElementById('maison-edition').innerText = data.maison_edition || 'xxxxxxxxx';
+                    document.getElementById('volume-publication').innerText = data.volume || 'xxxxxxxxx';
+                    document.getElementById('prolongements-pages').innerText = data.nombre_page || 'xxxxxxxxx';
+                    document.getElementById('titre-conf').innerText = (data.nom || 'xxxxxxxxx').substring(0, 40);
+                    document.getElementById('type-conf').innerText = data.p_type || 'xxxxxxxxx';
+                    document.getElementById('periodicite-conf').innerText = data.periodicite || 'xxxxxxxxx';
+                    document.getElementById('acronyme-conf').innerText = data.acronyme || 'xxxxxxxxx';
+                    document.getElementById('lien-conf').href = data.lien || 'xxxxxxxxx';
+                    document.getElementById('core-classification').innerText = data.core_classification || 'xxxxxxxxx';
+                    document.getElementById('scimago-classification').innerText = data.scimago_classification || 'xxxxxxxxx';
+                    document.getElementById('qualis-classification').innerText = data.qualis_classification || 'xxxxxxxxx';
+                    document.getElementById('dgrsdt-classification').innerText = data.dgrsdt_classification || 'xxxxxxxxx';
+                    document.getElementById('citation-pub').innerText = data.citations || 'xxxxxxxxx';
+                    // Afficher le nom complet du chercheur dans l'élément correspondant
+
+                   document.getElementById('chercheur-nom').innerText = data.chercheur_nom + " " + data.chercheur_prenom;
+                    // Afficher le rang du chercheur dans l'élément correspondant
+                    document.getElementById('rang-publication').innerText =data.rang_chercheur;
+                })
+                .catch(error => console.error('Erreur lors de la récupération des détails de la publication :', error));
+            } else {
+                console.error('Les données de la publication et/ou des chercheurs ne sont pas présentes dans la session.');
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

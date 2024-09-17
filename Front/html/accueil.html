@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/accueil.css">
+
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+
+    <title>Lmcs Quest </title>
+</head>
+
+<body>
+    <div class="top">
+
+    <div class="best-researchers-container">
+        <p class="welcome-title" id="welcome-message"></p>
+        <div class="best-researcher">
+            <img class="cerc" src="../images/blank-profile-picture-973460_1280 copy.png" alt="Chercheur">
+            <p>Le chercheur le plus cité cette année est ..!<br>
+                <button class="voir-profil1">Voir profil</button>
+            </p>
+        </div>
+        <div class="best-researcher">
+            <img class="cerc" src="../images/blank-profile-picture-973460_1280 copy.png" alt="Chercheur">
+            <p id="p2">La publication la plus citée cette année est publiée par ..!<br>
+                <button class="voir-pub">Voir publication</button>
+                <button class="voir-profil2">Voir profil (s)</button>
+            </p>
+        </div>
+    </div>
+    <div class="right-container">
+        <p class="tt">Répartition des Encadrements par Niveau</p>
+        <div class="container">
+            <div class="chart-container">
+                <canvas id="encadrementsChart"></canvas>
+            </div>
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-circle" style="background-color: #DDACF5;"></div>
+                    <div class="legend-label">Directeur de recherche
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="background-color: #508bc9;"></div>
+                    <div class="legend-label">Maitre de recherche
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-circle" style="background-color: #1d7979;"></div>
+                    <div class="legend-label">Autre</div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+        <div class="down-container">
+            <p>Tendance de Publications par année</p>
+            <canvas id="publicationCanvas"></canvas>
+        </div>
+
+    </div>
+    
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/acceuil.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script>
+        async function getAccessToken() {
+            await refreshAccessToken();
+            return sessionStorage.getItem('access_token');
+        }
+
+        async function refreshAccessToken() {
+            // Retrieve refresh token from session storage
+            const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+            if (refresh_token) {
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refresh: refresh_token })
+                    });
+                    const data = await response.json();
+                    // Update the access token in session storage
+                    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+                    sessionStorage.setItem('access_token', data.access);
+                    sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+                    // Retry the original request or perform other actions
+                } catch (error) {
+                    // Handle token refresh error
+                    console.error(error);
+                    // Redirect the user to the login page or display an error message
+                }
+            } else {
+                // Redirect the user to the login page if there is no refresh token
+            }
+        }
+    </script>
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve user info from session storage
+            var userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+
+            // Update welcome message with full name
+            var welcomeMessage = document.getElementById('welcome-message');
+            if (userInfo && userInfo.full_name) {
+                welcomeMessage.textContent = 'Bienvenue ' + userInfo.full_name;
+            } else {
+                welcomeMessage.textContent = 'Bienvenue';
+            }
+        });
+    </script>
+</body>
+
+</html>

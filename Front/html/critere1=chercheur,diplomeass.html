@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="../javaScript/BARS.js"></script>
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat1.css">
+    
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest </title>
+</head>
+
+<body>
+
+    
+    <button class="download-button" onclick="downloadData()">Exporter</button>
+        <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    <div class="stati-title-left">
+        <p>Statistiques filtrées</p>
+        <div class="sous-titre">
+            <p>critère 1 : Chercheur , critère 2 : diplôme </p>
+        </div>
+    </div>
+    <div class="stati-filtrés-top">
+       
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati5">
+                <p><span class="label-color color1"></span><span class="value"></span>Licence</p>
+                <p><span class="label-color color2"></span><span class="value"></span>Master </p>
+                <p><span class="label-color color3"></span><span class="value"></span>Doctorat</p>
+                <p><span class="label-color color6"></span><span class="value"></span>Ingéniorat</p>
+                <p><span class="label-color color5"></span><span class="value"></span>Diplôme dÉtudes Supérieures</p>
+                <p><span class="label-color color5"></span><span class="value"></span>Diplôme de Formation Approfondie</p>
+                <p><span class="label-color color7"></span><span class="value"></span>Diplôme dÉtudes Approfondies</p>
+                <p><span class="label-color color8"></span><span class="value"></span>Autre</p>
+
+            </div>
+        </div>
+        
+    </div>
+    <div class="vertical-line"></div>
+
+    <div class="stati-filtrés-down">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="left-cnt-stati">
+            <div class="chart-title">Diplômes des chercheurs LMCS :</div>
+
+            <canvas id="column2-chart"></canvas>
+        </div>
+    </div>
+    <div class="stati-title-right">
+        <p>Statistiques générales</p>
+    </div>
+
+    <div class="stati-générales-top">
+        
+        <h2 class="titreenplus">meilleures chercheurs (critère de classement ; citation )</h2>
+        <div class="right-content-stati">
+            <p style="display:inline-block;">meilleures chercheurs (critère de classement ; citation )</p>
+            <p style="display:inline-block;">#</p>
+            <p style="display:inline-block;">Citations</p>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-chercheurs"></span>
+            <p >chercheurs</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+        <div class="left-content-stati-title-down">
+            <p>Distribution des chercheurs par qualité :</p>
+        </div>
+        <div class="right-content-stati-down">
+            <canvas id="membership-chart"></canvas>
+            <div class=" labels-container">
+                <div class="label-container">
+                    <div class="label label1"></div>
+                    <p class="label-text" >Enseignant-chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label2"></div>
+                    <p class="label-text">Chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label3"></div>
+                    <p class="label-text">Doctorant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javaScript/stat.js"></script>
+    <script src="../javaScript/BARSAss.js"></script>
+   
+    <script>
+        function downloadData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var jsonData = xhr.response;
+            var csvContent = "data:text/csv;charset=utf-8,";
+
+            // Add headers
+            csvContent += "Total researchers: " + jsonData.total_researchers + "\r\n";
+            csvContent += "Distribution:\r\n";
+            csvContent += "Quality,Count\r\n";
+
+            // Add distribution data
+            for (var key in jsonData.distribution) {
+                csvContent += key + "," + jsonData.distribution[key] + "\r\n";
+            }
+
+            // Add top researchers
+            csvContent += "\r\nTop researchers:\r\n";
+            csvContent += "Researcher,Citations\r\n";
+            jsonData.top_researchers.forEach(function (researcher) {
+                var name = Object.keys(researcher)[0];
+                var citation = researcher[name];
+                csvContent += name + "," + citation + "\r\n";
+            });
+
+            // Add diplomas
+            csvContent += "\r\nDiplomas:\r\n";
+            csvContent += "Diploma,Count\r\n";
+            for (var key in jsonData.diplomas) {
+                csvContent += key + "," + jsonData.diplomas[key] + "\r\n";
+            }
+
+            // Create and trigger download
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            console.log('Failed to fetch data. Status code: ', xhr.status);
+        }
+    };
+
+    var params = {
+        critere1: 'chercheur',
+        critere2: 'diplome' // Change this to the desired criteria
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+       document.addEventListener('DOMContentLoaded', function () {
+    var columnChart; // Define the chart outside function scope
+
+    function updateColumnChart(diplomas) {
+        var colors = [
+            '#95A4FC', // Couleur pour Licence
+            '#75E8E7', // Couleur pour Master
+            '#DBD5D5', // Couleur pour Doctorat
+            '#DDACF5', // Couleur pour Ingéniorat
+            '#A8C5DA', // Couleur pour Diplôme d'Études Supérieures
+            '#365486', // Couleur pour Diplôme de Formation Approfondie
+            '#FFC600', // Couleur pour Diplôme d'Études Approfondies
+            '#FF5733'  // Couleur pour Autre
+        ];
+
+        var labels = [
+            'Licence',
+            'Master',
+            'Doctorat',
+            'Ingéniorat',
+            'Diplôme dÉtudes Supérieures',
+            'Diplôme de Formation Approfondie',
+            'Diplôme dÉtudes Approfondies',
+            'Autre'
+        ];
+
+        var dataValues = labels.map(function(label) {
+            return diplomas[label] || 0;
+        });
+
+        if (!columnChart) {
+            var columnChartCanvas = document.getElementById('column2-chart');
+            var columnChartContext = columnChartCanvas.getContext('2d');
+
+            columnChart = new Chart(columnChartContext, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Diplômes des chercheurs LMCS',
+                        data: dataValues,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false // Masque l'axe X
+                        },
+                        y: {
+                            beginAtZero: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Valeur' // Libellé de l'axe Y
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false // Masque la légende
+                        },
+                        title: {
+                            display: false // Masque le titre
+                        }
+                    },
+                    barPercentage: 0.7 // Ajuste la largeur des colonnes
+                }
+            });
+        } else {
+            // Update existing chart data
+            columnChart.data.datasets[0].data = dataValues;
+            columnChart.update();
+        }
+
+        updateValues();
+    }
+
+    function updateValues() {
+        var dataValues = columnChart.data.datasets[0].data;
+        var labels = columnChart.data.labels;
+        labels.forEach(function (label, index) {
+            var paragraph = document.querySelector('.left-cont-stati5 p:nth-child(' + (index + 1) + ')');
+            var valueSpan = paragraph.querySelector('.value');
+            if (valueSpan) {
+                valueSpan.textContent = dataValues[index];
+            }
+        });
+    }
+
+    function fetchStatistics() {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+                updateStatistics(data);
+            }
+        };
+
+        var params = {
+            critere1: 'chercheur',
+            critere2: 'diplome' // Change this to the desired criteria
+        };
+
+        xhr.send(JSON.stringify(params));
+    }
+
+    function updateStatistics(data) {
+        // Update total researchers
+        document.querySelector('.nombre-chercheurs').innerText = data.total_researchers;
+        var topResearchersContainer = document.querySelector('.stati-générales-top .right-content-stati');
+        topResearchersContainer.innerHTML = ''; // Clear previous content
+
+        var topResearchers = data.top_researchers;
+        topResearchers.forEach(function(researcher, index) {
+        var researcherName = Object.keys(researcher)[0];
+        var citations = researcher[researcherName];
+
+        var researcherElement = document.createElement('div');
+        researcherElement.classList.add('researcher');
+        researcherElement.innerHTML = '<p style="display:inline-block;">' + (index + 1) + '</p><p style="display:inline-block;">' + researcherName + '</p><p style="display:inline-block;">' + citations + '</p>';
+
+        topResearchersContainer.appendChild(researcherElement);
+    });
+
+        // Update diplomas
+        var diplomas = data.diplomas;
+        document.querySelector('.label-color.color1 + .value').innerText = diplomas.Licence;
+        document.querySelector('.label-color.color2 + .value').innerText = diplomas.Master;
+        document.querySelector('.label-color.color3 + .value').innerText = diplomas.Doctorat;
+        document.querySelector('.label-color.color7 + .value').innerText = diplomas.Ingéniorat;
+        document.querySelector('.label-color.color5 + .value').innerText = diplomas["Diplôme dÉtudes Supérieures"];
+        document.querySelector('.label-color.color6 + .value').innerText = diplomas["Diplôme de Formation Approfondie"];
+        document.querySelector('.label-color.color5 + .value').innerText = diplomas["Diplôme dÉtudes Approfondies"];
+        document.querySelector('.label-color.color8 + .value').innerText = diplomas.Autre;
+
+        // Update membership chart
+        updateMembershipChart(data.distribution);
+        
+        // Update diplomas chart
+        updateColumnChart(data.diplomas);
+    }
+
+    function updateMembershipChart(distribution) {
+        var labels = Object.keys(distribution);
+        var dataValues = Object.values(distribution);
+        var colors = [
+            '#C39EF3', // Couleur pour Enseignant-chercheur
+            '#75E8E7', // Couleur pour Chercheur
+            '#407BFF'  // Couleur pour Doctorant
+        ];
+
+        var membershipChart = new Chart(document.getElementById('membership-chart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Distribution des chercheurs par qualité :',
+                    data: dataValues,
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+    }
+
+
+    
+
+    // Call the function to fetch statistics when the page loads
+    fetchStatistics();
+});
+
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/VotreListPub.css">
+    <script src="../javascript/BARS.js"></script>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+<body>
+   
+        <div class="profile">
+            <img src="../images/Profile.png" alt="Profil">
+        </div>
+    </div>
+  
+
+    <h1>Mes publications</h1>
+   
+    <p class="champ">Titre de publication&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Type &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;Acronyme  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;Citations  </p>
+
+    <ul class="publication-list">
+       
+    </ul>
+
+
+
+
+
+
+
+
+    <script src="javaScript/pagination.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script >
+document.addEventListener("DOMContentLoaded", function() {
+    fetchPublications(function() {
+        pagination('.tab');
+    });
+
+
+        async function getAccessToken() {
+            await refreshAccessToken();
+            return sessionStorage.getItem('access_token');
+        }
+        
+        async function refreshAccessToken() {
+            // Retrieve refresh token from session storage
+            const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+            if (refresh_token) {
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refresh: refresh_token })
+                    });
+                    const data = await response.json();
+                    // Update the access token in session storage
+                    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+                    sessionStorage.setItem('access_token', data.access);
+                    sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+                    // Retry the original request or perform other actions
+                } catch (error) {
+                    // Handle token refresh error
+                    console.error(error);
+                    // Redirect the user to the login page or display an error message
+                }
+            } else {
+                // Redirect the user to the login page if there is no refresh token
+            }
+        }
+        
+        async function deletePublication(deleteUrl, publicationID) {
+            console.log('Deleting publication with ID:', publicationID);
+        
+            try {
+                const accessToken = await getAccessToken(); // Retrieve access token
+                var xhr = new XMLHttpRequest();
+                xhr.open('DELETE', deleteUrl, true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken); // Use access token in authorization header
+        
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        // Reload page or update UI as needed
+                        console.log('Publication deleted successfully');
+                        // Refresh the publication list after deletion
+                        fetchPublications();
+                    } else {
+                        console.error('Error deleting publication:', xhr.statusText);
+                        // Optionally, you can display an error message to the user
+                    }
+                };
+        
+                xhr.onerror = function() {
+                    console.error('Request failed');
+                };
+        
+                xhr.send(JSON.stringify({ id: publicationID }));
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+ 
+        
+        async function fetchPublications() {
+            try {
+                const accessToken = await getAccessToken(); // Retrieve access token
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', 'http://localhost:8000/api/publicationsByChercheur/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.setRequestHeader('Authorization', 'Bearer ' + accessToken); // Use access token in authorization header
+        
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        var publications = JSON.parse(xhr.responseText);
+                        displayPublications(publications);
+                        pagination('.tab');
+                        
+                        
+                    } else {
+                        console.error('Error fetching publications:', xhr.statusText);
+                    }
+                };
+        
+                xhr.onerror = function() {
+                    console.error('Request failed');
+                };
+        
+                xhr.send();
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+             
+        function displayPublications(publications) {
+    var publicationList = document.querySelector('.publication-list');
+    publicationList.innerHTML = ''; // Clear previous content
+
+    publications.forEach(function(publication) {
+        
+        var publicationItem = document.createElement('li');
+        publicationItem.classList.add('tab');       
+       
+
+        var publicationTitle = document.createElement('span');
+        publicationTitle.textContent = publication.titre_publication;
+
+        var publicationType = document.createElement('span');
+        publicationType.textContent = publication.conf_journal_type;
+
+        var publicationDate = document.createElement('span');
+        publicationDate.textContent = publication.annee;
+
+        var publicationAcronyme = document.createElement('span');
+        publicationAcronyme.textContent = publication.conf_journal_acronyme;
+
+        var publicationCitations = document.createElement('span');
+        publicationCitations.textContent = publication.citations;
+
+        var modifyButton = document.createElement('button');
+        var modifyImg = document.createElement('img');
+        modifyImg.src = '../images/icon modifier amina.png';
+        modifyImg.alt = 'modifier Icon';
+        modifyButton.appendChild(modifyImg);
+        modifyButton.classList.add('button-modifier');
+        modifyButton.onclick = function() {
+            redirectToModencadrement(publication.id); 
+        };
+        
+
+        publicationItem.appendChild(publicationTitle);
+        publicationItem.appendChild(publicationType);
+        publicationItem.appendChild(publicationDate);
+        publicationItem.appendChild(publicationAcronyme);
+        publicationItem.appendChild(publicationCitations);
+        publicationItem.appendChild(modifyButton);
+        publicationList.appendChild(publicationItem);
+
+        
+                });
+   
+                }
+                pagination('.tab');
+               
+        
+        
+        
+                function createDeleteModal(deleteUrl, publicationID) {
+                    var supprimerDiv = document.createElement('div');
+                    supprimerDiv.classList.add('supprimer');
+                    supprimerDiv.id = 'appear-when-supp';
+        
+                    var overlay = document.createElement('span');
+                    overlay.id = 'overlay';
+        
+                    var modal = document.createElement('div');
+                    modal.classList.add('modal');
+                    modal.classList.add('modal-small');
+        
+                    var modalContent = document.createElement('div');
+                    modalContent.classList.add('modal-content');
+        
+                    var deconnexion = document.createElement('div');
+                    deconnexion.id = 'deconnexion';
+        
+                    var iconDeconnexion = document.createElement('img');
+                    iconDeconnexion.classList.add('icon-deconnexion');
+                    iconDeconnexion.alt = 'icon-deconnexion';
+                    iconDeconnexion.src = '../images/supprimer.png';
+        
+                    var supSpan = document.createElement('span');
+                    supSpan.id = 'sup';
+                    supSpan.textContent = 'Suppression';
+        
+                    deconnexion.appendChild(iconDeconnexion);
+                    deconnexion.appendChild(supSpan);
+        
+                    var phrase = document.createElement('p');
+                    phrase.classList.add('phrase');
+                    phrase.textContent = 'Êtes-vous sûr de vouloir supprimer cette publication ?';
+        
+                    var buttonContainer = document.createElement('div');
+                    buttonContainer.classList.add('button-container');
+        
+                    var cancelButton = document.createElement('button');
+                    cancelButton.id = 'cancel-reset';
+                    cancelButton.textContent = 'Annuler';
+        
+                    var deleteButton = document.createElement('button');
+                    deleteButton.id = 'dec-btn';
+                    deleteButton.textContent = 'Supprimer';
+        
+                    cancelButton.addEventListener('click', function() {
+                        // Hide the delete modal
+                        supprimerDiv.style.display = 'none';
+                    });
+        
+                    deleteButton.addEventListener('click', function() {
+                        // Send delete request to the deleteUrl
+                        deletePublication(deleteUrl, publicationID);
+                        supprimerDiv.style.display = 'none'; // Hide the modal after deletion
+                    });
+        
+                    buttonContainer.appendChild(cancelButton);
+                    buttonContainer.appendChild(deleteButton);
+        
+                    modalContent.appendChild(deconnexion);
+                    modalContent.appendChild(phrase);
+                    modalContent.appendChild(buttonContainer);
+        
+                    modal.appendChild(modalContent);
+        
+                    supprimerDiv.appendChild(overlay);
+                    supprimerDiv.appendChild(modal);
+        
+                    return supprimerDiv;
+                }
+             
+                function deletePublication(deleteUrl, publicationID) {
+                    console.log('Deleting publication with ID:', publicationID);
+        
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('DELETE', deleteUrl, true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0Njc0OTIwLCJpYXQiOjE3MTQ2NzQzMjAsImp0aSI6IjU3MTA2MjkxNTE3MjRlZWZiOTdkMjA1ZmU0MWQwY2MzIiwidXNlcl9pZCI6Mn0.BwNXftOs3kSBkQ7SPCQ-6PpYQ_k-L_B1gxSc9zvnzYA');
+        
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // Reload page or update UI as needed
+                            console.log('Publication deleted successfully');
+                            // Refresh the publication list after deletion
+                            fetchPublications();
+                            
+                            
+                        } else {
+                            console.error('Error deleting publication:', xhr.statusText);
+                            // Optionally, you can display an error message to the user
+                        }
+                    };
+        
+                    xhr.onerror = function() {
+                        console.error('Request failed');
+                    };
+        
+                    xhr.send(JSON.stringify({ id: publicationID }));
+                }
+        
+                function redirectToModencadrement(publicationID) {
+                    window.location.href = '../html/modifierpub.html?publicationID=' + publicationID;
+                    
+                }
+                pagination('.tab');
+   
+        });
+            </script>
+
+
+
+  
+
+  
+</body>
+</html>

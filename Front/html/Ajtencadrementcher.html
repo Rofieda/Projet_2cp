@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+    <div class="pub">
+        <div class="pub-title">
+            <img src="../images/news violet.png">
+            <p> données bibliographiques - Encadrement</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="originalInfo">
+                <div class="left-pub-info2">
+                    <p>Titre :</p>
+                    <p>Type :</p>
+                    <p>Date de debut d’encadrement :</p>
+                    <p>Date de fin d’encadrement :</p>
+                    <p>Etudiant1:</p>
+                    <p>Etudiant2:</p>
+                    <p>Role de premier chercheur :</p>
+                    <p>Role de deuxième chercheur :</p>
+                </div>
+                <div>
+                    <input type="text" id="titre" name="titre">
+                    <select id="type_encadrement" name="type_encadrement">
+                        <option value="" disabled selected></option>
+                        <option value="PFE">PFE</option>
+                        <option value="Master">Master</option>
+                        <option value="Troisième">Troisième</option>
+                    </select>
+                    <input type="number" id="annee_debut" name="annee" min="1900" max="2099" step="1" placeholder="Année">
+                    <input type="number" id="annee_fin" name="annee" min="1900" max="2099" step="1" placeholder="Année">
+                    <input type="text" id="etudiant1" name="etudiant1">
+                    <input type="text" id="etudiant2" name="etudiant2">
+                    <select id="role_chercheur" name="role_chercheur">
+                        <option value="" disabled selected></option>
+                        <option value="encadreur">encadreur</option>
+                        <option value="co_encadreur">co_encadreur</option>
+                    </select>
+                    <select id="role_chercheur2" name="role_chercheur2">
+                        <option value="" disabled selected></option>
+                        <option value="encadreur">encadreur</option>
+                        <option value="co-encadreur">co-encadreur</option>
+                    </select>
+                </div>
+            </div>
+            <button class="Ajouter-button" onclick="addEncadrement()"><img src="../images/Tick white.png">Ajouter</button>
+        </div>
+    </div>
+
+    <div id="popup" class="popup">
+        <p><img src="../images/appliquer.png">Votre encadrement a été <br>ajouté avec succès !</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script src="../javascript/ajout.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Add event listeners to input fields
+            $('#titre, #type_encadrement, #annee_debut, #annee_fin, #etudiant1, #etudiant2, #role_chercheur, #role_chercheur2').on('input', handleInputChange);
+        });
+
+        function handleInputChange() {
+    var isValid = true;
+    var anneeDebut = $('#annee_debut').val();
+    var anneeFin = $('#annee_fin').val();
+    
+    // Check if any required field is empty or if the start date is greater than the end date
+    $('#originalInfo input[type="text"], #originalInfo input[type="number"], #originalInfo select').each(function() {
+        if (!$(this).val()) {
+            isValid = false;
+            return false; // Exit the loop if any field is empty
+        }
+    });
+
+    if (parseInt(anneeDebut) > parseInt(anneeFin)) {
+        isValid = false;
+    }
+
+    // Disable or enable the button based on the validation result
+    var button = $('.Ajouter-button');
+    button.prop('disabled', !isValid);
+    if (!isValid) {
+        button.css({
+            'background-color': '#cccccc',
+            'cursor': 'not-allowed'
+        });
+    } else {
+        button.css({
+            'background-color': '',
+            'cursor': 'pointer'
+        });
+    }
+}
+
+        async function getAccessToken() {
+            await refreshAccessToken();
+            return sessionStorage.getItem('access_token');
+        }
+
+        async function refreshAccessToken() {
+            const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+            if (refresh_token) {
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refresh: refresh_token })
+                    });
+                    const data = await response.json();
+                    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+                    sessionStorage.setItem('access_token', data.access);
+                    sessionStorage.setItem('user_info', JSON.stringify(userInfo));
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
+
+        async function addEncadrement() {
+    var titre = $("#titre").val();
+    var type_encadrement = $("#type_encadrement").val();
+    var annee_debut = $("#annee_debut").val();
+    var annee_fin = $("#annee_fin").val();
+    var etudiant1 = $("#etudiant1").val();
+    var etudiant2 = $("#etudiant2").val();
+    var role_chercheur = $("#role_chercheur").val();
+    var role_chercheur2 = $("#role_chercheur2").val();
+
+    var isValid = titre && type_encadrement && annee_debut && annee_fin && etudiant1 && etudiant2 && role_chercheur && role_chercheur2;
+
+    if (parseInt(annee_debut) > parseInt(annee_fin)) {
+        alert("La date de début doit être inférieure ou égale à la date de fin.");
+        return;
+    }
+
+    var data = {
+        intitule: titre,
+        type_encadrement: type_encadrement,
+        annee_debut: annee_debut,
+        annee_fin: annee_fin,
+        role_chercheur: role_chercheur,
+        role_chercheur2: role_chercheur2,
+        nom_prenom_etd1: etudiant1,
+        nom_prenom_etd2: etudiant2
+    };
+
+    try {
+        const accessToken = await getAccessToken();
+
+        const response = await fetch('http://localhost:8000/api/EncadrementCreat/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            showPopup();
+            applyChange('Votre encadrement a été ajouté avec succès !');
+        } else {
+            console.error('Error:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat6.css">
+    <script src="../javascript/BARS.js"></script>
+    <link rel="stylesheet" href="../styles/BARS.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+   
+</head>
+
+<body>
+
+    
+   
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    <button id="downloadBtn" onclick="downloadData()">Exporter</button>
+    <div class="stati-title-left">
+        <p>Statistiques filtrées</p>
+        <div class="sous-titre">
+            <p>critère 1 : encadrement , critère 2 : type </p>
+        </div>
+    </div>
+    <div class="stati-filtrés-top">
+        
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati6">
+                <p><span class="label-color color1"></span><span class="value"></span> PFE</p>
+                <p><span class="label-color color2"></span><span class="value"></span> Master </p>
+                <p><span class="label-color color3"></span><span class="value"></span> Doctorat</p>
+                <p><span class="label-color color4"></span><span class="value"></span>Autre</p>
+            </div>
+        </div>
+    </div>
+    <div class="vertical-line"></div>
+
+    <div class="stati-filtrés-down">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="left-cnt-stati">
+            <div class="chart-title">Grade des chercheurs</div>
+            <canvas id="column4-chart"></canvas>
+        </div>
+    </div>
+    <div class="stati-title-right">
+        <p>Statistiques générales</p>
+    </div>
+    <div class="stati-générales-top">
+        
+        <div class="left-content-stati-title-top">
+            <p>Role des chercheurs LMCS dans les encadrements depuis 2019</p>
+        </div>
+        <div class="right-content-stati-top">
+            <canvas id="membership2-chart"></canvas>
+            <div>
+                <div class="label-container2">
+                    <div class="label label1"></div>
+                    <p class="label-text">Encadreur</p>
+                </div>
+                <div class="label-container2">
+                    <div class="label label2"></div>
+                    <p class="label-text">Co-encadreur</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-encadrements"></span>
+            <p>Encadrement</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+        <canvas id="ratio-chart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+
+    
+
+    
+    <script>
+      function downloadData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var jsonData = xhr.response;
+            var csvContent = "data:text/csv;charset=utf-8,";
+
+            // Add headers
+            csvContent += "Total encadrements: " + jsonData.total_encadrements + "\r\n";
+            csvContent += "Distribution roles:\r\n";
+            csvContent += "Role,Count\r\n";
+
+            // Add distribution roles data
+            for (var role in jsonData.distribution_roles) {
+                csvContent += role + "," + jsonData.distribution_roles[role] + "\r\n";
+            }
+
+            // Add ratio encadrement
+            csvContent += "\r\nRatio encadrement:\r\n";
+            csvContent += "Year,Count\r\n";
+            for (var year in jsonData.ratio_encadrement) {
+                csvContent += year + "," + jsonData.ratio_encadrement[year] + "\r\n";
+            }
+
+            // Add encadrements par type
+            csvContent += "\r\nEncadrements par type:\r\n";
+            csvContent += "Type,Count\r\n";
+            for (var type in jsonData.encadrements_par_type) {
+                csvContent += type + "," + jsonData.encadrements_par_type[type] + "\r\n";
+            }
+
+            // Create and trigger download
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            console.log('Failed to fetch data. Status code: ', xhr.status);
+        }
+    };
+
+    var params = {
+        critere1: 'Encadrement',
+        critere2: 'type' // Change this to the desired criteria
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+    
+            // Function to update the graph with dynamic data
+            function updateGraph(data) {
+                var distribution_roles = data.distribution_roles;
+                var labels = Object.keys(distribution_roles);
+                var dataValues = Object.values(distribution_roles);
+    
+                var colors = ['#C39EF3', '#75E8E7'];
+    
+                var membershipData = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Role des chercheurs LMCS dans les encadrements depuis 2019',
+                        data: dataValues,
+                        backgroundColor: colors,
+                        borderColor: colors,
+                        borderWidth: 1
+                    }]
+                };
+    
+                var membershipOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                };
+    
+                var membershipCanvas = document.getElementById('membership2-chart');
+                var membershipContext = membershipCanvas.getContext('2d');
+                var membershipChart = new Chart(membershipContext, {
+                    type: 'bar',
+                    data: membershipData,
+                    options: membershipOptions
+                });
+    
+                // Diminuer la largeur des colonnes
+                membershipChart.data.datasets.forEach((dataset) => {
+                    dataset.barPercentage = 0.5; // Réglage de la largeur des colonnes (50% de la largeur disponible)
+                });
+    
+                membershipChart.update(); // Mettre à jour le graphique avec les nouvelles options
+    
+                // Update the dynamic information in the "Statistiques filtrées" section
+                var encadrementsParType = data.encadrements_par_type;
+                var encadrementsParTypeContainer = document.querySelector('.left-cont-stati6');
+                var encadrementsHTML = '';
+    
+                // Define color classes
+                var colorClasses = ['color1', 'color2', 'color3', 'color4'];
+    
+                // Loop through encadrements and generate HTML
+                Object.keys(encadrementsParType).forEach(function (type, index) {
+                    // Assign color class
+                    var colorClass = colorClasses[index % colorClasses.length];
+                    // Append HTML
+                    encadrementsHTML += `<p><span class="label-color ${colorClass}"></span><span class="value">${encadrementsParType[type]}</span>${type}</p>`;
+                });
+    
+                encadrementsParTypeContainer.innerHTML = encadrementsHTML;
+    
+                // Update the total number of encadrements
+                var totalEncadrementsSpan = document.querySelector('.nombre-encadrements');
+                totalEncadrementsSpan.textContent = data.total_encadrements;
+    
+                // Now create the graph for "Graphiques" part
+                var colorsGraphiques = [
+                    '#95A4FC', // 95A4FC
+                    '#75E8E7', // 75E8E7
+                    '#DBD5D5', // DBD5D5
+                    '#DDACF5', // DDACF5
+                ];
+                var labelsGraphiques = Object.keys(encadrementsParType);
+                var dataValuesGraphiques = Object.values(encadrementsParType);
+    
+                var gradeEnseignementOptions = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            display: false, // Supprime les labels de l'axe X
+                        },
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            },
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Valeur' // libellé de l'axe des Y
+                            }
+                        }]
+                    },
+                    plugins: {
+                        legend: {
+                            display: false, // Supprime la légende
+                        },
+                        title: {
+                            display: false, // Supprime le titre
+                        }
+                    },
+                    barPercentage: 0.6 // Ajuste la largeur des colonnes (0.8 signifie 80% de la largeur disponible)
+                };
+    
+                var gradeEnseignementCanvas = document.getElementById('column4-chart');
+                var gradeEnseignementContext = gradeEnseignementCanvas.getContext('2d');
+                var gradeEnseignementChart = new Chart(gradeEnseignementContext, {
+                    type: 'bar',
+                    data: {
+                        labels: labelsGraphiques,
+                        datasets: [{
+                            label: 'Grade des chercheurs',
+                            data: dataValuesGraphiques, // Use the dynamic data here
+                            backgroundColor: colorsGraphiques,
+                            borderColor: colorsGraphiques,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: gradeEnseignementOptions
+                });
+    
+                function updateValues() {
+                    var dataValues = gradeEnseignementChart.data.datasets[0].data;
+                    labelsGraphiques.forEach(function (label, index) {
+                        var paragraph = document.querySelector('.left-cont-stati6 p:nth-child(' + (index + 1) + ')');
+                        var valueSpan = paragraph.querySelector('.value');
+                        if (valueSpan) {
+                            valueSpan.textContent = dataValues[index];
+                        }
+                    });
+                }
+    
+                updateValues();
+                gradeEnseignementChart.options.animation.onComplete = function () {
+                    updateValues();
+                };
+    
+                // Now create the graph for "stati-générales-down" part
+                var ratioChartData = {
+                    labels: Object.keys(data.ratio_encadrement),
+                    datasets: [{
+                        borderColor: "#365486",
+                        backgroundColor: "rgba(54, 84, 134, 0.2)",
+                        pointBackgroundColor: "#365486",
+                        pointBorderColor: "#fff",
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        data: Object.values(data.ratio_encadrement)
+                    }]
+                };
+    
+                var ratioChartCtx = document.getElementById("ratio-chart").getContext("2d");
+    
+                if (window.ratioChart) {
+                    window.ratioChart.destroy();
+                }
+    
+                window.ratioChart = new Chart(ratioChartCtx, {
+                    type: 'line',
+                    data: ratioChartData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: false,
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: 'gray'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    color: 'lightgray'
+                                },
+                                ticks: {
+                                    color: 'gray'
+                                }
+                            }
+                        },
+                        elements: {
+                            line: {
+                                tension: 0.4
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                left: 10,
+                                right: 10,
+                                top: 10,
+                                bottom: 10
+                            }
+                        }
+                    }
+                });
+            }
+    
+            // Fetch data from your API
+            function fetchDataAndUpdateGraph() {
+    var xhr = new XMLHttpRequest();
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    // Retrieve the values of critere1, critere2, anneeDebut, and anneeFin parameters
+    const anneeDebut = urlParams.get('anneeDebut');
+    const anneeFin = urlParams.get('anneeFin');
+
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            var data = JSON.parse(xhr.responseText);
+            updateGraph(data);
+        }
+    };
+
+    var params = {
+        critere1: 'Encadrement',
+        critere2: 'type',
+        date1: anneeDebut,
+        date2: anneeFin
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+    
+            // Call fetchDataAndUpdateGraph to fetch and update the graph
+            fetchDataAndUpdateGraph();
+        });
+    
+        function updateStatistics(data) {
+            // Update total researchers
+            document.querySelector('.nombre-encadrements').innerText = data.total_researchers;
+        }
+    </script>
+    
+</body>
+
+</html>

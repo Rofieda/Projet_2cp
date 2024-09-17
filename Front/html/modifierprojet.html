@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <title>modifier projet</title>
+</head>
+
+<body>
+  
+
+    <button class="left-button" onclick="goBack()"><img src="../images/Left 1.png"></button>
+
+    <div class="pubb">
+        <div class="pub-title"> 
+            <p>Projet</p>
+        </div>
+        <div class="pub-content">
+            <div class="pub-container" id="projectInfo">
+                <div class="left-pub-info">
+                    <p>Titre :</p>
+                    <p>Chef de projet :</p>
+                    <p>Date de début de projet :</p>
+                    <p>Date de fin de projet :</p>
+                    <p>Domaine :</p>
+                    <p>Liste des membres :</p>
+                </div>
+                <div class="right-pub-info" id="projectDetails">
+                    <!-- Project details will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <button class="modifier-button" onclick="redirectToModProject()"><img src="../images/Edit 1.png">Modifier</button>
+    </div>
+    
+    
+
+    <script src=" https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/BARSS.js"></script>
+    <script src="../javascript/notification.js"></script>
+    <script>
+         async function getAccessToken() {
+    await refreshAccessToken();
+    return sessionStorage.getItem('access_token');
+}
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", async function() {
+    await fetchProjectDetails();
+});
+
+
+document.addEventListener("DOMContentLoaded", async function() {
+    await fetchProjectDetails();
+});
+
+async function fetchProjectDetails() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('projectId');
+    console.log('Project ID:', projectId); // Add this line to log the project ID
+    const apiUrl = `http://localhost:8000/api/projet/${projectId}/modify/`;
+
+    try {
+        const accessToken = await getAccessToken(); // Retrieve access token
+        console.log('Access Token:', accessToken); // Add this line to log the access token
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Project Details:', data); // Add this line to log the project details
+            displayProjectDetails(data);
+        } else {
+            console.error('Error fetching project details:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error fetching project details:', error);
+    }
+}
+
+function displayProjectDetails(project) {
+    const projectDetailsContainer = document.getElementById('projectDetails');
+
+    projectDetailsContainer.innerHTML = `
+    <p>${project.titre_projet.substring(0, 40) || 'xxxxxx'}</p>
+    <p>${project.chef_de_projet || 'xxxxxx'}</p>
+    <p>${project.annee_debut || 'xxxxxx'}</p>
+    <p>${project.annee_fin || 'xxxxxx'}</p>
+    <p>${project.domaine || 'xxxxxx'}</p>
+        <p></p>
+        <ul>
+            ${project.membre_liste.map(member => `<li>${member.nom_complet}</li>`).join('')}
+        </ul>
+    `;
+}
+async function redirectToModProject() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const projectId = urlParams.get('projectId');
+    window.location.href = encodeURI(`modifierprojetapresclique.html?projectId=${projectId}`);
+}
+
+        function goBack() {
+            window.history.back();
+
+        }
+
+
+        
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

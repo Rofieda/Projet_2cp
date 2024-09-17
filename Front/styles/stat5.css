@@ -1,0 +1,339 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-y: auto;
+}
+.stati-title-left{
+    margin-top: 5%;
+    margin-left: 28%;
+}
+.stati-title-left p{
+    font-size: 1.25vw;
+    font-weight: 600;
+    color: #64379F;
+}
+.sous-titre p{
+    color: #365486;
+}
+
+.stati-filtrés-top {
+        width:33%;
+        margin-top: 0%;
+        margin-left: 26%;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 20px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+        height: fit-content;
+ }
+ 
+.left-content-stati-title{
+    color: #64379F;
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+
+.label-color {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /* Pour rendre les cercles */
+    margin-right: 15px;
+    /* Augmente l'espace entre la couleur et la valeur */
+    vertical-align: middle;
+}
+
+.color1 {
+    background-color: #95A4FC;
+}
+
+.color2 {
+    background-color: #75E8E7;
+}
+
+.color3 {
+    background-color: #DBD5D5;
+}
+
+.color4 {
+    background-color: #DDACF5;
+}
+
+.color5 {
+    background-color: #A8C5DA;
+}
+
+.color6 {
+    background-color: #365486;
+}
+.color7 {
+    background-color: #FFC600;
+
+}
+
+.color8 {
+    background-color: #FF5733;
+}
+
+
+.left-cont-stati5 p {
+    font-size: 1vw;
+    font-weight: 600;
+    color: #365486;
+    margin: 0;
+    /* Supprime les marges par défaut */
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    margin-right: 30px;
+    /* Espacement horizontal entre les paragraphes */
+    margin-right: 4rem;
+    margin-left: 20px;
+}
+
+.value {
+    margin-right: 10px;
+    /* Ajoute de l'espace entre la valeur et le paragraphe */
+}
+
+.stati-title-right {
+    display: inline-table;
+    position: absolute; /* Utilise une position absolue pour positionner par rapport au parent */
+    top: 11%; /* Positionne l'élément en haut de son conteneur parent */
+    left: 64%; /* Positionne l'élément à 4% de la largeur du conteneur parent depuis la droite */
+}
+
+
+
+.stati-title-right p {
+    font-size: 1.5vw;
+    font-weight: bold;
+    color: #64379F;
+    margin: 0;
+}
+
+.titreenplus {
+    position: relative;
+    top: -33.5rem;
+    font-size: 1.2vw;
+    color: #365486;
+    margin-left: 64%;
+}
+
+
+
+
+.stati-filtrés-down {
+    width:33%;
+    margin-top: 1%;
+    margin-left: 26%;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 20px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    height: fit-content;
+}
+
+
+/* Style du titre du diagramme */
+.chart-title {
+    font-size: 1vw;
+    font-weight: 500;
+    color: #64379F;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+#column-chart {
+    margin-top: 10px;
+    max-height: 200px;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+
+
+.stati-générales-top {
+    float: right;
+    width: 33%;
+    height: 150px;
+    position: relative;
+    right: 2.6rem;
+    top: -33.4rem;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+
+
+.stati-générales-midle {
+        display: inline-table;
+        float: right;
+        width: 33%;
+        height: 90px;
+        position: relative;
+        right: -29.9%;
+        top: -23rem;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 30px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-générales-down {
+        float: right;
+        width: 33%;
+        height: 200px;
+        position: relative;
+        right: -62.9%;
+        top: -15.4rem;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 30px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+/*
+.stati-générales-top {
+    float: right;
+    width: 33%;
+    margin-top: -36.5%;
+    margin-right: 4%;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    height: 180px; /* Exemple de hauteur fixée à 50% de la hauteur du parent */
+/*
+.stati-générales-midle {
+    float: right;
+    width: 33%;
+    margin-top: -24.5%;
+    margin-right: 4%;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    height: 120px; /* Exemple de hauteur fixée à 50% de la hauteur du parent */
+
+
+    .right-content-stati-mdl {
+        font-size: 1.5rem;
+        /* Taille de la police */
+        font-weight: bold;
+        /* Gras */
+        color: #365486;
+        /* Couleur du texte */
+        margin-top: -0.2px;
+        /* Marge en haut */
+        display: flex;
+        /* Utilisation de flexbox */
+        align-items: center;
+        /* Centrage vertical */
+        justify-content: center;
+        /* Centrage horizontal */
+    }
+    
+    
+    
+    .nombre-chercheurs {
+        margin-right: 10px;
+        /* Ajoute une marge à droite de la valeur des chercheurs */
+    }
+
+    .left-content-stati-title-down{
+        margin-top: -5px;
+        color: #64379F;
+        font-weight: 400;
+    }
+
+    #membership-chart {
+        margin-top: 39px;
+        max-width: 50%;
+        max-height: 150px;
+        margin-left: -200px;
+    }
+
+
+.right-content-stati-down {
+        position: relative;
+        margin-top: -14%;
+        float: right;
+        margin-right: -18% ;
+}  
+
+.label-container {
+    margin-top: -15px;
+    display: flex;
+    padding: 10px;
+}
+
+#labels-container {
+    margin-top: -85px;
+    position: relative;
+    margin-right: 35px;
+    margin-left: -15px;
+   
+}
+
+.label {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* Espacement entre chaque couleur */
+}
+
+
+
+
+.label1 {
+    background-color: #C39EF3;
+    /* Pour les anciens membres (gris clair) */
+}
+
+.label2 {
+    background-color: #75E8E7;
+    /* Pour les membres ajoutés cette année (violet clair) */
+
+}
+.label3 {
+    background-color: #407BFF;
+    /* Pour les membres ajoutés cette année (violet clair) */
+}
+
+.label-text {
+    font-size: 1vw;
+    color: black;
+    margin: 0px;
+    /* Réinitialiser la marge */
+}
+
+
+
+#downloadBtn{
+    position: relative;
+    float: right;
+    width: 100px;
+    margin-right: 3rem;
+    top: -50rem;
+    padding: 8px 16px;
+    background-color: #365486;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}

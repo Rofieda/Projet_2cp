@@ -1,0 +1,429 @@
+body {
+    font-family: 'poppins';
+    margin: 0;
+}
+
+.sous-titre {
+    display: flex;
+    color: #64379F; 
+    margin-left: 275px;
+    margin-top: 60px;
+    font-size: 20px;
+    margin-bottom: -16px;
+    align-items: center;
+}
+
+.profil-pic{
+    width: 44px;
+}
+
+.add-icon{
+    width: 3%;
+}
+
+.status{
+    font-style: italic;
+}
+
+#ajout-btn{
+    background: gray;
+    display: flex;
+    border-radius: 8px;
+    justify-content: center;
+    align-items: center;
+    background: #D9D9D9; 
+    padding: 8px 6px;
+    color: black;
+    margin-left: 286px;
+    width: calc(98% - 280px);
+    margin-right: 910px;
+    margin-top: -1%;
+    margin-bottom: -1.5%;
+    height: 62px;
+    transition: .5s;
+    border-radius: 4px;
+    border: 3px dashed #64379F;
+    border-width: 4px; 
+    border-spacing: 30px;
+    cursor: pointer;
+}
+
+.ajout-chercheur-icon {
+    width: 26px; /* Adjust the width as needed */
+    height: 26px; /* Maintain aspect ratio */
+    margin-right: 3px; /* Add spacing between image and text */
+    margin-bottom: -5px;
+    margin-left: 2px;
+}
+  
+.sous-titre p {
+    display: inline-block; /* Keep text on the same line */
+    font-weight: 600;
+    margin-top: -5%;
+}
+
+.icon-text-container{
+    margin-top: -5.5%;
+}
+h1 {
+    color: #64379F; 
+    margin-left: 275px;
+    margin-top: 4.5%;
+    margin-bottom: -0.5%;
+}
+
+
+ul {
+    position: fixed;
+    box-sizing: border-box;
+    margin-left: 275px;
+    width: calc(100% - 275px); /* Adjusted width to fill the remaining space */
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    font-size: 14px;
+}
+
+
+
+ul li {
+    display: flex;
+    align-items: center;
+    background: white;
+    width: calc(100% - 22px); /* Adjusted width to fill the container */
+    padding: 8px 6px;
+    color: black;
+    margin: 3px 0;
+    height: 62px;
+    transition: .5s;
+    border-radius: 4px;
+    border: 2px solid #ccc;
+} 
+
+ul li span {
+    margin-right: 1%; 
+    
+}
+
+ul li span:nth-child(1){
+    margin-left: 2%;
+    width: 6% ;
+}
+ul li span:nth-child(2){
+    width: 35% ;
+}
+ul li span:nth-child(3){
+    width: 20% ;
+}
+ul li span:nth-child(4){
+    width: 20% ;
+
+}
+ul li span:nth-child(5){
+    width: 10% ;
+}
+ul li span:nth-child(5){
+    width: 100px ;
+
+}
+
+ul li .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 10px; /* Add some padding to the buttons container */
+} 
+
+ul li button {
+    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-right: 20%;
+}
+
+#button1{
+    background: #365486;
+    color: white;
+    font-family: 'poppins';
+    font-size: 13px;
+    border: none;
+    padding-left: 12%;
+    font-weight: 500;
+    padding-right: 12%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#button1:hover{
+    background: #1f3a59;
+}
+
+#button2{
+    background: white;
+    color: #365486;
+    font-family: 'poppins';
+    font-weight: 500;
+    border: 2px solid #365486;
+    font-size: 13px;
+    padding-left: 11%;
+    padding-right: 11%;
+    padding-top: 1.5%;
+    padding-bottom: 2%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#button2:hover{
+    background: #e2e2e2;
+}
+
+.name-chercheur{
+    color: #64379F;
+    font-weight: 550;
+}
+
+.button-modifier{
+    background-color: #365486;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+.button-modifier:hover {
+    background-color: #1f3a59; /* Darker color when hovered */
+}
+.button-supprimer{
+    background-color: #E81F20;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.button-supprimer:hover {
+    background-color: #b50005; /* Darker color when hovered */
+}
+.Titre {
+    margin-top: 30px;
+    margin-bottom: -28px;
+    margin-left: 380px;
+    margin-right: 10%;
+    font-weight: 650;
+    font-size: 14px;
+    color: #64379F; 
+    margin-top: 20px; 
+    overflow-x: auto;
+}
+
+
+.Titre th {
+    padding: 8px 1px;
+    padding-right: -3px;
+    text-align: left;
+
+}
+
+.Titre th:nth-child(1) {
+    width: 43%;
+}
+
+.Titre th:nth-child(2) {
+    width: 10%;
+    padding-left: 1.5%;
+}
+
+.Titre th:nth-child(3) {
+    width: 10%;
+    padding-left: 1.5%;
+
+}
+
+.Titre th:nth-child(4) {
+    width: 10%;
+    padding-left: 1.5%;
+
+}
+
+.Titre th:nth-child(5) {
+    width: 10%;
+    padding-left: 20px; 
+}
+
+.pages {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;  
+    bottom: 0;  
+    left: 50%;  
+    transform: translateX(25%);  
+    margin-bottom: 4px;
+  }
+  
+.pages button.nombre-page {
+    content: "\003C";
+    color: black;
+    background-color: white;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+    padding: 6px 11px;
+    text-align: center;
+    margin-right: 4px;
+    cursor: pointer;
+    padding: 6px 10px;
+    transition: background-color .2s, transform .2s;
+  }
+.pages button.nombre-page:hover {
+    background-color: rgb(204, 204, 204);
+    transform: scale(1.12);
+}
+
+/*-----------------------------------------------------------------------------------------------------------*/
+#overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left:17%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+.modal-small {
+    display: block;
+  font-family: 'poppins', sans-serif;
+  font-size: 15px;
+  position: fixed;
+  z-index: 999;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 70%;  /* Increased width to 70% */
+  max-height: 250px; /* Increased height to 250px */
+  background-color: #fefefe;
+  border: 1px solid #888;
+  border-radius: 12px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 20px;
+}
+
+.modal-content {
+    color: #595959;
+    max-height: calc(100% - 40px);
+    margin-bottom: 1rem;
+}
+
+
+
+#deconnexion {
+    font-size: 19px;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.icon-deconnexion {
+    margin-bottom: 10px;
+    width: 60px;
+    height: auto;
+    margin-top: -1%;
+}
+
+
+
+.dec-btn {
+    margin: 0.25rem 0.25rem;
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+     font-family: 'poppins' , sans-serif;
+    border-radius: 8px;
+    height: 44px;
+    width: 47%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    padding: 0.75rem ;
+    margin-bottom: 0.25rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: 2px solid #64379F;
+    position: relative;
+    right: -4px;
+}
+
+.dec-btn:hover {
+    background-color: #482774;
+    font-family: 'poppins' , sans-serif;
+}
+
+
+#cancel-reset {
+    margin: 0.25rem 0.25rem;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    font-family: 'poppins' , sans-serif;
+    font-weight: 600;
+    top: 50%;
+    bottom: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: 47%;
+    padding: 0.75rem 4rem;
+    margin-bottom: 0.25rem;
+    background-color: #fefefe;
+    color: #64379F;
+    border: 2px solid #64379F;
+    position: relative;
+    left: -4px;
+}
+
+#cancel-reset:hover {
+    background-color: #8557c520;
+    font-family: 'poppins' , sans-serif;
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-family: 'poppins' , sans-serif;
+}
+
+p,button {
+    font-family: 'poppins' , sans-serif;
+}
+.phrase{
+    font-family: 'poppins' , sans-serif;
+    margin-top: 20%;
+    text-align: center;
+}
+#sup{
+    margin-top:-4% ;
+}
+.activer-qui{
+    text-align: center;
+    margin-top: -4%;
+    color: black;
+    font-size: 600;
+}
+#appear-when-supp{
+    display: none; 
+}
+
+/*---------------------------------------------------------------------------------------------------------------------------*/

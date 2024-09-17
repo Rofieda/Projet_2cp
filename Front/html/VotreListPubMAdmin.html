@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/VotreListPub.css">
+    <script src="../javascript/BARS.js"></script>
+    <link rel="stylesheet" href="../styles/BARS.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Votre liste des publications</h1>
+    <div class="Titre">
+        <table>
+            <tr>
+                <th>Titre de publication</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Acronyme</th>
+                <th>Citations</th>
+            </tr>
+        </table>
+    </div>
+    
+    <ul class="publication-list"></ul>
+
+    <div class="pages">
+        <button class="nombre-page" id="firstPageBtn"></button>
+        <button class="nombre-page" id="prevPageBtn"></button>
+        <div class="pagination" id="pagination"></div>
+        <button class="nombre-page" id="nextPageBtn"></button>
+        <button class="nombre-page" id="lastPageBtn"></button>
+    </div>
+
+    <script src="javaScript/pagination.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchPublications(); // Fetch publications from the API
+
+            function fetchPublications() {
+                try {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'http://localhost:8000/api/publicationsListAdmine/', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                 
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            var publications = JSON.parse(xhr.responseText);
+                            displayPublications(publications);
+                        } else {
+                            console.error('Error fetching publications:', xhr.statusText);
+                        }
+                    };
+            
+                    xhr.onerror = function() {
+                        console.error('Request failed');
+                    };
+            
+                    xhr.send();
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            function displayPublications(publications) {
+                var publicationList = document.querySelector('.publication-list');
+                publicationList.innerHTML = ''; // Clear previous content
+
+                publications.forEach(function(publication) {
+                    var publicationItem = document.createElement('li');
+                    publicationItem.classList.add('tab');       
+
+                    var publicationTitle = document.createElement('span');
+                    publicationTitle.textContent = publication.titre_publication;
+
+                    var publicationType = document.createElement('span');
+                    publicationType.textContent = publication.conf_journal_type;
+
+                    var publicationDate = document.createElement('span');
+                    publicationDate.textContent = publication.annee;
+
+                    var publicationAcronyme = document.createElement('span');
+                    publicationAcronyme.textContent = publication.conf_journal_acronyme;
+
+                    var publicationCitations = document.createElement('span');
+                    publicationCitations.textContent = publication.citations;
+
+                    var modifyButton = document.createElement('button');
+                    var modifyImg = document.createElement('img');
+                    modifyImg.src = '../images/icon modifier amina.png';
+                    modifyImg.alt = 'modifier Icon';
+                    modifyButton.appendChild(modifyImg);
+                    modifyButton.classList.add('button-modifier');
+                    modifyButton.onclick = function() {
+                        redirectToModencadrement(publication.id); 
+                    };
+
+                    publicationItem.appendChild(publicationTitle);
+                    publicationItem.appendChild(publicationType);
+                    publicationItem.appendChild(publicationDate);
+                    publicationItem.appendChild(publicationAcronyme);
+                    publicationItem.appendChild(publicationCitations);
+                    publicationItem.appendChild(modifyButton);
+                    publicationList.appendChild(publicationItem);
+                });
+
+                // After displaying publications, initialize pagination
+                pagination('.tab');
+            }
+
+            function redirectToModencadrement(publicationID) {
+                window.location.href = '../html/modifierpub.html?publicationID=' + publicationID;
+            }
+        });
+    </script>
+</body>
+</html>

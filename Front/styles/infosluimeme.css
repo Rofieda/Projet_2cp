@@ -1,0 +1,931 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+.left-content {
+    width: 38%;
+    height: fit-content;
+    position: absolute;
+    left: 26%;
+    top: 20%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #BBBBBB;
+    border-radius: 7px;
+    padding: 15px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.left-title {
+    top: 12%;
+    position: absolute;
+    left: 30%;
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s ease;
+    /* Transition de transformation en douceur */
+}
+
+.left-title img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.left-title p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #64379F;
+    margin: 0;
+    width: 100%;
+}
+
+
+
+.photo-button {
+    position: absolute;
+    margin-top: -1%;
+    left: 4%;
+    background-size: cover;
+    transition: filter 0.3s ease;
+    border-radius: 50%;
+}
+
+.photo-button img {
+    width: 22%; /* Ajustez la largeur de l'image pour remplir le conteneur */
+    height: 22%; /* Ajustez la hauteur de l'image pour remplir le conteneur */
+    border-radius: 50%; /* Appliquez le même arrondi que celui du conteneur */
+}
+
+
+
+.line {
+    position: relative;
+    width: 50%;
+    border: none;
+    border-top: 1px solid #365486;
+    margin-top: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 5px 5px rgba(54, 84, 134, 0.5);
+}
+
+.info-container {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1px;
+}
+
+.left-info,
+.right-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
+    margin-left: 0px;
+    font-size: 1vw;
+}
+
+.left-info p {
+    color: #365486;
+    text-align: left;
+    margin: 2px;
+    width: 80%;
+}
+
+.right-info p {
+    text-align: right;
+    margin: 2px;
+}
+
+
+.right-content {
+    width: 25%;
+    min-height: auto;
+    position: absolute;
+    right: 12%;
+    top: 18%;
+    display: flex;
+    flex-direction: column;
+    border: 1.13px solid #BBBBBB;
+    border-radius: 7px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+
+.right-title {
+    top: 12%;
+    position: absolute;
+    right: 8%;
+    display: flex;
+    align-items: center;
+
+    transition: transform 0.5s ease;
+    /* Transition de transformation en douceur */
+}
+
+.right-title img {
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.right-title p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #64379F;
+    margin: 0;
+    width: 100%;
+}
+
+.right-content img {
+    margin-top: -35px;
+    width: 90px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right-content .Projet,
+.right-content .stat,
+.right-content .activite {
+    margin-top: 5px;
+    border-radius: 7px;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 10px;
+}
+
+.Projet {
+    display: flex;
+    align-items: center;
+}
+
+.Projet img {
+    margin-top: 0px;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: 20px;
+    margin-left: 25px;
+}
+
+.Projet .projet-info {
+    height: 125px;
+    display: inline-block;
+}
+
+.Projet .projet-courant {
+    margin-top: 25px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #64379F;
+}
+
+.Projet .domaine {
+    margin-top: 5px;
+    font-size: 19px;
+    font-weight: normal;
+    color: black;
+}
+
+.Projet .nom-projet {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: lighter;
+    color: black;
+}
+
+
+
+.activite {
+    position: relative;
+    width: 100%;
+    height: 184px;
+
+}
+
+#courbe-activite {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 50%;
+    height: calc(100% - 20px);
+}
+
+.left-button {
+    position: absolute;
+    left: 22%;
+    top: 10%;
+
+}
+
+.left-button img {
+    width: 50px;
+    height: auto;
+}
+
+.left-scroll {
+    position: absolute;
+    left: 380px;
+    top: 50%;
+    z-index: 999;
+}
+
+.right-scroll img {
+    width: 50px;
+    height: auto;
+}
+
+.right-scroll {
+    position: absolute;
+    right: 85px;
+    top: 50%;
+}
+
+.left-scroll img {
+    width: 50px;
+    height: auto;
+}
+
+.notification-button {
+    position: relative;
+    z-index: 1;
+    /* Assure que le bouton reste au-dessus des autres éléments */
+}
+
+.notification-window {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 0;
+    /* Assure que la fenêtre soit en dessous du bouton */
+}
+
+.notification-window .arrow {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid white;
+}
+
+.notification-window .content {
+    padding: 10px;
+}
+
+.notification-window p {
+    margin: 0;
+}
+
+.notification-window button {
+    margin-top: 10px;
+}
+
+/*
+.left,
+.right {
+    transition: transform 0.5s ease;
+}
+
+.left:hover {
+    transform: scale(1.1) translateY(30px);
+}
+
+.right:hover {
+    transform: scale(1.05) translateY(-25px);
+}
+
+.left:hover+.right {
+    transform: scale(0.95) translateY(60px);
+}
+
+.right:hover+.left {
+    transform: scale(0.2) translateY(10px);
+}
+*/
+/* Style général pour la section de sécurité */
+.security {
+    position: relative;
+    margin-top: 59%;
+    width: 58%;
+    margin-left: 30%;
+    margin-bottom: 4%;
+}
+
+/* Style du titre de la section de sécurité */
+.security-title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #64379F;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.security-title img {
+    width: 30px;
+    margin-right: 10px;
+}
+
+/* Style pour chaque champ (label, input, button) dans la section de sécurité */
+.email-input,
+.password-input {
+    display: flex;
+    border: 1.2px solid #BBBBBB;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    height: 60px;
+}
+
+.email-input p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-left: 21%;
+}
+
+.password-input p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin-left: 15%;
+}
+
+.email-input2 {
+    display: flex;
+    border: 3.5px dashed #64379F;
+    /* Bordure en pointillés */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    height: 60px;
+}
+
+.email-input label,
+.email-input2 label,
+.password-input label {
+    display: flex;
+    align-items: center;
+    color: #365486;
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.email-input input,
+.email-input2 input,
+.password-input input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    max-width: 30%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.email-input input,
+.email-input2 input {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.password-input input {
+    margin-left: 14.5%;
+    margin-right: 22%;
+}
+
+.email-input input:focus,
+.password-input input:focus {
+    border-bottom-color: #64379F;
+    /* Couleur de la bordure basse lorsqu'en focus */
+}
+
+.modify-button {
+    font-weight: 500;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 7px;
+    /* Ajustement des espacements intérieurs */
+    border: none;
+    border-radius: 6px;
+    margin-left: auto;
+    /* Alignement à droite */
+    background-color: #64379F;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+    height: 35px;
+    width: 13%;
+}
+
+.modifier-button {
+    position: relative;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 7px;
+    /* Ajustement des espacements intérieurs */
+    border: none;
+    border-radius: 6px;
+    margin-left: 80%;
+        margin-top: 4%;
+    background-color: #64379F;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+    height: 35px;
+    width: 22%;
+}
+
+.modal {
+    display: none;
+    font-family: 'Monsterast', sans-serif;
+    font-size: 15px;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 380px;
+    max-height: 400px;
+    overflow: auto;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.modal-large {
+    display: none;
+    font-size: 15px;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    height: 50%;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 12px;
+    padding: 20px;
+}
+.ajouter-button {
+    font-weight: 500;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 7px;
+    /* Ajustement des espacements intérieurs */
+    border: none;
+    border-radius: 6px;
+    margin-left: auto;
+    /* Alignement à droite */
+    background-color: #64379F;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+    height: 35px;
+    width: 10%;
+}
+
+.apply-button {
+    font-weight: 500;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 7px;
+    /* Ajustement des espacements intérieurs */
+    border: none;
+    border-radius: 6px;
+    margin-left: auto;
+    /* Alignement à droite */
+    background-color: #64379F;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease;
+    height: 35px;
+    width: 13%;
+}
+
+
+.modify-button img,
+.modifier-button img {
+    width: 13px;
+    /* Définir la largeur de l'image */
+    height: auto;
+    /* Conserver le rapport hauteur/largeur */
+    margin-right: 8px;
+    /* Marge à droite de l'image */
+    vertical-align: middle;
+    /* Alignement vertical au centre par rapport au texte */
+}
+
+.apply-button img {
+    width: 18px;
+    /* Définir la largeur de l'image */
+    height: auto;
+    /* Conserver le rapport hauteur/largeur */
+    margin-right: -1px;
+    /* Marge à droite de l'image */
+    vertical-align: middle;
+    /* Alignement vertical au centre par rapport au texte */
+}
+
+/* CSS pour l'icône de visibilité du mot de passe */
+.visibility-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: -50px;
+    /* Ajustement de l'espacement */
+    cursor: pointer;
+    /* Curseur de type pointeur */
+}
+
+.visibility-button img {
+    width: 20px;
+    /* Largeur de l'icône */
+    height: auto;
+    /* Hauteur automatique pour conserver les proportions */
+    transition: transform 0.3s ease;
+    /* Animation de transition pour un effet fluide */
+}
+
+/* CSS pour l'icône de mot de passe visible */
+.visibility-button img.visible {
+    transform: rotate(0deg);
+    /* Rotation de l'icône lorsque le mot de passe est visible */
+}
+
+/* CSS pour l'icône de mot de passe masqué */
+.visibility-button img.hidden {
+    transform: rotate(180deg);
+    /* Rotation de l'icône lorsque le mot de passe est masqué */
+}
+
+/* Réinitialisation des styles par défaut */
+/* Style de base pour tous les <input> */
+input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+/* Style lors du focus sur l'<input> */
+input:focus {
+    border-bottom-color: #64379F;
+}
+select {
+    height: 20px;
+    padding: 1px;
+    width: 60%;
+    border-radius: 4px;
+    border: 1px solid #bbbbbb12;
+    background-image: linear-gradient(to bottom, #bbbbbb55, #bbbbbb55);
+}
+
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Fond semi-transparent */
+    z-index: 9999;
+    /* Empilement au-dessus de tout le reste */
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+#reset-email {
+    display: block;
+    margin-left: 0%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+#uidb64 {
+    display: block;
+    margin-left: 0%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+#token {
+    display: block;
+    margin-left: 0%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+#new-password {
+    display: block;
+    margin-left: 0%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+#confirm-new-password {
+    display: block;
+    margin-left: 0%;
+    max-width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 19.5%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 1000;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    display: none;
+    z-index: 1001;
+}
+
+.modal-content {
+    text-align: center;
+}
+
+
+
+
+
+/* Style pour le bouton de fermeture du modal */
+.close {
+    position: relative;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 0%;
+    margin-top: -5%;
+}
+
+.close:hover,
+.close:focus {
+    color: rgba(0, 0, 0, 0.555);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.toggle-password2 {
+    position: absolute;
+    right: 1%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 10%;
+    padding-top: 0%;
+}
+
+.toggle-password2 img {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+#forgot-password-title {
+    font-size: 19px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 11px;
+}
+
+
+#reset-password-btn {
+    margin: 1rem auto;
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: 337px;
+    padding: 0.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 0.25rem;
+}
+
+#red-password-btn,
+#cancel-reset-btn {
+    position: absolute;
+    margin: 0rem 0.25rem;
+    margin-top: 3%;
+    /* Ajoutez une marge à gauche et à droite des boutons */
+    display: inline-block;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: calc(45% - 0.4rem);
+    padding: 0.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 4%;
+}
+
+#cancel-reset-btn {
+    position: relative;
+    right: -3%;
+}
+
+#red-password-btn {
+    position: relative;
+    left: -4%;
+}
+
+#red-password-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 11px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.stat {
+    width: 17%;
+    min-height: auto;
+    position: absolute;
+    right: 13%;
+    top: 20%;
+    font-size: 1.1vw;
+    display: flex;
+    flex-direction: column;
+    border: 1.13px solid #BBBBBB;
+    border-radius: 7px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.num-sta {
+    border: 1.13px solid #BBBBBB;
+    border-radius: 10px;
+    height: fit-content;
+    display: flex;
+    font-family: poppins;
+    color: #402267;
+    font-weight: 600;
+    text-align: center;
+    flex-direction: column;
+    margin-top: 6%;
+    padding-left: 0%;
+    background-color: #f7f9fb;
+    margin-bottom: 10%;
+}
+
+.number {
+    font-size: 4.5vw;
+    margin-left: 9%;
+    margin-top: 5%;
+    color: #402267;
+    margin-right: 6%;
+    font-family: 'Fjalla One', sans-serif;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.prop {
+    margin-top: 2%;
+    font-weight: 600;
+    color: #402267;
+    margin-bottom: 7%;
+    font-family: poppins;
+    text-align: center;
+    font-size: 1.2vw;
+    opacity: 0; 
+  
+}

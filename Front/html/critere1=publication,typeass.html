@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat filtres.css">
+    
+  
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest </title>
+</head>
+
+<body>
+   
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    <button class="download-button" onclick="downloadData()">Télécharger en Excel</button>
+    <div class="stati-filtrés-top3 ">
+        <div class="stati-title-left">
+            <p>Statistiques filtrées</p>
+            <div class="sous-titre">
+                <p>critère 1 : publication , critère 2 : type</p>
+            </div>
+        </div>
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati3">
+                <p><span class="value">50</span> Conférence</p>
+                <p><span class="value">50</span> Journal</p>
+            </div>
+        </div>
+
+    </div>
+    <div class="vertical-line"></div>
+    <div class="stati-filtrés-down3">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="recherchechart4"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-circle circle1"></div>
+                <div class="legend-label">Conférence</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle2"></div>
+                <div class="legend-label">Journal</div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="stati-générales-top">
+        <div class="stati-title-right">
+            <p>Statistiques générales</p>
+        </div>
+        <h2 class="titreenplus">Publication la plus citée</h2>
+        <div class="right-content-stati">
+            <p>meilleures chercheurs (critère de classement ; citation )</p>
+            <p>#</p>
+            <p>Citations</p>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-publications"></span>
+            <p> Publications</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+        <div class="left-content-stati-title-down">
+            <p>Ratio de publication</p>
+        </div>
+        <div class="right-content-stati-down">
+            <canvas id="ratio-chart"></canvas>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+    
+   
+    <script src="../javascript/BARSAss.js"></script>
+    <script src="../javascript/notificationass.js"></script>    
+   
+    
+    <script>
+        function downloadData() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            var jsonData = xhr.response;
+            var csvContent = "data:text/csv;charset=utf-8,";
+
+            // Add total publications
+            csvContent += "Total publications: " + jsonData.total_publications + "\r\n";
+
+            // Add top publications
+            csvContent += "Top Publications:\r\n";
+            csvContent += "Publication,Count\r\n";
+            jsonData.top_publications.forEach(function (publication) {
+                var title = Object.keys(publication)[0];
+                var count = publication[title];
+                csvContent += title + "," + count + "\r\n";
+            });
+
+            // Add ratio publication
+            csvContent += "\r\nRatio publication:\r\n";
+            csvContent += "Year,Count\r\n";
+            for (var year in jsonData.ratio_pub) {
+                csvContent += year + "," + jsonData.ratio_pub[year] + "\r\n";
+            }
+
+            // Add conference count and journal count
+            csvContent += "\r\nConference count: " + jsonData.conference_count + "\r\n";
+            csvContent += "Journal count: " + jsonData.journal_count + "\r\n";
+
+            // Create and trigger download
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "data.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            console.log('Failed to fetch data. Status code: ', xhr.status);
+        }
+    };
+
+    // Modify params as per your API requirements
+    var params = {
+        critere1: "publication",
+            critere2: "type",
+    };
+
+    xhr.send(JSON.stringify(params));
+}
+        document.addEventListener('DOMContentLoaded', function () {
+            function fetchStatistics() {
+        var xhr = new XMLHttpRequest();
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // Retrieve the values of critere1, critere2, anneeDebut, and anneeFin parameters
+        const anneeDebut = urlParams.get('anneeDebut');
+        const anneeFin = urlParams.get('anneeFin');
+
+        xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onload = function () {
+            if (xhr.status == 200) {
+                var data = JSON.parse(xhr.responseText);
+                updateStatistics(data);
+                updateChart(data.ratio_pub);
+                updateGraphiques(data.conference_count, data.journal_count); // Call updateGraphiques with conference and journal counts
+            }
+        };
+
+        var params = {
+            critere1: "publication",
+            critere2: "type",
+            date1: anneeDebut,
+            date2: anneeFin
+        };
+
+        xhr.send(JSON.stringify(params));
+    }
+        
+            function updateStatistics(data) {
+    document.querySelector('.nombre-publications').textContent = data.total_publications;
+
+    var topPublicationsContainer = document.querySelector('.stati-générales-top .right-content-stati');
+    topPublicationsContainer.innerHTML = '';
+    
+    if (data.top_publications.length > 0) {
+        var firstPublication = data.top_publications[0];
+        var publicationName = Object.keys(firstPublication)[0];
+        var citations = firstPublication[publicationName];
+        
+        var publicationElement = document.createElement('div');
+        publicationElement.classList.add('publication');
+        publicationElement.innerHTML = '<p>' + publicationName + ': ' + citations + '</p>';
+        
+        topPublicationsContainer.appendChild(publicationElement);
+    }
+
+    document.querySelectorAll('.left-cont-stati3 p')[0].innerHTML = '<span class="value">' + data.conference_count + '</span> Conférence';
+    document.querySelectorAll('.left-cont-stati3 p')[1].innerHTML = '<span class="value">' + data.journal_count + '</span> Journal';
+}
+
+        
+            function updateChart(ratio_pub) {
+                var labels = Object.keys(ratio_pub);
+                var dataValues = Object.values(ratio_pub);
+        
+                var ratioChartData = {
+                    labels: labels,
+                    datasets: [{
+                        borderColor: "#365486",
+                        backgroundColor: "rgba(54, 84, 134, 0.2)",
+                        pointBackgroundColor: "#365486",
+                        pointBorderColor: "#fff",
+                        borderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6,
+                        data: dataValues
+                    }]
+                };
+        
+                var ratioChartCtx = document.getElementById("ratio-chart").getContext("2d");
+        
+                if (window.ratioChart) {
+                    window.ratioChart.destroy();
+                }
+        
+                window.ratioChart = new Chart(ratioChartCtx, {
+                    type: 'line',
+                    data: ratioChartData,
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: false,
+                            }
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: 'gray'
+                                }
+                            },
+                            y: {
+                                grid: {
+                                    color: 'lightgray'
+                                },
+                                ticks: {
+                                    color: 'gray'
+                                }
+                            }
+                        },
+                        elements: {
+                            line: {
+                                tension: 0.4
+                            }
+                        },
+                        layout: {
+                            padding: {
+                                left: 10,
+                                right: 10,
+                                top: 10,
+                                bottom: 10
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function updateGraphiques(conference_count, journal_count) {
+                var data = {
+                    labels: ['Conférence', 'Journal'],
+                    datasets: [{
+                        data: [conference_count, journal_count],
+                        backgroundColor: ['#DDACF5', '#75E8E7']
+                    }]
+                };
+        
+                var options = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        enabled: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    cutoutPercentage: 70,
+                    elements: {
+                        arc: {
+                            borderRadius: 10
+                        }
+                    }
+                };
+        
+                var ctx = document.getElementById('recherchechart4').getContext('2d');
+                var rechercheChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: options
+                });
+        
+                var legendItems = document.querySelectorAll('.legend-item');
+                legendItems.forEach(function (item, index) {
+                    var label = item.querySelector('.legend-label');
+                    var colorCircle = item.querySelector('.legend-circle');
+                    var count = data.datasets[0].data[index];
+        
+                    colorCircle.style.float = 'left';
+                    colorCircle.style.marginRight = '25px';
+        
+                    label.innerHTML = '<span style="color: black;">' + label.textContent + '</span>';
+                    label.innerHTML += '<span style="margin-left: 80px; color: black;">' + count + '</span>';
+                });
+            }
+        
+            fetchStatistics();
+        });
+        </script>
+        
+
+ 
+    <script></script>
+
+    
+</body>
+
+</html>

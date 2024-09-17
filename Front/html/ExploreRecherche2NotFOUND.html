@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche</title>
+    <link rel="stylesheet" href="../styles/ExploreRecherche2.css">
+    <link rel="stylesheet" href="../styles/visiteurNAVforRecherche.css">
+    <link rel="stylesheet" href="../styles/software-tester-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600
+;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <h1>La recherche d'une publication </h1>
+
+<div class="part1">
+    <div class="partie-recherche">
+        <div class="search-bar">
+            <form action="/search" method="get">
+                <div class="search-input">
+                    <span><img class="recherche-icon" src="../images/search-normal.png" alt="search Icon" /></span>
+                    <input class="rechercher" type="search" placeholder="Rechercher ici" name="search">
+                </div>
+            </form>
+        </div>
+        <div class="div-filtre">
+            <button class="button-filtrer" type="submit">
+                <img class="filtre-icon" src="../images/filtrer.png" alt="filtrer Icon" />
+                <p class="p-filtre">Filtrer</p>
+            </button>
+        </div>
+    </div>
+
+
+
+    <div class="partie-filtre">
+        <div class="dropdown">
+            <div class="filtre1">
+                <div class="textBox-with-icon">
+                  <input type="text" class="textBox" id="yearInput" placeholder="   Année 20XX" maxlength="4">
+                </div>
+                <span id="errorMessage"></span>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre2">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" placeholder="   Type" readonly>
+                <img class="menu-icon" src="../images/Down 2.png" alt="menu-icon Icon" />
+              </div>
+             <div class="option">
+                <div onclick="showType('  Journal')">Journal</div>
+                <div onclick="showType('  conférence')">conférence</div>
+             </div>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre3">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" placeholder="   Acronyme">
+              </div>
+              <span id="errorMessage"></span>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre4">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" placeholder="   Mots clés" >
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ul class="publication-list">
+    <h2 class="eror"> Aucun résultat trouvé ! </h2>
+    <img id="notHere" src="../styles/software-tester-not-css.svg" alt="not found">
+</ul>
+
+
+
+    <script src="../javascript/visiteurNAV.js"></script>
+    <script src="../javascript/VisiteurNAVsuite2.js"></script>
+    <script>
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    window.setTimeout(document.querySelector('svg').classList.add('animated'),1000)
+    ;})
+
+
+
+          const yearInput1 = document.getElementById('yearInput');
+          const errorMessage1 = document.getElementById('errorMessage');
+
+          yearInput1.addEventListener('input', () => {
+
+            const year = yearInput1.value.trim();
+
+            yearInput1.addEventListener('keydown', (event) => {
+            if (event.keyCode === 13) {
+            if (yearInput1.value.length >= 4 && yearInput1.value !== '' && year <= 2024 && year > 1990) {
+                errorMessage1.textContent = '';
+            } else {
+                errorMessage1.textContent = 'Erreur : Année invalide .';
+                errorMessage1.style.color = 'red';
+                errorMessage1.style.fontSize = '12px';
+            }
+            }
+            });
+
+
+            while (isNaN(year) || year > 2024 || year < 1990) {
+
+
+            if (event.keyCode === 13) {
+            if (year.length < 4) {
+                errorMessage1.textContent = 'Erreur : Année invalide.';
+                errorMessage1.style.color = 'red';
+                errorMessage1.style.fontSize = '12px';
+                return;
+            }
+
+            if (year === '' ) {
+                // Effacer le message d'erreur
+                errorMessage1.textContent = '';
+                return;
+            }
+            }
+
+            if (year === '' ) {
+                // Effacer le message d'erreur
+                errorMessage1.textContent = '';
+                return;
+            }
+
+
+            if (isNaN(year)) {
+                // Afficher un message d'erreur
+                errorMessage1.textContent = 'Erreur : Veuillez entrer une année valide.';
+                errorMessage1.style.color = 'red';
+                errorMessage1.style.fontSize = '12px';
+                return;
+            }
+
+            if ((year > 2024 || year < 1990)) {
+
+                if (year.length < 4) {
+                errorMessage1.textContent = '';
+                return;
+            }
+                else {
+                // Afficher un message d'erreur
+                errorMessage1.textContent = 'Erreur : Année invalide .';
+                errorMessage1.style.color = 'red';
+                errorMessage1.style.fontSize = '12px';
+                return;
+            }
+            }
+
+            }
+
+            errorMessage1.textContent = '';
+            });
+
+
+                </script>
+            </body>
+            </html>

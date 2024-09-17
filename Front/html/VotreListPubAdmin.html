@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles/VotreListPub.css">
+    <script src="../javascript/BARS.js"></script>
+    <link rel="stylesheet" href="../styles/BARS.css">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+    <div class="top-bar-right">
+        <div class="aide">
+            <button><img src="../images/help.png" alt="aide"></button>
+        </div>
+        <div class="settings">
+            <button><img src="../images/paramerte.png" alt="Paramètres"></button>
+        </div>
+        <div class="notification">
+            <button>
+                <img src="../images/notification.png" alt="Notifications">
+            </button>
+        </div>
+        <div class="profile">
+            <img src="../images/Profile.png" alt="Profil">
+        </div>
+    </div>
+    <div class="pages">
+        <button class="nombre-page"><</button>
+        <button class="nombre-page">1</button>
+        <button class="nombre-page">></button>
+    </div>
+    <h1>Votre liste des publications</h1>
+    <div class="Titre">
+        <table>
+            <tr>
+                <th>Titre de publication</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Acronyme</th>
+                <th>Citations</th>
+            </tr>
+        </table>
+    </div>
+    
+    <ul class="publication-list">
+        <!-- Publications will be dynamically added here -->
+    </ul>
+    <script src="../javascript/notification.js"></script>
+    <script>
+
+        async function getAccessToken() {
+            await refreshAccessToken();
+            return sessionStorage.getItem('access_token');
+        }
+        
+        async function refreshAccessToken() {
+            // Retrieve refresh token from session storage
+            const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+            if (refresh_token) {
+                try {
+                    const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refresh: refresh_token })
+                    });
+                    const data = await response.json();
+                    // Update the access token in session storage
+                    const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+                    sessionStorage.setItem('access_token', data.access);
+                    sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+                    // Retry the original request or perform other actions
+                } catch (error) {
+                    // Handle token refresh error
+                    console.error(error);
+                    // Redirect the user to the login page or display an error message
+                }
+            } else {
+                // Redirect the user to the login page if there is no refresh token
+            }
+        }
+
+        async function fetchPublications() {
+            try {
+                const response = await fetch('http://localhost:8000/api/publicationsListAdmine/');
+                if (response.ok) {
+                    const publications = await response.json();
+                    console.log('Publications:', publications); // Log the publications received
+                    displayPublications(publications);
+                } else {
+                    console.error('Error fetching publications:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchPublications(); // Fetch publications from the API
+        });
+        
+        function displayPublications(publications) {
+            var publicationList = document.querySelector('.publication-list');
+            publicationList.innerHTML = ''; // Clear previous content
+
+            publications.forEach(function(publication) {
+                var publicationItem = document.createElement('li');
+
+                var publicationTitle = document.createElement('span');
+                publicationTitle.textContent = publication.titre_publication;
+
+                var publicationType = document.createElement('span');
+                publicationType.textContent = publication.conf_journal_type;
+
+                var publicationDate = document.createElement('span');
+                publicationDate.textContent = publication.annee;
+
+                var publicationAcronyme = document.createElement('span');
+                publicationAcronyme.textContent = publication.conf_journal_acronyme;
+
+                var publicationCitations = document.createElement('span');
+                publicationCitations.textContent = publication.citations;
+
+                var modifyButton = document.createElement('button');
+                var modifyImg = document.createElement('img');
+                modifyImg.src = '../images/icon modifier amina.png';
+                modifyImg.alt = 'modifier Icon';
+                modifyButton.appendChild(modifyImg);
+                modifyButton.classList.add('button-modifier');
+                modifyButton.onclick = function() {
+                    redirectToModencadrement(publication.id); 
+                };
+
+                publicationItem.appendChild(publicationTitle);
+                publicationItem.appendChild(publicationType);
+                publicationItem.appendChild(publicationDate);
+                publicationItem.appendChild(publicationAcronyme);
+                publicationItem.appendChild(publicationCitations);
+                publicationItem.appendChild(modifyButton);
+
+                publicationList.appendChild(publicationItem);
+            });
+        }
+
+        function redirectToModencadrement(publicationID) {
+            window.location.href = '../html/modifierpub.html?publicationID=' + publicationID;
+        }
+    </script>
+</body>
+</html>

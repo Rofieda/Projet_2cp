@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <link rel="stylesheet" href="../styles/Recherche4.css">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600
+;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <h1>La recherche d'une projet </h1>
+
+<div class="part1">
+    <div class="partie-recherche">
+        <div class="search-bar">
+            <form action="/search" method="get">
+                <div class="search-input">
+                    <span><img class="recherche-icon" src="../images/search-normal.png" alt="search Icon" /></span>
+                    <input class="rechercher" type="search" placeholder="Rechercher ici" name="search">
+                </div>
+            </form>
+        </div>
+        <div class="div-filtre">
+            <button class="button-filtrer" type="submit">
+                <img class="filtre-icon" src="../images/filtrer.png" alt="filtrer Icon" />
+                <p class="p-filtre">Filtrer</p>
+            </button>
+        </div>
+    </div>
+
+
+    <div class="partie-filtre">
+        <div class="dropdown">
+            <div class="filtre1">
+                <div class="textBox-with-icon">
+                  <input type="text" class="textBox" id="yearInput1" placeholder="   Date début 20XX" maxlength="4">
+                </div>
+                <span id="errorMessage1"></span>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre2">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" id="yearInput2" placeholder="   Date fin 20XX" maxlength="4">
+                </div>
+                <span id="errorMessage2"></span>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre3">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" placeholder="   Domaine">
+              </div>
+              <span id="errorMessage"></span>
+            </div>
+        </div>
+        <div class="dropdown">
+        <div class="filtre4">
+            <div class="textBox-with-icon">
+                <input type="text" class="textBox" placeholder="   Mots clés" >
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <p class="champ"> Titre d'projet &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Domaine
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date début &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date fin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        <ul class="publication-list">
+            <li>
+                <span>Optimisation Multi-objectif des Systèmes Embarqués</span>
+                <span>sécurité</span>
+                <span>9/8/2018</span>
+                <span>9/8/2018</span>
+                <span class="more">details</span>
+            <li>
+                <span>Optimisation Multi-objectif des Systèmes Embarqués</span>
+                <span>sécurité</span>
+                <span>9/8/2018</span>
+                <span>9/8/2018</span>
+                <span class="more">details</span>
+            </li>
+        </ul>
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="../javascript/BARSS.js"></script>
+        <script src="../javascript/notification.js"></script>
+<script>
+    function showType(Type) {
+      document.querySelector('.filtre3 .textBox').value = Type;
+    }
+
+
+    const yearInput1 = document.getElementById('yearInput1');
+    const yearInput2 = document.getElementById('yearInput2');
+    const errorMessage1 = document.getElementById('errorMessage1');
+    const errorMessage2 = document.getElementById('errorMessage2');
+
+    yearInput1.addEventListener('input', () => {
+
+      const year = yearInput1.value.trim();
+
+      yearInput1.addEventListener('keydown', (event) => {
+    if (event.keyCode === 13) {
+        if (yearInput1.value.length >= 4 && yearInput1.value !== '' && year <= 2024 && year > 1990) {
+            errorMessage1.textContent = '';
+        } else {
+            errorMessage1.textContent = 'Erreur : Année invalide .';
+            errorMessage1.style.color = 'red';
+            errorMessage1.style.fontSize = '12px';
+        }
+    }
+});
+
+
+      while (isNaN(year) || year > 2024 || year < 1990) {
+
+
+        if (event.keyCode === 13) {
+         if (year.length < 4) {
+          errorMessage1.textContent = 'Erreur : Année invalide.';
+          errorMessage1.style.color = 'red';
+          errorMessage1.style.fontSize = '12px';
+          return;
+        }
+
+        if (year === '' ) {
+          // Effacer le message d'erreur
+          errorMessage1.textContent = '';
+          return;
+        }
+        }
+
+        if (year === '' ) {
+          // Effacer le message d'erreur
+          errorMessage1.textContent = '';
+          return;
+        }
+
+
+        if (isNaN(year)) {
+          // Afficher un message d'erreur
+          errorMessage1.textContent = 'Erreur : Veuillez entrer une année valide.';
+          errorMessage1.style.color = 'red';
+          errorMessage1.style.fontSize = '12px';
+          return;
+        }
+
+        if ((year > 2024 || year < 1990)) {
+
+          if (year.length < 4) {
+          errorMessage1.textContent = '';
+          return;
+        }
+          else {
+          // Afficher un message d'erreur
+          errorMessage1.textContent = 'Erreur : Année invalide .';
+          errorMessage1.style.color = 'red';
+          errorMessage1.style.fontSize = '12px';
+          return;
+        }
+      }
+
+      }
+
+      errorMessage1.textContent = '';
+      validateYearOrder(year, yearInput2.value.trim(), errorMessage2);
+});
+
+
+
+    //--------------------------------------------------------------------------------------------//
+
+    yearInput2.addEventListener('input', () => {
+
+      const year = yearInput2.value.trim();
+      const startYear = parseInt(yearInput1.value.trim());
+      const endYear = parseInt(yearInput2.value.trim());
+
+      yearInput2.addEventListener('keydown', (event) => {
+    if (event.keyCode === 13) {
+        if (yearInput2.value.length >= 4 && yearInput2.value !== '' && year <= 2024 && year > 1990) {
+            errorMessage2.textContent = '';
+        } else {
+            errorMessage2.textContent = 'Erreur : Année invalide.';
+            errorMessage2.style.color = 'red';
+            errorMessage2.style.fontSize = '12px';
+        }
+    }
+});
+
+      while (isNaN(year) || year > 2024 || year < 1990) {
+
+        if (event.keyCode === 13) {
+         if (year.length < 4) {
+          errorMessage2.textContent = 'Erreur : Année invalide.';
+          errorMessage2.style.color = 'red';
+          errorMessage2.style.fontSize = '12px';
+          return;
+        }
+
+        if (year === '' ) {
+          // Effacer le message d'erreur
+          errorMessage2.textContent = '';
+          return;
+        }
+        }
+
+        if (year === '' ) {
+          // Effacer le message d'erreur
+          errorMessage2.textContent = '';
+          return;
+        }
+
+
+        if (isNaN(year)) {
+          // Afficher un message d'erreur
+          errorMessage2.textContent = 'Erreur : Veuillez entrer une année valide.';
+          errorMessage2.style.color = 'red';
+          errorMessage2.style.fontSize = '12px';
+          return;
+        }
+
+        if ((year > 2024 || year < 1990)) {
+
+          if (year.length < 4) {
+          errorMessage2.textContent = '';
+          return;
+          }
+          else  {
+          // Afficher un message d'erreur
+          errorMessage2.textContent = 'Erreur : Année invalide.';
+          errorMessage2.style.color = 'red';
+          errorMessage2.style.fontSize = '12px';
+          return;
+          }
+          if ((year.length < 4) && event.keyCode === 13) {
+          errorMessage2.textContent = 'Erreur : Année invalide.';
+          errorMessage2.style.color = 'red';
+          errorMessage2.style.fontSize = '12px';
+          return;
+          }
+          }
+      }
+
+
+      validateYearOrder(yearInput1.value.trim(), year, errorMessage1);
+      });
+
+      function validateYearOrder(startYear, endYear, errorMessage) {
+        if (parseInt(endYear) < parseInt(startYear)) {
+          errorMessage.textContent = 'Erreur : Année invalide(fin<debut)';
+          errorMessage.style.color = 'red';
+          errorMessage.style.fontSize = '12px';
+        } else {
+          errorMessage.textContent = '';
+  }
+}
+
+    let dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+        let menuIcon = dropdown.querySelector('.menu-icon');
+        dropdown.onclick = function() {
+          menuIcon.classList.toggle('active');
+          dropdown.classList.toggle('active');
+      };
+    });
+   document.addEventListener("DOMContentLoaded", function() {
+    const form = document.querySelector('.partie-recherche form');
+    const filterButton = document.querySelector('.button-filtrer');
+    const resultList = document.querySelector('.publication-list');
+
+    // Fonction pour afficher les résultats de la recherche ou des filtres
+    function displayResults(data) {
+        // Réinitialiser le contenu de la liste des projets
+        resultList.innerHTML = '';
+
+        // Boucle à travers les résultats et les affiche sur la page
+        data.forEach(item => {
+            const projetHTML = `
+                <li>
+                    <span>${item.titre_projet}</span>
+                    <span>${item.domaine}</span>
+                    <span>${item.annee_debut}</span>
+                    <span>${item.annee_fin}</span>
+                    <span class="more" onclick="redirectToDetails('${item.detail_url}')">details</span>
+                </li>
+            `;
+            resultList.insertAdjacentHTML('beforeend', projetHTML);
+        });
+         sessionStorage.setItem('projetsData', JSON.stringify(data));
+    }
+
+    // Écouter la soumission du formulaire de recherche
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche le formulaire de se soumettre normalement
+        const searchQuery = document.querySelector('.rechercher').value.trim();
+        fetch(`http://127.0.0.1:8000/api/projets/gensearch/?q=${searchQuery}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    // Rediriger vers la page notFound.html si aucun résultat n'est trouvé
+                    window.location.href = '../html/notFound4.html';
+                } else {
+                    // Afficher les résultats sur la page
+                    displayResults(data);
+                }
+                sessionStorage.setItem('projetsData', JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                window.location.href = '../html/notFound4.html';
+            });
+    });
+
+    // Écouter le clic sur le bouton de filtrage
+    filterButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le formulaire de se soumettre normalement
+        const searchQuery = document.querySelector('.rechercher').value.trim();
+        const domaine = document.querySelector('.filtre3 .textBox').value.trim();
+        const dateDebut = document.querySelector('#yearInput1').value.trim();
+        const dateFin = document.querySelector('#yearInput2').value.trim();
+        const motCle = document.querySelector('.filtre4 .textBox').value.trim();
+        fetch(`http://127.0.0.1:8000/api/projets/search/?q=${searchQuery}&domaine=${domaine}&date_debut=${dateDebut}&date_fin=${dateFin}&mot_cle=${motCle}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length === 0) {
+                    // Rediriger vers la page notFound.html si aucun résultat n'est trouvé
+                    window.location.href = '../html/notFound4.html';
+                } else {
+                    // Afficher les résultats sur la page
+                    displayResults(data);
+                }
+                sessionStorage.setItem('projetsData', JSON.stringify(data));
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                window.location.href = '../html/notFound4.html';
+            });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Fonction pour récupérer les données des projets et les stocker dans sessionStorage
+    function fetchAndStoreProjetsData() {
+        fetch('http://127.0.0.1:8000/api/projetslists/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            generateProjetsList(data); // Appeler la fonction pour générer la liste des projets avec les données récupérées
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            // Gérer les erreurs, par exemple afficher un message d'erreur à l'utilisateur
+        });
+    }
+
+    // Vérifier si les données des projets sont déjà stockées dans sessionStorage
+    const projetsData = sessionStorage.getItem('projetsData');
+    if (projetsData) {
+        generateProjetsList(JSON.parse(projetsData)); // Si les données sont présentes, générer la liste des projets avec ces données
+    } else {
+        fetchAndStoreProjetsData(); // Si les données ne sont pas présentes, récupérer les données des projets depuis l'API
+    }
+});
+
+// Fonction pour générer la liste des projets à partir des données récupérées
+function generateProjetsList(data) {
+    const resultList = document.querySelector('.publication-list');
+    resultList.innerHTML = ''; // Effacer le contenu précédent de la liste
+    data.forEach(item => {
+        const projetHTML = `
+            <li>
+                <span>${item.titre_projet}</span>
+                <span>${item.domaine}</span>
+                <span>${item.annee_debut}</span>
+                <span>${item.annee_fin}</span>
+                <span class="more" onclick="redirectToDetails('${item.detail_url}')">details</span>
+            </li>
+        `;
+        resultList.insertAdjacentHTML('beforeend', projetHTML);
+    });
+}
+
+function redirectToDetails(detailUrl) {
+    // Extraire l'ID de la publication depuis l'URL
+    const projetId = detailUrl.match(/\/(\d+)\/$/)[1];
+
+    // Stocker l'ID de la publication, le nom et le prénom du chercheur, ainsi que le rang du chercheur dans la session
+    sessionStorage.setItem('id_projet', projetId);
+
+
+    // Redirection vers la page voirpublication.html
+    window.location.href = '../html/voirprojet.html';
+}</script>
+</body>
+</html>

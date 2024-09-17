@@ -1,0 +1,29 @@
+
+
+.stat-chercheur {
+    display: flex;
+    flex-direction: row; /* Display items in a row */
+}
+
+.partie-etablissement,
+.partie-diplome {
+    flex: 1; /* Each section takes up equal space */
+}
+
+.partie-etablissement {
+    margin-top: 6vw;
+    height: 50vw;
+    padding: 10px; 
+}
+
+.partie-diplome {
+    
+    margin-top: 6%;
+    padding: 10px; /* Optional: Add padding for spacing */
+}
+
+.partie-etablissement ,
+.partie-diplome {
+    margin-bottom: 10px; /* Optional: Add margin between filters */
+    width: 50%; /* Make each filter take up half of the width */
+}

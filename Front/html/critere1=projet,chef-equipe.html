@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat filtres.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest </title>
+</head>
+
+<body>
+    
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    
+    <div class="stati-filtrés-top2 ">
+        <div class="stati-title-left">
+            <p>Statistiques filtrées</p>
+            <div class="sous-titre">
+                <p>critère 1 : projet , critère 2 : chef d'équipe </p>
+            </div>
+        </div>
+        <div class="left-content-stati">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati2">
+                <p id="big"><span class=" value">50</span> Projet</p>
+                <p><span class="value">50</span> Chercheur en tant que : chef d'équipe </p>
+                <p><span class="value">50</span> chercheur en tant que : membre</p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="vertical-line"></div>
+    <div class="stati-filtrés-down2">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="recherchechart5"></canvas>
+        </div>
+        <div class="legend">
+            <p id="droite">chercheur en tant que :</p>
+            <div class="legend-item">
+                <div class="legend-circle circle1"></div>
+                <div class="legend-label">Chef d'équipe</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle2"></div>
+                <div class="legend-label">Membre</div>
+            </div>
+        </div>
+    </div>
+    <div class="stati-générales-top">
+        <div class="stati-title-right">
+            <p>Statistiques générales</p>
+        </div>
+        <div class="left-content-stati-title-top2">
+            <p>Nombres de Projets :</p>
+        </div>
+        <div class="right-content-stati-top">
+            <canvas id="column3-chart"></canvas>
+        </div>
+    </div>
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-Projets"></span>
+            <p>Projets</p>
+        </div>
+    </div>
+    <div class="stati-générales-down">
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+</body>
+
+</html>
+
+
+
+

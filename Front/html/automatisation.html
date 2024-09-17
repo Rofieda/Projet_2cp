@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <link rel="stylesheet" href="../styles/automatisation.css">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <script src="../javascript/BARS.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=Fjalla One' rel='stylesheet'>
+
+
+
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+<div class="elements">
+
+            <div class="sectionA">
+                        
+                    <div class="sectionA1">
+                        <h1 class="titre1"> Initialisation</h1>
+                            <img src="../images/alert.png" class="warn">
+                            <button class="lance">Lancer</button>
+
+                                    <div class="supprimer3" id="appear-when-supp3">
+                                        <span id="overlay3"></span>
+                                        <div id="modal3" class="modal3 modal-small3">
+                                            <div class="modal-content3">
+                                                <div id="deconnexion3">
+                                                    <img class="icon-deconnexion3" alt="icon-deconnexion3" src="../images/careful.png">
+                                                    <span id="sup3"> Lancement de l'initialisation</span>
+                                                </div>
+                                                <p class="phrase3" >Êtes-vous sûr de lancer l'initialisation de votre base de donnée ?</p>
+                                                <p class="phrase3" >( Assurez-vous que vous disposez d'une connexion Internet stable. )</p>
+                                                <div class="button-container3">
+                                                    <button id="cancel-reset3">Annuler</button>
+                                                    <button id="dec-btn3" class="next3">confirmer</button>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                    <div id="appear-when-confirmer4" class="waiting">
+                                                        <span id="overlay4"></span>
+                                                        <div id="modal4" class="modal4 modal-small4">
+                                                            <div class="modal-content4">
+                                                                <div id="deconnexion4">
+
+                                                                    <span id="sup4"> Initialisation en cours </span>
+                                                                    <div class="center">
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                        <div class="wave"></div>
+                                                                      </div>
+                                                                   
+                                                                </div>
+                                                                <p class="phrase4"> Veuillez noter que cette opération peut prendre un certain temps en fonction de la quantité de données à traiter. </p>
+                                                                <p class="phrase4"> Nous vous remercions de votre patience.</p>
+                                                                <div class="button-container4">
+                                                                    <button id="cancel-reset4">Annuler</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="supprimer5" id="appear-when-supp5">
+                                                        <span id="overlay5"></span>
+                                                        <div id="modal5" class="modal2 modal-small2">
+                                                            <div class="modal-content5">
+                                                                <div id="deconnexion5">
+                                                                    <img class="icon-deconnexion5" alt="icon-deconnexion" src="../images/DONE.png">
+                                                                    <span id="sup5"> l'opération est terminée </span>
+                                                                </div>
+                                                                <p class="phrase5" >votre base de données est mise à jour avec succès</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                    
+                            <p class="att">Cliquez sur le bouton ci-dessus pour démarrer le processus de l'initialisation de votre base de donnée</p>
+                    </div>
+            <div class="sectionA2">
+
+                    <div class="time">
+                        <h1 class="titre2"> Mise à jour </h1>
+                        <table class="CountdownContainer"> 
+                            <tr>
+                                <td id="title" colspan="5">Compte à rebours</td>
+                            </tr>
+                            <tr class="info">
+                                <td id="months">00:</td>
+                                <td id="days">00:</td>
+                                <td id="hours">00:</td>
+                                <td id="minutes">00:</td>
+                                <td id="seconds">00</td>
+                            </tr>
+                            <tr>
+                                <td>mois</td>
+                                <td>jours</td>
+                                <td>heures</td>
+                                <td>minutes</td>
+                                <td>seconds</td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+
+
+                    <div class="time-choice">
+                        <div class="textBox-with-icon">
+                            <button class="choix" onclick="toggleOptions()">
+                                <p class="textt">Mise a jour prévisionnée</p>
+                                <img class="menu-icon" src="../images/Down white.png" alt="menu-icon Icon" />
+                            </button>
+                            <div class="option" id="options">
+                                <div class="choix1" onclick=" updateModal('6 mois', 6)">6 mois</div>
+                                <div class="choix2" onclick=" updateModal('12 mois', 12)">12 mois</div>
+                                <div class="choix3" onclick=" updateModal('18 mois', 18)">18 mois</div>
+                            </div>
+                            
+                            <div class="supprimer2" id="appear-when-supp2">
+                                <span id="overlay2"></span>
+                                <div id="modal2" class="modal2 modal-small2">
+                                    <div class="modal-content2">
+                                        <div id="deconnexion2">
+                                            <img class="icon-deconnexion2" alt="icon-deconnexion" src="../images/careful.png">
+                                            <span id="sup2">Mise à jour prévisionnée</span>
+                                        </div>
+                                        <p class="phrase2" id="update-msg">Êtes-vous sûr de vouloir faire une mise à jour aprés ?</p>
+                                        <div class="button-container2">
+                                            <button id="cancel-reset2">Annuler</button>
+                                            <button id="dec-btn2" onclick="confirmUpdate()">confirmer</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+ 
+
+                        </div>
+                        <button class="now">Mise à jour immédiate</button>
+                        <div class="supprimer" id="appear-when-supp">
+                            <span id="overlay"></span>
+                            <div id="modal" class="modal modal-small">
+                                <div class="modal-content">
+                                    <div id="deconnexion">
+                                        <img class="icon-deconnexion" alt="icon-deconnexion" src="../images/careful.png">
+                                        <span id ="sup">Mise à jour immédiate</span>
+                                    </div>
+                                    <p class="phrase">Êtes-vous sûr de vouloir faire une mise à jour immédiatement ?</p>
+                                    <div class="button-container">
+                                        <button id="cancel-reset">Annuler</button>
+                                        <button id="dec-btn" onclick="immediateUpdate()">confirmer</button>
+                                    </div>
+                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+
+              <div class="contain">
+                <h1 class="titre3"> Importation des fichiers sous format Excel </h1>
+                    <div class="sectionB">
+                        <button class="telecharger" data-file="init_publications">
+                                <p class="txt">Publications </p>
+                                <img src="../images/download2.png" class="download2">
+                        </button>
+                        <button class="telecharger" data-file="authors">
+                                <p class="txt">Chercheurs </p>
+                                <img src="../images/download2.png" class="download2"> 
+                        </button>
+                        <button class="telecharger" data-file="venues">
+                                <p class="txt">Conf-Journal </p>
+                                <img src="../images/download2.png" class="download2" >
+                        </button>
+                        <button class="telecharger" data-file="projets">
+                                <p class="txt">Projets</p> 
+                                <img src="../images/download2.png" class="download2" >
+                        </button>
+                    </div>
+
+                </div>
+</div>
+<script src="../javascript/BARSAdmin.js"></script>
+<script src="../javascript/notificationadmin.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    
+    let countdownTimer;
+
+    function toggleOptions() {
+        var options = document.querySelector(".option");
+        var menuIcon = document.querySelector(".menu-icon");
+
+        if (options.style.display === "none" || options.style.display === "") {
+            options.style.display = "block";
+            menuIcon.classList.add("active");
+        } else {
+            options.style.display = "none";
+            menuIcon.classList.remove("active");
+        }
+    }
+
+    function setStartingMonths(months) {
+        clearTimeout(countdownTimer); // Clear existing countdown timer
+        Countdown(months);
+        toggleOptions(); // Hide options after selection
+    }
+
+    function Countdown(startingMonths){
+        var now = new Date();
+        var eventDate = new Date(now.getFullYear(), now.getMonth() + startingMonths, now.getDate());
+
+        var currentTime = now.getTime();
+        var eventTime = eventDate.getTime();
+
+        var remTime = eventTime - currentTime;
+
+        var s = Math.floor(remTime / 1000);
+        var m = Math.floor(s / 60);
+        var h = Math.floor(m / 60);
+        var d = Math.floor(h / 24);
+        var months = Math.floor(d / 30); // Assuming 30 days in a month
+
+        h %= 24;
+        m %= 60;
+        s %= 60;
+
+        document.getElementById("months").textContent = (months < 10 ? "0" : "") + months + ":";
+        document.getElementById("days").textContent = ((d % 30) < 10 ? "0" : "") + (d % 30) + ":";
+        document.getElementById("hours").textContent = (h < 10 ? "0" : "") + h + ":";
+        document.getElementById("minutes").textContent = (m < 10 ? "0" : "") + m + ":";
+        document.getElementById("seconds").textContent = (s < 10 ? "0" : "") + s;
+
+        // Stop countdown when all elements are 00
+        if (months === 0 && d % 30 === 0 && h === 0 && m === 0 && s === 0) {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8000/api1/maj/',
+                success: function(response) {
+                    alert('Update successful');
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error updating: ' + errorThrown);
+                }
+            });
+            clearTimeout(countdownTimer);
+        } else {
+            countdownTimer = setTimeout(function() {
+                Countdown(startingMonths);
+            }, 1000);
+        }
+    }
+
+
+    function immediateUpdate() {
+        clearTimeout(countdownTimer);
+        document.getElementById("months").textContent = "00:";
+        document.getElementById("days").textContent = "00:";
+        document.getElementById("hours").textContent = "00:";
+        document.getElementById("minutes").textContent = "00:";
+        document.getElementById("seconds").textContent = "00";
+
+        $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8000/api/maj/',
+                success: function(response) {
+                    alert('Update successful');
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    alert('Error updating: ' + errorThrown);
+                }
+            });
+    }
+
+
+
+
+
+    function updateModal(monthsText, months) {
+    var updateMessage = document.getElementById("update-msg");
+    var confirmButton = document.getElementById("dec-btn2");
+    updateMessage.textContent = "Êtes-vous sûr de vouloir faire une mise à jour après " + monthsText + "?";
+    confirmButton.onclick = function() {
+        setStartingMonths(months);
+    };
+}
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener to all elements with the class "button-supprimer"
+    var deleteButtons = document.querySelectorAll(".now, .choix1, .choix2, .choix3, .lance, .next3");
+    deleteButtons.forEach(function(button, index) {
+        button.addEventListener("click", function(event) {
+            // Prevent the click event from bubbling up to the document
+            event.stopPropagation();
+            // Toggle the display of the "supprimer" div related to the clicked button
+            var supprimerDiv = document.querySelector(".supprimer");
+            var supprimerDiv2 = document.querySelector(".supprimer2");
+            var supprimerDiv3 = document.querySelector(".supprimer3"); // New div
+            var supprimerDiv4 = document.querySelector(".waiting"); // New div
+
+            if (button.classList.contains("lance")) {
+                supprimerDiv3.style.display = "block";
+                supprimerDiv.style.display = "none";
+                supprimerDiv2.style.display = "none";
+                supprimerDiv4.style.display = "none";
+            } else if (button.classList.contains("now")) {
+                supprimerDiv.style.display = "block";
+                supprimerDiv2.style.display = "none";
+                supprimerDiv3.style.display = "none";
+                supprimerDiv4.style.display = "none";
+            } else if (button.classList.contains("waiting")) {
+                supprimerDiv2.style.display = "none"; // Display the new div
+                supprimerDiv.style.display = "none";
+                supprimerDiv3.style.display = "none";
+                supprimerDiv4.style.display = "block";
+            } else if (button.classList.contains("choix1") || button.classList.contains("choix2") || button.classList.contains("choix3")) {
+                supprimerDiv2.style.display = "block"; // Display the new div
+                supprimerDiv.style.display = "none";
+                supprimerDiv3.style.display = "none";
+                supprimerDiv4.style.display = "none";
+            }
+        });
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Event listener for the "lancer" button
+    document.querySelectorAll(".lance").forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Show the supprimer3 div
+            document.querySelector(".supprimer3").style.display = "block";
+            document.querySelector(".modal3.modal-small3").style.display = "block";
+           
+           
+        });
+    });
+
+    // Event listener for the "confirmer" button inside modal3
+    document.querySelectorAll(".next3").forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Hide modal3 and show modal4
+            document.querySelector(".modal3.modal-small3").style.display = "none";
+            document.querySelector(".modal4.modal-small4").style.display = "block";
+
+            // Hide supprimer3
+            document.querySelector(".supprimer3").style.display = "none";
+
+            // Show the waiting div (supprimer4)
+            document.getElementById("appear-when-supp3").style.display = "none";
+            document.getElementById("appear-when-confirmer4").style.display = "block";
+        });
+    });
+});
+
+
+
+
+    // Add event listener to cancel buttons
+    var cancelButtons = document.querySelectorAll(".button-container button#cancel-reset, #dec-btn, .button-container2 button#cancel-reset2, #dec-btn2 , .button-container3 button#cancel-reset3 , .button-container4 button#cancel-reset4");
+    cancelButtons.forEach(function(cancelButton) {
+        cancelButton.addEventListener("click", function(event) {
+            // Prevent the click event from bubbling up to the document
+            event.stopPropagation();
+            // Hide the parent "supprimer" div
+            var supprimerDiv = cancelButton.closest(".supprimer");
+            var supprimerDiv2 = cancelButton.closest(".supprimer2");
+            var supprimerDiv3 = cancelButton.closest(".supprimer3"); // New div
+            var supprimerDiv4 = cancelButton.closest(".waiting"); // New div
+            if (supprimerDiv) {
+                supprimerDiv.style.display = "none";
+            }
+            if (supprimerDiv2) {
+                supprimerDiv2.style.display = "none";
+            }
+            if (supprimerDiv3) {
+                supprimerDiv3.style.display = "none"; // Hide the new div
+            }
+            if (supprimerDiv4) {
+                supprimerDiv4.style.display = "none"; // Hide the new div
+                
+            }
+        });
+    });
+
+    // Add event listener to the document
+    document.addEventListener("click", function(event) {
+        // Hide all "supprimer" divs when clicking outside
+        var supprimerDivs = document.querySelectorAll(".supprimer");
+        var supprimerDiv2s = document.querySelectorAll(".supprimer2");
+        var supprimerDiv3s = document.querySelectorAll(".supprimer3"); // New divs
+        var supprimerDiv4s = document.querySelectorAll(".waiting"); // New divs
+        supprimerDivs.forEach(function(supprimerDiv) {
+            if (!supprimerDiv.contains(event.target)) {
+                supprimerDiv.style.display = "none";
+            }
+        });
+        supprimerDiv2s.forEach(function(supprimerDiv2) {
+            if (!supprimerDiv2.contains(event.target)) {
+                supprimerDiv2.style.display = "none";
+            }
+        });
+        supprimerDiv3s.forEach(function(supprimerDiv3) {
+            if (!supprimerDiv3.contains(event.target)) {
+                supprimerDiv3.style.display = "none"; // Hide the new divs
+            }
+        });
+        supprimerDiv4s.forEach(function(supprimerDiv4) {
+            if (!supprimerDiv4.contains(event.target)) {
+                supprimerDiv4.style.display = "none"; // Hide the new divs
+            }
+        });
+    });
+
+    
+    
+
+
+
+
+// Define a function to hide the waiting div and show the supprimer5 div
+function hideWaitingDivAndShowSupprimer5() {
+  document.querySelector(".waiting").style.display = "none";
+  document.querySelector(".supprimer5").style.display = "block";
+
+  // Use arrow function for cleaner syntax and implicit `this` binding
+  setTimeout(() => {
+    document.querySelector(".supprimer5").style.display = "none";
+  }, 10000);
+}
+
+
+
+$(document).ready(function(){
+        $('.telecharger').click(function(){
+            var fileType = $(this).data('file');
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1:8000/api/download/',
+                data: {
+                    file_name: fileType
+                },
+                xhrFields: {
+                responseType: 'blob'
+                },
+                success: function(data, textStatus, xhr){
+                    var filename = "";
+                    var disposition = xhr.getResponseHeader('Content-Disposition');
+                    if (disposition && disposition.indexOf('attachment') !== -1) {
+                        var filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
+                        var matches = filenameRegex.exec(disposition);
+                        if (matches != null && matches[1]) {
+                            filename = matches[1].replace(/['"]/g, '');
+                        }
+                    }
+                    console.log(data);
+                    var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+                if (window.navigator.msSaveOrOpenBlob) {
+                    window.navigator.msSaveOrOpenBlob(blob, filename);
+                } else {
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = filename;
+                    link.click();
+                }
+                },
+                error: function(xhr, textStatus, errorThrown){
+                }
+            });
+        });
+    });
+
+    $(document).ready(function() {
+        $('#dec-btn3').click(function() {
+            // 
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8000/api/init/',
+                success: function(response) {
+                    time.sleep(600);
+                    hideWaitingDivAndShowSupprimer5();
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    time.sleep(600);
+                    hideWaitingDivAndShowSupprimer5();
+                    alert('vérifier votre connexion internet puis réessayer');
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

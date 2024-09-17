@@ -1,0 +1,855 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-y: auto;
+}
+.stati-filtrés-top {
+    width: 520px;
+    height: 250px;
+    position: absolute;
+    left: 24rem;
+        top: 8.5rem;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 30px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    }
+    
+    .stati-filtrés-top2 {
+        width: 520px;
+        height: 175px;
+        position: absolute;
+        left: 24rem;
+        top: 9.2rem;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 30px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+    }
+    
+    .stati-filtrés-top3 {
+        width:30%;
+        height: 110px;
+       
+        margin-top: 8.5%;
+        margin-left: 24%;
+        left: 24rem;
+        top: 10rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-générales-top {
+    width: 520px;
+    height: 215px;
+    position: absolute;
+    right: 3rem;
+        top: 7rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+
+}
+
+
+.stati-filtrés-down {
+    width: 520px;
+    height: 301px;
+    position: absolute;
+    left: 24rem;
+        top: 25.3rem;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        border: 1.13px solid #bbbbbba5;
+        border-radius: 15px;
+        padding: 30px 35px;
+        box-sizing: border-box;
+        box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-filtrés-down2 {
+    width: 520px;
+    height: 380px;
+    margin-bottom: 0rem;
+    position: absolute;
+    left: 24rem;
+    top: 20.6rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+    
+.stati-filtrés-down3 {
+    width: 30%;
+    height: 425px;
+    position: relative;
+    left: 19rem;
+    top: 1rem;
+    display: flex;
+    text-align: center;
+    margin-top: 1%;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-filtrés-midle {
+    width: 520px;
+    height: 110px;
+    position: absolute;
+    left: 24rem;
+    top: 17rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-filtrés-down4 {
+    width: 520px;
+    height: 110px;
+    position: absolute;
+    left: 24rem;
+    top: 24.3rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+.stati-générales-midle {
+    width: 520px;
+    height: 100px;
+    position: absolute;
+    right: 3rem;
+        top: 21rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 35px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+
+}
+
+.stati-générales-down {
+    width: 520px;
+    height: 233px;
+    position: absolute;
+    right: 3rem;
+        top: 28rem;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    border: 1.13px solid #bbbbbba5;
+    border-radius: 15px;
+    padding: 30px 50px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.stati-title-left {
+    top: 3rem;
+    position: absolute;
+    left: 25%;
+    width: 20%;
+    display: flex;
+    font-size: 1.3vw;
+    align-items: center;
+}
+
+
+.stati-title-leftt p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #64379F;
+    margin-top: -20%;
+    margin-left: 9%;
+    margin-bottom: 25%;
+    font-size: 1.5vw;
+    width: 100%;
+}
+
+
+.stati-title-left p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #64379F;
+    margin-top: 9%;
+    margin-left: 9%;
+    margin-bottom: 25%;
+    font-size: 1.5vw;
+    width: 100%;
+}
+
+.stati-title-right {
+    top: -48px;
+    position: absolute;
+    right: 190px;
+    display: flex;
+    align-items: center;
+}
+
+.stati-title-right p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #64379F;
+  
+    margin: 0;
+    width: 100%;
+}
+
+.left-content-stati-title {
+    margin-top: -3rem;
+    right: 480px;
+}
+
+.left-content-stati-title p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #64379F;
+    width: 100%;
+    margin: 0;
+        white-space: wrap;
+        /* Empêche le texte de se retourner à la ligne */
+}
+
+.left-content-stati-title-down {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 10%;
+    width: 100%;
+}
+
+.left-content-stati-title p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #64379F;
+    width: 100%;
+   margin-top: 10%;
+}
+.left-cont-stati {
+    margin-top: 0px;
+    position: absolute;
+    text-align: left;
+    margin-left: 10px;
+    /* Alignement du texte à gauche */
+}
+
+.left-content-stati-title-top {
+    margin-top: -10px;
+    margin-bottom: 10px;
+    position: relative;
+    right: 10px;
+}
+
+.left-content-stati-title-top p {
+    font-size: 14px;
+    font-weight: 500;
+        color: #64379F;
+        width: 100%;
+        margin: 0;
+    }
+    
+    .left-content-stati-title2 p {
+        font-size: 16px;
+        font-weight: 600;
+        color: #64379F;
+            width: 100%;
+            margin: -5px;
+            text-align: left;
+            /* Aligne le texte à gauche */
+            white-space: wrap;
+            /* Empêche le texte de se retourner à la ligne */
+        }
+                #clicker-ici {
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #000;
+                }
+        
+                .left-content-stati-title-down p {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #64379F;
+                    width: 100%;
+                    margin: 0;
+                }
+
+
+.left-button img {
+    width: 50px;
+    height: auto;
+}
+
+.vertical-line {
+    position: absolute;
+    top: 120px;
+    bottom: 0;
+    right: 575px;
+    height: 580px;
+    width: 1px;
+    background-color: #bbbbbba5;
+    /* Couleur de la ligne */
+    transform: translateX(-50%);
+}
+
+.sous-titre {
+    top: 35px;
+    margin-top: 8%;
+margin-left: 25%;
+    left: -35px;
+    font-size: 1.3vw;
+}
+
+.sous-titre p {
+    font-size: 18.5px;
+    font-weight: 600;
+    color: #365486;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: -1%;
+    font-size: 1.3vw;
+    white-space: nowrap;
+    /* Pour empêcher le texte de sauter de ligne */
+}
+
+.label-color {
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /* Pour rendre les cercles */
+    margin-right: 15px;
+    /* Augmente l'espace entre la couleur et la valeur */
+    vertical-align: middle;
+}
+
+.color1 {
+    background-color: #95A4FC;
+}
+
+.color2 {
+    background-color: #75E8E7;
+}
+
+.color3 {
+    background-color: #DBD5D5;
+}
+
+.color4 {
+    background-color: #DDACF5;
+}
+
+.color5 {
+    background-color: #A8C5DA;
+}
+
+.color6 {
+    background-color: #365486;
+}
+.color7 {
+    background-color: #FFC600;
+
+}
+
+.color8 {
+    background-color: #FF5733;
+}
+
+.left-cont-stati p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #365486;
+    margin: 1px;
+    display: flex;
+    align-items: center;
+    /* Pour aligner verticalement le texte et la couleur */
+    letter-spacing: 2px;
+
+}
+.left-cont-stati2 {
+    display: block;
+    margin-top: 25px;
+}
+
+.left-cont-stati2 p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #365486;
+    margin: 15px;
+    /* Supprime les marges par défaut */
+    display: flex;
+    letter-spacing: 1px;
+    /* Espacement horizontal entre les paragraphes */
+    margin-right: 4rem;
+    margin-left: 20px;
+}
+
+.left-cont-stati5 {
+    display: flex;
+    flex-wrap: wrap;
+    /* Permet de passer à la ligne si nécessaire */
+    gap: 10px;
+    /* Espacement entre les éléments */
+    margin-top: 25px;
+}
+
+.left-cont-stati5 p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #365486;
+    margin: 0;
+    /* Supprime les marges par défaut */
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    margin-right: 30px;
+    /* Espacement horizontal entre les paragraphes */
+    margin-right: 4rem;
+    margin-left: 20px;
+
+}
+
+.left-cont-stati6 {
+    display: block;
+    margin-top: 30px;
+}
+
+.left-cont-stati6 p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #365486;
+    margin: 25px;
+    display: flex;
+    align-items: center;
+    /* Pour aligner verticalement le texte et la couleur */
+    letter-spacing: 2px;
+
+}
+.value {
+    margin-right: 10px;
+    /* Ajoute de l'espace entre la valeur et le paragraphe */
+}
+
+/* Style du titre du diagramme */
+.chart-title {
+    font-size: 15px;
+    /* Taille de la police */
+    font-weight: 500;
+    /* Gras */
+    color: #64379F;
+    /* Couleur du texte */
+    margin-top: 15px;
+    /* Marge en haut */
+    margin-left: -45px;
+}
+
+
+.right-content-stati-mdl {
+    font-size: 1.5rem;
+    /* Taille de la police */
+    font-weight: bold;
+    /* Gras */
+    color: #365486;
+    /* Couleur du texte */
+    margin-top: 0.rem;
+    /* Marge en haut */
+    display: flex;
+    /* Utilisation de flexbox */
+    align-items: center;
+    /* Centrage vertical */
+    justify-content: center;
+    /* Centrage horizontal */
+}
+
+
+.left-content-statii{
+    margin-top: -11%;
+}
+.left-content-statiii{
+    margin-top: -5%;
+}
+
+.nombre-chercheurs {
+    margin-right: 10px;
+    /* Ajoute une marge à droite de la valeur des chercheurs */
+}
+
+.right-content-stati-down {
+    position: relative;
+        margin-top: 5%;
+}
+.left-content-stati-title-top2 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #64379F;
+    width: 100%;
+    margin: 0;
+    margin-left: -140px;
+}
+.left-content-stati-title-top2 p {
+    margin-top: -8px;
+}
+
+#membership-chart {
+    position: relative;
+    margin-top: 10px;
+    max-width: 50%;
+    max-height: 150px;
+}
+
+#column4-chart {
+    margin-top: 10px;
+    max-height: 200px;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+#ratio-chart{
+    margin-top: 5%;
+    max-height: 165px;
+    max-width: 90%;
+    margin-left: 5%;
+}
+#column2-chart {
+    margin-top: 10px;
+    max-height: 200px;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+#column3-chart {
+    margin-top: 10px;
+    max-height: 150px;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+#column-chart {
+    margin-top: 12px;
+    max-height: 190px;
+    max-width: 90%;
+    margin-left: 20px;
+}
+
+.right-content-stati{
+    margin-top: 3%;
+    font-family: poppins;
+    text-align: left;
+    color: #365486;
+    font-weight: 600;
+}
+
+.titreenplus{
+font-size: 1.2vw;
+color: #64379F;
+
+}
+
+.right-content-stati p{
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+.right-content-stati-down {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    /* Aligner verticalement le contenu */
+}
+
+.right-content-stati-top {
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    /* Aligner verticalement le contenu */
+}
+
+#membership2-chart {
+    margin-top: 5px;
+    max-height: 150px;
+    max-width: 50%;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#recherchechart {
+    position: relative;
+    margin-top: 1.9rem;
+    max-height: 150px;
+    max-width: 80%;
+    margin-left: 10%;
+}
+
+#recherchechart2 {
+    position: relative;
+    margin-top: 1.9rem;
+    max-height: 150px;
+    max-width: 80%;
+    margin-left: 10%;
+}
+
+#recherchechart3 {
+    position: relative;
+    margin-top: 30px;
+    max-height: 200px;
+    max-width: 100%;
+    margin-left: 0%;
+    margin-bottom: 20px;
+}
+
+#recherchechart4 {
+    position: relative;
+    margin-top: 30px;
+    max-height: 200px;
+    max-width: 100%;
+    margin-left: 0%;
+    margin-bottom: 20px;
+}
+
+
+
+
+.label-container {
+    display: flex;
+    padding: 10px;
+}
+
+.label-container2 {
+    display: flex;
+    padding: 10px;
+}
+
+.label {
+    display: flex;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+    /* Espacement entre chaque couleur */
+}
+
+.label1 {
+    background-color: #C39EF3;
+    /* Pour les anciens membres (gris clair) */
+}
+
+.label2 {
+    background-color: #75E8E7;
+    /* Pour les membres ajoutés cette année (violet clair) */
+
+}
+.label3 {
+    background-color: #407BFF;
+    /* Pour les membres ajoutés cette année (violet clair) */
+}
+
+.label-text {
+    font-size: 14px;
+    color: black;
+    margin: 0px;
+    /* Réinitialiser la marge */
+}
+/* CSS pour les cercles de légende */
+.circle1 {
+    background-color: #DDACF5;
+}
+
+.circle2 {
+    background-color: #75E8E7;
+}
+
+.circle3 {
+    background-color: #95A4FC;
+}
+
+#recherchechart6 {
+    position: relative;
+    margin-top: 16px;
+    max-height: 200px;
+    max-width: 30%;
+    margin-left: 150px;
+    margin-bottom: 15px;
+}
+
+
+.Statistiques-content label {
+    display: block;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    text-align: left;
+    color: black;
+    font-size: 14px;
+}
+
+#recherchechart5 {
+    position: relative;
+    margin-top: 16px;
+    max-height: 200px;
+    max-width: 30%;
+    margin-left: 150px;
+    margin-bottom: 10px;
+}
+
+/* Style pour la légende */
+.legend {
+    display: flex;
+    flex-direction: column;
+        align-items: stretch;
+            /* Étirer les éléments pour occuper toute la largeur */
+            margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+        justify-content: space-between;
+        /* Répartir les éléments horizontalement */
+        width: 80%;
+        /* Largeur de chaque légende */
+        padding-top: 20px;
+        margin-left: 3rem;
+
+}
+
+#big {
+    font-size: 19px;
+    margin-left: 10px;
+}
+
+.legend-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.legend-label {
+    font-size: 15px;
+    color: black;
+    display: flex;
+    align-items: center;
+        justify-content: space-between;
+            /* Répartir les éléments horizontalement */
+            flex: 1;
+            /* Permet aux éléments de s'étirer */
+}
+
+#droite {
+    margin-left: -15rem;
+}
+
+.left-cont-stati3 {
+    margin-top: 3px;
+    display: flex;
+    justify-content: space-around;
+        /* Pour aligner les éléments en extrémité (un à gauche et l'autre à droite) */
+        align-items: center;
+        /* Pour aligner les éléments verticalement au centre */
+}
+
+.left-cont-stati3 p {
+    display: flex;
+    align-items: center;
+    /* Aligner le texte et la valeur verticalement au centre */
+    font-size: 20px;
+    font-weight: 600;
+    color: #365486;
+            margin: 25px;
+                letter-spacing: 2px;
+}
+
+.left-cont-stati3 .value {
+    margin-right: 10px;
+    /* Marge à droite du nombre */
+}
+
+.left-cont-stati4 {
+    display: flex;
+    align-items: center;
+    /* Aligner le texte et la valeur verticalement au centre */
+    font-size: 18px;
+    font-weight: 600;
+    color: #365486;
+    margin: 25px;
+    letter-spacing: 2px;
+}
+.left-cont-stati4 .value {
+    margin-right: 10px;
+    /* Marge à droite du nombre */
+}
+
+
+
+.download-button{
+    position: relative;
+    float: right;
+    width: 8%;
+    top: -3vw;
+    margin-right: 1rem;
+    padding: 8px 16px;
+    background-color: #365486;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+#downloadBtn{
+    position: relative;
+    float: right;
+    width: 8%;
+    top: 4vw;
+    margin-right: -4rem;
+    padding: 8px 16px;
+    background-color: #365486;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+

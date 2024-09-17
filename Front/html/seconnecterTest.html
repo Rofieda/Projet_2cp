@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles/seconnecter.css">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+    <div class="split-screen">
+        <div class="left">
+            <button  onclick="goBack()" ><img src="../images/Left2.png" class="back-arrow-icon" alt="Back Arrow"></button>
+            <img src="../images/FINALWHITE.png" alt="Votre Logo" class="logo">
+            <section class="copy">
+                <h1>Reconnectez-vous pour continuer votre expérience</h1>
+                <p class="par">Bienvenue sur la meilleure plateforme
+                    pour gérer les productions scientifiques
+                    et les activités d'encadrement des
+                    chercheurs au sein du laboratoire LMCS.</p>
+            </section>
+        </div>
+        <div class="right">
+            <form  form id="login-form" action="http://127.0.0.1:8000/api/v1/auth/login/" method="post" >
+                <section class="copy">
+                    <h2>Se connecter</h2>
+                    <div class="login-container">
+                        <p>Connectez-vous à votre compte</p>
+                    </div>
+                </section>
+                <section>
+                    <div class="input-container email">
+                        <label for="email">Adresse e-mail :</label>
+                        <input id="email" name="email" placeholder="Email@example.doamine" type="email">
+                        <img src="../images/Tick.png" class="icon1" alt="Icône Email">
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="input-container password ">
+                        <label for="password">Mot de passe :</label>
+                        <input id="password" name="password" placeholder="Doit contenir au moins 8 caractères"
+                            type="password">
+                        <span class="toggle-password">
+                            <img src="../images/hide.png" class="icon2 visible" alt="Icône password visible">
+                        </span>
+                        <span class="error-message" id="password-error"></span>
+                    </div>
+
+
+                    <div class="input-container cta">
+                        <label class="checkbox-container">
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            <span id="save-password-text">Enregistrer votre mot de passe <a href="#"
+                                    id="forgot-password-link"> Mot de passe oublié ?</a></span>
+                        </label>
+                    </div>
+
+                </section>
+
+                <div class="button-container">
+                    <button class="signup-btn" type="submit">Connectez-vous maintenant</button>
+                    <p class="separator">_________________ou_________________</p>
+                    <button class="signup-btnn" type="submit">
+                        <img src="../images/favicon.ico" alt="Google Icon">Se connecter avec Google
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="forgot-password">
+        <span id="overlay"></span>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 id="forgot-password-title">Mot de passe oublié ?</h3>
+                <p>Ne vous inquiétez pas. Nous vous enverrons un courrier pour réinitialiser votre mot de passe.</p>
+                <input id="reset-email" name="email" placeholder="Votre adresse e-mail" type="email">
+                <div id="reset-email-error" class="error-message"></div>
+                <button id="reset-password-btn">Réinitialiser votre mot de passe</button>
+            </div>
+        </div>
+    </div>
+    <div class="forgot-password">
+        <span id="overlay"></span>
+        <div id="modal-red-password" class="modal modal-large">
+            <div class="modal-content">
+                <h3 id="red-password-title">Redéfinition de votre mot de passe</h3>
+                <div class="password-container">
+                    <input   id="new-password" name="new-password" placeholder="Nouveau mot de passe" type="password">
+                    <span class="toggle-password2">
+                        <img src="../images/hide.png" class="icon2 visible" alt="Icône password visible">
+                    </span>
+                    <span class="error-message" id="new-password-error"></span>
+                </div>
+
+                <div class="password-container">
+                    <input id="confirm-new-password" name="confirm-new-password" placeholder="Confirmer le nouveau mot de passe" type="password">
+                    <span class="toggle-password2">
+                        <img src="../images/hide.png" class="icon2 visible" alt="Icône password visible">
+                    </span>
+                    <span class="error-message" id="confirm-new-password-error"></span>
+                </div>
+
+              <div class="password-container">
+                     <input class="reset-email" id="uidb64" name="uidb64" placeholder="Code de confirmation" type="text">
+                </div>
+                <div class="password-container">
+                    <input class="reset-email" id="token" name="token" placeholder="Code d'autorisation" type="text">
+                </div>
+                <button id="red-password-btn" >Enregistrer</button>
+                <button id="cancel-reset-btn">Annuler</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../javascript/seconnecter.js"></script>
+
+</body>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion Image</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="../html/visiteur.html" ><img src="../images/Left 2.png"  class="left2" style="position: absolute;left: 15px;width: 65px;z-index: 1 ; top: 0"></a>
+    <h1 class="Activités">Explorez Nos Activités</h1>
+
+    <main>
+
+        
+        <div class="card">
+            <img src="../images/article7jpg.jpg" class="image">
+            <img src="../images/imagelmcs1.jpg" class="background">
+            <div class="layer">
+                <div class="info">
+                    <h1>Dr Riyadh BAGHDADI</h1>
+                    <p>Exploration d'un modèle prédictif automatisé utilisant l'apprentissage profond pour évaluer les coûts</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/article1.jpg" class="image">
+            <img src="../images/imagelmcs2.jpg" class="background">
+            <div class="layer">
+                <div class="info">
+                    <h1>Pr Jalil BOUKHOBZA</h1>
+                    <p>Stockage dans le Cloud, problèmes de placement des données et quelques (éventuelles) solutions</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/article4jpg.jpg" class="image">
+            <img src="../images/imagelmcs3.jpg" class="background">
+            <div class="layer">
+                <div class="info">
+                    <h1>Pr Abderrahmane LESHOB</h1>
+                    <p>Approche basée sur les règles d'affaires pour l'automatisation robotisée des processus</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/article5jpg.jpg" class="image">
+            <img src="../images/imagelmcs4.jpg" class="background">
+            <div class="layer">
+                <div class="info">
+                    <h1>Dr Walid BECHKIT</h1>
+                    <p>Réseaux de capteurs sans fil pour le suivi des phénomènes physiques : de la théorie à la pratique</p>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="../images/article6.jpg" class="image">
+            <img src="../images/imagelmcs5.jpg" class="background">
+            <div class="layer">
+                <div class="info">
+                    <h1>Dr Taha ARBAOUI</h1>
+                    <p>Stratégies d'optimisation améliorées par l'apprentissage pour résoudre les problèmes d'ordonnancement</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        transition: 0.5s;
+    }
+    
+    body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    body::before {
+        content: "";
+        background-image: url(../images/great-wall.jpg);
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.25);
+        z-index: -1;
+    }
+    
+    main {
+        width: 700px;
+        height: 500px;
+        display: flex;
+        gap: 15px;
+    }
+    
+    .card {
+        
+        width: 20%;
+        border-radius: 15px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .card:hover {
+        width: 80%;
+    }
+    
+    .card .image {
+        width: 100%;
+        height: 100%;
+        top: 100%;
+        object-fit: cover;
+    }
+   
+    
+    .card .background {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        pointer-events: none;
+        filter: brightness(0.25);
+        opacity: 0;
+       
+       
+    }
+    .card:hover .background {
+        opacity: 1;
+    }
+    
+    .card .layer {
+        width: 100%;
+        height: 50%;
+        margin-top: -250px;
+        position: relative;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    }
+    
+    .card .layer .info {
+        width: 100%;
+        bottom: 10px;
+        top: 10%;
+        padding: 20px;
+        opacity: 0;
+        background-color: #223556;
+    }
+    .card:hover .layer .info {
+        opacity: 1;
+    }
+    .info p {
+        color: rgba(255, 255, 255, 0.75);
+        margin-top: 5px;
+        
+    }
+    body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before { 
+  content: "";
+    background-image: url(../images/esi.jpg);
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  /* background-size: cover; */
+  /* background-position: center; */
+  /* filter: brightness(0.25); */
+  /* z-index: -1; */
+}
+h1.Activités {
+    position: absolute;
+    text-align: center;
+    top: 8px; /* Adjust as needed */
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    z-index: 9999; /* Ensure the heading is above other elements */
+    color: white; /* Set the text color */
+}
+
+
+    </style>

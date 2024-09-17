@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <link rel="stylesheet" href="../styles/adminUser.css">
+    <link rel="stylesheet" href="../styles/barsNew.css">
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+</head>
+<body>
+
+    
+  
+ <div class="adminuser">
+
+    <h1 class="admin" > Liste des utilisateurs </h1>
+    <h2 class="sous-titre">
+        <span class="icon-text-container">
+            <img class="ajout-chercheur-icon" src="../images/Profile Add 1.png" alt="chercheur Icon" />
+            <p class="para" >Ajouter un utilisateur</p>
+        </span>
+    </h2>
+
+
+
+
+    
+
+    <button id="ajout-btn"><img class="add-icon" src="../images/Add.png" /></button>
+    
+    <ul class="publication-list">
+        <li>
+          <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+          <span class="nom">
+              <p class="name-chercheur">Medabis Amina</p>
+              <p class="para">ma_medabis@evi.dz</p>
+          </span>
+          <span class="role">Role</span>
+          <span class="status">active</span>
+          <span class="buttons">
+            <button id="button1" class="activateButton">Désactiver</button>
+            <div class="supprimer" id="appear-when-supp">
+                <span id="overlay"></span>
+                <div id="modal" class="modal modal-small">
+                    <div class="modal-content">
+                        <p class="phrase">voulez-vous vraiment désactiver </p>
+                        <p class="activer-qui">" Medabis Amina " ?</p>
+                        <div class="button-container">
+                            <button id="cancel-reset">Annuler</button>
+                            <button id="activebtn" class="dec-btn">Désactiver</button>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+          </span>
+        </li>
+        <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">
+                <p class="name-chercheur">Medabis Amina</p>
+                <p class="para" >ma_medabis@evi.dz</p>
+            </span>
+            <span class="role">Role</span>
+            <span class="status">active</span>
+            <span class="buttons">
+              <button id="button1" class="activateButton">Désactiver</button>
+              <div class="supprimer" id="appear-when-supp">
+                  <span id="overlay"></span>
+                  <div id="modal" class="modal modal-small">
+                      <div class="modal-content">
+                          <p class="phrase">voulez-vous vraiment désactiver </p>
+                          <p class="activer-qui">" Medabis Amina " ?</p>
+                          <div class="button-container">
+                              <button id="cancel-reset">Annuler</button>
+                              <button class="dec-btn">Désactiver</button>
+                          </div>
+          
+                      </div>
+                  </div>
+              </div>
+            </span>
+          </li>
+          <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">
+                <p class="name-chercheur">Medabis Amina</p>
+                <p class="para" >ma_medabis@evi.dz</p>
+            </span>
+            <span class="role">Role</span>
+            <span class="status">active</span>
+            <span class="buttons">
+              <button id="button1" class="activateButton">Désactiver</button>
+              <div class="supprimer" id="appear-when-supp">
+                  <span id="overlay"></span>
+                  <div id="modal" class="modal modal-small">
+                      <div class="modal-content">
+                          <p class="phrase">voulez-vous vraiment désactiver</p>
+                          <p class="activer-qui">" Medabis Amina " ?</p>
+                          <div class="button-container">
+                              <button id="cancel-reset">Annuler</button>
+                              <button class="dec-btn">Désactiver</button>
+                          </div>
+          
+                      </div>
+                  </div>
+              </div>
+            </span>
+          </li>
+        <li>
+          <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+          <span class="nom">
+              <p class="name-chercheur ">Medabis Amina</p>
+              <p class="para" >ma_medabis@evi.dz</p>
+          </span>
+          <span class="role">Role</span>
+          <span class="status">active</span>
+          <span class="buttons">
+            <button id="button1" class="activateButton">Désactiver</button>
+            <div class="supprimer" id="appear-when-supp">
+                <span id="overlay"></span>
+                <div id="modal" class="modal modal-small">
+                    <div class="modal-content">
+                        <p class="phrase">voulez-vous vraiment désactiver </p>
+                        <p class="activer-qui">" Medabis Amina " ?</p>
+                        <div class="button-container">
+                            <button id="cancel-reset">Annuler</button>
+                            <button id="activatebtn" class="dec-btn">Désactiver</button>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+          </span>
+        </li>
+
+    </ul>
+    
+<span id="over"  style="display: none;">
+<div class="ajouter-utilisateur" id="ajouter-utilisateur" style="display: none;">
+    
+    <div class="border">
+        <span class="icon-text-containerr">
+            <img class="ajout-chercheur-iconn" src="../images/Profile 1.png" alt="chercheur Icon" />
+            <p class="paragra">Informations personnelles</p>
+        </span>
+    
+       <div id="modal" class="modall">
+        <div class="modal-content">
+
+           <div class="inside">
+            <div class="input-group">
+                <label for="nom">Nom :</label>
+                <div class="custom-input-nom">
+                    <input type="text" id="nom"  class="nom" placeholder="">
+                  
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="prenom">Prénom :</label>
+                <div class="custom-input-prenom">
+                    <input type="text" id="prenom" class="prenom" placeholder="">
+                   
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="email">Email :</label>
+                <div class="custom-input-email">
+                    <input type="email" id="email" class="email" placeholder="">
+                  
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="password">Mot de passe :</label>
+                <div class="custom-input-password">
+                    <input type="password" id="password" class="password" placeholder="">
+                    
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="verification">Confirmer le mot de passe :</label>
+                <div class="custom-input-verification">
+                    <input type="password" id="verification" class="verification" placeholder="">
+                    
+                </div>
+            </div>
+            <div class="input-group custom-select">
+               
+                <label for="role">Role :</label>
+               
+                
+                <select id="role" class=" sele">
+                    <option value="" disabled selected>Attribuer un rôle</option>  
+                    <option value="admin">Admin</option>
+                    <option value="assistant">Assistant</option>
+                    <option value="chercheur">chercheur</option>
+                </select>
+                <img src="../images/Down3.png" alt="iconn" class="iconnn">
+            </div>
+            
+            
+            <div class="input-group custom-select">
+                <label for="access-rights">Droits d'accès :</label>
+                
+                <select id="access-rights" class="sel" >
+                     <img src="../images/Tick white.png" alt="iconn" class="iconn">
+                    <option value="" disabled selected >Choisissez les droits d'accès</option>
+                    <option value="ajouter">Ajouter</option>
+                    <option value="modifier">Modifier</option>
+                    <option value="ajouter">Ajouter et Modifier </option>
+
+                </select>
+                <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+            </div>
+            </div>
+
+    
+
+            
+
+        </div>
+            <!-- Boutons de validation et d'annulation -->
+            <button style="display: none;" class="vide"><i class="fa-solid fa-triangle-exclamation" ></i><div id="error-message" class="error-message" style="display: none;">Veuillez remplir tous les champs.</div></button>
+            <button class="annuler-a" id="annuler-a">  annuler</button>
+
+            <button class="ajouter" id="valider">    <img src="../images/Tick white.png" alt="iconn" class="iconn"> Ajouter</button>
+
+        </div>
+
+    </div>
+    </div>
+</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="../javascript/BARSAdmin.js"></script>
+    <script src="../javascript/notificationadmin.js"></script>
+
+<script >
+
+
+/*************************PARTIE 02 ******************************************/
+
+
+const dropdowns = document.querySelectorAll('.custom-select');
+
+dropdowns.forEach(dropdown => {
+  const selectElement = dropdown.querySelector('select');  // Get the select element
+  const dropdownIcon = dropdown.querySelector('.iconnn');  // Get the dropdown icon
+
+  // Function to close the select, reset the icon to "Down", and clear error messages
+  const resetSelect = () => {
+    selectElement.classList.remove('open'); // Close the select
+    dropdownIcon.src = "../images/Down 3.png"; // Reset icon to Down
+    const errorMessages = dropdown.querySelectorAll('.error-message');  // Get all error messages in the dropdown
+    errorMessages.forEach(message => message.textContent = ''); // Clear error messages
+  };
+
+  // Event listener for the select element
+  selectElement.addEventListener('click', () => {
+    selectElement.classList.toggle('open'); // Toggle open state for the select
+    dropdownIcon.src = selectElement.classList.contains('open') ? "../images/up 2.png" : "../images/Down 3.png";  // Switch image based on open state
+  });
+
+  // Event listener for the dropdown icon
+  dropdownIcon.addEventListener('click', () => {
+    selectElement.classList.toggle('open'); // Toggle open state for the select
+    dropdownIcon.src = selectElement.classList.contains('open') ? "../images/up 2.png" : "../images/Down 3.png";  // Switch image based on open state
+  });
+
+  // Event listener to reset icon and clear messages when select closes without selection
+  selectElement.addEventListener('blur', () => {
+    if (!selectElement.value) { // If no option is selected
+      resetSelect();
+    }
+  });
+});
+
+// Event listener to reset icon when clicking outside of the select and clear messages
+document.addEventListener('click', (event) => {
+  const target = event.target;
+  if (!target.closest('.custom-select')) { // If the click target is not inside a custom-select element
+    dropdowns.forEach(dropdown => {
+      const dropdownIcon = dropdown.querySelector('.iconnn');  // Get the dropdown icon
+      dropdownIcon.src = "../images/Down 3.png"; // Reset icon to Down
+      const errorMessages = dropdown.querySelectorAll('.error-message');  // Get all error messages in the dropdown
+      errorMessages.forEach(message => message.textContent = ''); // Clear error messages
+    });
+  }
+});
+
+
+
+// Function to show error message
+function showError(input, message, errorPlacement = 'after', customClass = 'error-message') {
+  const inputGroup = input.parentElement; // Target the input group for error styling
+
+  // Add error class to input group (avoiding direct style modification)
+  inputGroup.classList.add('error'); 
+
+  let errorMessage;
+
+  // Determine error message placement based on `errorPlacement` argument
+  if (errorPlacement === 'after') {
+    errorMessage = inputGroup.querySelector(`.${customClass}`);
+  } else if (errorPlacement === 'before') {
+    errorMessage = inputGroup.querySelector(`.${customClass}`);
+    if (!errorMessage) { // Create new error message if it doesn't exist
+      errorMessage = document.createElement('div');
+      errorMessage.className = customClass;
+      inputGroup.insertBefore(errorMessage, inputGroup.firstChild); // Insert before input
+    }
+  } else {
+    console.error("Invalid errorPlacement argument. Use 'after' or 'before'.");
+    return; // Exit if invalid placement is provided
+  }
+
+  if (errorMessage) {
+    errorMessage.textContent = message; // Update existing error message
+  } else {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = customClass; // Add custom class
+    errorDiv.textContent = message;
+    if (errorPlacement === 'after') {
+      inputGroup.appendChild(errorDiv); // Append after input (default)
+    } else {
+      inputGroup.insertBefore(errorDiv, inputGroup.firstChild); // Insert before input
+    }
+  }
+} // Function to show error message
+function showError(input, message, errorPlacement = 'after', customClass = 'error-message') {
+  const inputGroup = input.parentElement; // Target the input group for error styling
+
+  // Add error class to input group (avoiding direct style modification)
+  inputGroup.classList.add('error'); 
+
+  let errorMessage;
+
+  // Determine error message placement based on `errorPlacement` argument
+  if (errorPlacement === 'after') {
+    errorMessage = inputGroup.querySelector(`.${customClass}`);
+  } else if (errorPlacement === 'before') {
+    errorMessage = inputGroup.querySelector(`.${customClass}`);
+    if (!errorMessage) { // Create new error message if it doesn't exist
+      errorMessage = document.createElement('div');
+      errorMessage.className = customClass;
+      inputGroup.insertBefore(errorMessage, inputGroup.firstChild); // Insert before input
+    }
+  } else {
+    console.error("Invalid errorPlacement argument. Use 'after' or 'before'.");
+    return; // Exit if invalid placement is provided
+  }
+
+  if (errorMessage) {
+    errorMessage.textContent = message; // Update existing error message
+  } else {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = customClass; // Add custom class
+    errorDiv.textContent = message;
+    if (errorPlacement === 'after') {
+      inputGroup.appendChild(errorDiv); // Append after input (default)
+    } else {
+      inputGroup.insertBefore(errorDiv, inputGroup.firstChild); // Insert before input
+    }
+  }
+}
+
+// Function to remove error message
+function removeError(input) {
+  const inputGroup = input.parentElement;
+  inputGroup.classList.remove('error'); // Remove error class
+
+  const errorMessage = inputGroup.querySelector('.error-message');
+  if (errorMessage) {
+    errorMessage.remove(); // Remove the error message element
+  }
+}
+
+// Usage example for email error message
+const emailInput = document.getElementById('email');
+
+emailInput.addEventListener('blur', () => {
+  const emailValue = emailInput.value;
+  const errorMessageElement = emailInput.nextElementSibling; // Assuming error message is after the email input
+
+  // Check for existing error message
+  if (errorMessageElement && errorMessageElement.classList.contains('email-error-message')) {
+    errorMessageElement.remove(); // Remove existing error message if present
+  }
+
+  // Email validation logic
+  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
+  if (!isValidEmail) {
+    showError(emailInput, 'Adresse e-mail invalide', 'after', 'email-error-message');
+  } else {
+    // No errors, validation successful
+  }
+});
+
+
+// Usage for password verification error message
+const verificationInput = document.getElementById('verification');
+
+verificationInput.addEventListener('blur', () => {
+  const passwordInput = document.getElementById('password');
+  const passwordValue = passwordInput.value;
+  const verificationValue = verificationInput.value;
+
+  // Check if there's a previous error message
+  const errorMessageElement = verificationInput.nextElementSibling; // Assuming error message is after the verification input
+  if (errorMessageElement && errorMessageElement.classList.contains('verification-error-message')) {
+    errorMessageElement.remove(); // Remove existing error message
+  }
+
+  // Validation logic
+  if (verificationValue === '') {
+    showError(verificationInput, 'Ce champ est requis', 'after', 'verification-error-message');
+  } else if (passwordValue !== verificationValue) {
+    showError(verificationInput, "La confirmation n'est pas identique", 'after', 'verification-error-message');
+  } else {
+    errorMessageElement.remove();
+    // No errors, validation successful
+  }
+});
+
+
+
+
+const roleSelect = document.getElementById('role');
+const accessRightsSelect = document.getElementById('access-rights');
+
+roleSelect.addEventListener('change', () => {
+    const selectedRole = roleSelect.value;
+
+    // Réinitialiser les options sélectionnées
+    accessRightsSelect.value = '';
+
+    // Mettre à jour les options en fonction du rôle sélectionné
+    if (selectedRole === 'assistant' || selectedRole === 'chercheur') {
+        accessRightsSelect.innerHTML = `
+            <option value="" disabled selected>Choisissez les droits d'accès</option>
+            <option value="ajouter">Ajouter</option>
+            <option value="modifier">Modifier</option>
+            <option value="ajouter_modifier">Ajouter et Modifier</option>
+        `;
+    } else if (selectedRole === 'admin') {
+        accessRightsSelect.innerHTML = `
+            <option value="" disabled selected>Choisissez les droits d'accès</option>
+            <option value="ajouter">Ajouter</option>
+            <option value="modifier">Modifier</option>
+            <option value="ajouter_modifier">Ajouter et Modifier</option>
+          
+        `;
+    }
+});
+
+document.getElementById('valider').addEventListener('click', () => {
+    const nomInput = document.getElementById('nom');
+    const prenomInput = document.getElementById('prenom');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const verificationInput = document.getElementById('verification');
+    const roleSelect = document.getElementById('role');
+
+    let errors = [];
+
+    // Vérifier si les champs requis sont vides
+    if (nomInput.value === '' || prenomInput.value === '' || emailInput.value === '' ||
+        passwordInput.value === '' || verificationInput.value === '' || roleSelect.value === '') {
+        document.getElementById('error-message').style.display = 'block'; // Afficher le message d'erreur
+        document.querySelector('.vide').style.display = 'inline-block'; // Afficher le bouton
+        errors.push('Veuillez remplir tous les champs.');
+    } else {
+        document.getElementById('error-message').style.display = 'none'; // Cacher le message d'erreur
+        document.querySelector('.vide').style.display = 'none'; // Cacher le bouton
+    }
+
+    // Afficher les erreurs s'il y en a
+    if (errors.length === 0) {
+        document.getElementById('error-message').style.display = 'none';
+        // Ajoutez ici votre logique pour traiter les données lorsque tous les champs sont remplis
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  var addButton = document.getElementById("ajout-btn");
+  var over = document.getElementById("over");
+  var ajouterUtilisateurDiv = document.querySelector(".ajouter-utilisateur");
+
+  addButton.addEventListener("click", function() {
+
+    // Show the .ajouter-utilisateur div on top of the overlay
+    ajouterUtilisateurDiv.style.display = "block";
+    ajouterUtilisateurDiv.style.top = "20%";
+    ajouterUtilisateurDiv.style.zIndex = "1000"; // Higher z-index for .ajouter-utilisateur
+
+
+    over.style.display = "block";
+    over.style.position = "fixed";
+    over.style.top = "0";
+    over.style.left = "19.5%";
+    over.style.width = "100%";
+    over.style.height = "100%";
+    over.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+
+  });
+});
+
+
+
+/********************************/
+document.addEventListener("DOMContentLoaded", function() {
+  var addButton = document.getElementById("add-icon"); // Assuming addButton is correctly defined
+  var annulerButton = document.getElementById("annuler-a");
+  var over = document.getElementById("over");
+  var ajouterUtilisateurDiv = document.querySelector(".ajouter-utilisateur");
+  var redMessage = document.getElementById("red");
+
+  annulerButton.addEventListener("click", function() {
+    over.style.display = "none";
+    ajouterUtilisateurDiv.style.display = "none";
+    redMessage.style.display="none";
+
+
+  });
+});
+
+ /*document.addEventListener('DOMContentLoaded', function() {
+    // Envoyer une requête Fetch pour récupérer la liste des utilisateurs
+    fetch('http://127.0.0.1:8000/api/v1/auth/list_users/', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MjAxNjQ4LCJpYXQiOjE3MTUyMDEwNDgsImp0aSI6IjBkOGNmZjc2ZTNhZjRkMjM4OTNlYjBiZWQwYWI1NjhjIiwidXNlcl9pZCI6MjJ9.C3g2YvEpK-_1Y-xYU4MoCtdt3ogIAUQR667gCJ54azw',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Échec de la requête.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Afficher les données des utilisateurs dans l'interface utilisateur
+        const userListElement = document.querySelector('.publication-list');
+        userListElement.innerHTML = ''; // Effacer le contenu existant
+        data.forEach(user => {
+            const userElement = `
+                <li id="user-${user.id}">
+                    <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+                    <span class="nom">
+                        <p class="name-chercheur">${user.first_name} ${user.last_name}</p>
+                        <p class="para">${user.email}</p>
+                    </span>
+                    <span class="role">${user.role}</span>
+                    <span class="status">${user.is_active_display}</span>
+                    <span class="buttons">
+                        <button class="activateButton">Activer</button>
+                        <div class="supprimer" id="appear-when-supp">
+                            <span id="overlay"></span>
+                            <div class="modal modal-small">
+                                <div class="modal-content">
+                                    <p class="phrase">Voulez-vous vraiment activer</p>
+                                    <p class="activer-qui">"${user.first_name} ${user.last_name}" ?</p>
+                                    <div class="button-container">
+                                        <button id="cancel-reset">Annuler</button>
+                                        <button class="dec-btn" data-user-id="${user.id}">Activer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                </li>
+            `;
+            userListElement.insertAdjacentHTML('beforeend', userElement);
+        });
+
+        // Add event listener to the "Activer" buttons inside the "supprimer" divs
+        var activateConfirmButtons = document.querySelectorAll(".button-container button.dec-btn");
+        var confirmingMessage = document.querySelectorAll(".modal-content .phrase");
+        activateConfirmButtons.forEach(function(activateConfirmButton, index) {
+            activateConfirmButton.addEventListener("click", function(event) {
+                // Prevent the click event from bubbling up to the document
+                event.stopPropagation();
+                // Hide the parent "supprimer" div when "Activer" button is clicked
+                var supprimerDiv = activateConfirmButton.closest(".supprimer");
+                if (supprimerDiv) {
+                    supprimerDiv.style.display = "none";
+                }
+                // Toggle the text content and background color of the "dec-btn"
+                var activateButton = document.querySelectorAll(".activateButton")[index];
+                if (activateButton) {
+                    if (activateButton.textContent === "Activer") {
+                        activateButton.textContent = "Désactiver";
+                        activateButton.style.backgroundColor = "red";
+                        activateConfirmButton.style.backgroundColor = "red";
+                        activateConfirmButton.style.border = "1px solid red";
+                        activateConfirmButton.textContent = "Désactiver";
+                        confirmingMessage[index].textContent = "Voulez-vous vraiment désactiver";
+                    } else {
+                        activateButton.textContent = "Activer";
+                        activateButton.style.backgroundColor = ""; // Reset to default background color
+                        activateConfirmButton.style.backgroundColor = "";
+                        activateConfirmButton.textContent = "Activer";
+                        activateConfirmButton.style.border = "";
+                        confirmingMessage[index].textContent = "Voulez-vous vraiment activer";
+                    }
+                }
+
+                // Extract the user ID from the data attribute
+                const userId = activateConfirmButton.dataset.userId;
+
+                // Call the GestionUserView API with the user ID
+                fetch(`http://127.0.0.1:8000/api/v1/auth/gestion-user/${userId}/`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MjAxNjQ4LCJpYXQiOjE3MTUyMDEwNDgsImp0aSI6IjBkOGNmZjc2ZTNhZjRkMjM4OTNlYjBiZWQwYWI1NjhjIiwidXNlcl9pZCI6MjJ9.C3g2YvEpK-_1Y-xYU4MoCtdt3ogIAUQR667gCJ54azw', // Replace with your actual token
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to activate user.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Handle successful response here
+                    console.log(data);
+                    // Update the user's status in the list
+                    const userStatusElement = document.querySelector(`#user-${userId} .status`);
+                    if (userStatusElement) {
+                        userStatusElement.textContent = data.user.is_active_display;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Handle error here
+                });
+            });
+        });
+
+        // Add event listener to all elements with the class "activateButton"
+        document.querySelectorAll('.activateButton').forEach(function(button, index) {
+            button.addEventListener('click', function(event) {
+                event.stopPropagation();
+
+                // Toggle the display of the "supprimer" div related to the clicked button
+                const supprimerDiv = button.nextElementSibling;
+                if (supprimerDiv) {
+                    supprimerDiv.style.display = 'block';
+                }
+            });
+        });
+
+        // Add event listener to the "Annuler" buttons inside the "supprimer" divs
+        var cancelButtons = document.querySelectorAll(".button-container button#cancel-reset");
+        cancelButtons.forEach(function(cancelButton) {
+            cancelButton.addEventListener("click", function(event) {
+                // Prevent the click event from bubbling up to the document
+                event.stopPropagation();
+                // Hide the parent "supprimer" div
+                var supprimerDiv = cancelButton.closest(".supprimer");
+                if (supprimerDiv) {
+                    supprimerDiv.style.display = "none";
+                }
+            });
+        });
+
+        // Add event listener to the document
+        document.addEventListener("click", function(event) {
+            // Hide all "supprimer" divs when clicking outside
+            var supprimerDivs = document.querySelectorAll(".supprimer");
+            supprimerDivs.forEach(function(supprimerDiv) {
+                if (!supprimerDiv.contains(event.target)) {
+                    supprimerDiv.style.display = "none";
+                }
+            });
+        });
+    })
+    .catch(error => {
+        console.error('Erreur :', error);
+        alert('Une erreur est survenue lors de la récupération des utilisateurs.');
+    });
+});*/
+
+document.addEventListener('DOMContentLoaded', async function() {
+    // Fetch access token
+    const accessToken = await getAccessToken();
+
+    // Envoyer une requête Fetch pour récupérer la liste des utilisateurs
+    const response = await fetch('http://127.0.0.1:8000/api/v1/auth/list_users/', {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken,
+            'Content-Type': 'application/json'
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error('Échec de la requête.');
+    }
+
+    const data = await response.json();
+
+    // Afficher les données des utilisateurs dans l'interface utilisateur
+    const userListElement = document.querySelector('.publication-list');
+    userListElement.innerHTML = ''; // Effacer le contenu existant
+    data.forEach(user => {
+        const buttonBackgroundColor = user.is_active_display === 'Non_Actif' ? '#365486' : 'red';
+const buttonTextColor = user.is_active_display === 'Non_Actif' ? '#ffffff' : '#ffffff';
+const userElement = `
+    <li id="user-${user.id}">
+        <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+        <span class="nom">
+            <p class="name-chercheur">${user.first_name} ${user.last_name}</p>
+            <p class="para">${user.email}</p>
+        </span>
+        <span class="role">${user.role}</span>
+        <span class="status">${user.is_active_display}</span>
+        <span class="buttons">
+            <button class="activateButton" style="background-color: ${buttonBackgroundColor}; color: ${buttonTextColor};">${user.is_active_display === 'Actif' ? 'Désactiver' : 'Activer'}</button>
+            <div class="supprimer" id="appear-when-supp">
+                <span id="overlay"></span>
+                <div class="modal modal-small">
+                    <div class="modal-content">
+                        <p class="phrase">Voulez-vous vraiment ${user.is_active_display === 'Actif' ? 'désactiver' : 'activer'}</p>
+                        <p class="activer-qui">"${user.first_name} ${user.last_name}" ?</p>
+                        <div class="button-container">
+                            <button id="cancel-reset">Annuler</button>
+                            <button class="dec-btn" data-user-id="${user.id}">${user.is_active_display === 'Actif' ? 'Désactiver' : 'Activer'}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </li>
+`;
+        userListElement.insertAdjacentHTML('beforeend', userElement);
+    });
+
+    // Add event listener to the "Activer" buttons inside the "supprimer" divs
+    var activateConfirmButtons = document.querySelectorAll(".button-container button.dec-btn");
+    var confirmingMessage = document.querySelectorAll(".modal-content .phrase");
+    activateConfirmButtons.forEach(function(activateConfirmButton, index) {
+        activateConfirmButton.addEventListener("click", async function(event) {
+            // Prevent the click event from bubbling up to the document
+            event.stopPropagation();
+            // Hide the parent "supprimer" div when "Activer" button is clicked
+            var supprimerDiv = activateConfirmButton.closest(".supprimer");
+            if (supprimerDiv) {
+                supprimerDiv.style.display = "none";
+            }
+            // Toggle the text content and background color of the "dec-btn"
+            var activateButton = document.querySelectorAll(".activateButton")[index];
+            if (activateButton) {
+                if (activateButton.textContent === "Désactiver") {
+                    activateButton.textContent = "Activer";
+                    activateButton.style.backgroundColor = "#365486";
+                    activateConfirmButton.style.backgroundColor = "#365486";
+                    activateConfirmButton.style.border = "1px solid #365486";
+                    activateConfirmButton.textContent = "Activer";
+                    confirmingMessage[index].textContent = "Voulez-vous vraiment activer";
+                } else {
+                    activateButton.textContent = "Désactiver";
+                    activateButton.style.backgroundColor = ""; // Reset to default background color
+                    activateConfirmButton.style.backgroundColor = "";
+                    activateConfirmButton.textContent = "Désactiver";
+                    activateConfirmButton.style.border = "";
+                    confirmingMessage[index].textContent = "Voulez-vous vraiment désactiver";
+                }
+            }
+
+            // Extract the user ID from the data attribute
+            const userId = activateConfirmButton.dataset.userId;
+
+            // Call the GestionUserView API with the user ID
+            const gestionUserResponse = await fetch(`http://127.0.0.1:8000/api/v1/auth/gestion-user/${userId}/`, {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!gestionUserResponse.ok) {
+                throw new Error('Failed to activate user.');
+            }
+
+            const gestionUserData = await gestionUserResponse.json();
+
+            // Handle successful response here
+            console.log(gestionUserData);
+            // Update the user's status in the list
+            const userStatusElement = document.querySelector(`#user-${userId} .status`);
+            if (userStatusElement) {
+                userStatusElement.textContent = gestionUserData.user.is_active_display;
+            }
+        });
+    });
+
+    // Add event listener to all elements with the class "activateButton"
+    document.querySelectorAll('.activateButton').forEach(function(button, index) {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation();
+
+            // Toggle the display of the "supprimer" div related to the clicked button
+            const supprimerDiv = button.nextElementSibling;
+            if (supprimerDiv) {
+                supprimerDiv.style.display = 'block';
+            }
+        });
+    });
+
+    // Add event listener to the "Annuler" buttons inside the "supprimer" divs
+    var cancelButtons = document.querySelectorAll(".button-container button#cancel-reset");
+    cancelButtons.forEach(function(cancelButton) {
+        cancelButton.addEventListener("click", function(event) {
+            // Prevent the click event from bubbling up to the document
+            event.stopPropagation();
+            // Hide the parent "supprimer" div
+            var supprimerDiv = cancelButton.closest(".supprimer");
+            if (supprimerDiv) {
+                supprimerDiv.style.display = "none";
+            }
+        });
+    });
+
+    // Add event listener to the document
+    document.addEventListener("click", function(event) {
+        // Hide all "supprimer" divs when clicking outside
+        var supprimerDivs = document.querySelectorAll(".supprimer");
+        supprimerDivs.forEach(function(supprimerDiv) {
+            if (!supprimerDiv.contains(event.target)) {
+                supprimerDiv.style.display = "none";
+            }
+        });
+    });
+});
+/*document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('valider').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+        // Récupération des valeurs des champs
+        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var verification = document.getElementById('verification').value;
+        var role = document.getElementById('role').value;
+        var accessRights = document.getElementById('access-rights').value;
+
+        // Vérification de la correspondance des mots de passe
+        if (password !== verification) {
+            alert("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
+        // Construction de l'objet de données à envoyer
+        var userData = {
+            'email': email,
+            'first_name': prenom,
+            'last_name': nom,
+            'password': password,
+            'password2': verification,
+            'role': role,
+            'droit_acces': accessRights // Ajout de droit_acces
+            // Ajoutez d'autres champs si nécessaire
+        };
+
+        // Envoi de la requête Fetch
+        fetch('http://127.0.0.1:8000/api/v1/auth/add-user/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1MjAxNjQ4LCJpYXQiOjE3MTUyMDEwNDgsImp0aSI6IjBkOGNmZjc2ZTNhZjRkMjM4OTNlYjBiZWQwYWI1NjhjIiwidXNlcl9pZCI6MjJ9.C3g2YvEpK-_1Y-xYU4MoCtdt3ogIAUQR667gCJ54azw' // Assurez-vous d'inclure le bon jeton JWT ici
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Échec de la requête.');
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            // Gérer la réponse en cas de succès
+
+            // Masquer la section "ajouter-utilisateur"
+            document.getElementById('ajouter-utilisateur').style.display = 'none';
+            document.getElementById('over').style.display = 'none';
+            location.reload();
+            // Vous pouvez ajouter ici du code pour actualiser la liste des utilisateurs ou rediriger l'utilisateur vers une autre page, etc.
+        })
+        .catch(function(error) {
+            // Gérer les erreurs
+            alert('Une erreur est survenue lors de l\'ajout de l\'utilisateur.');
+            console.error('Erreur :', error);
+        });
+    });
+});*/
+document.addEventListener('DOMContentLoaded', async function() {
+    document.getElementById('valider').addEventListener('click', async function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+        // Récupération des valeurs des champs
+        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var verification = document.getElementById('verification').value;
+        var role = document.getElementById('role').value;
+        var accessRights = document.getElementById('access-rights').value;
+
+        // Vérification de la correspondance des mots de passe
+        if (password !== verification) {
+            alert("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
+        // Construction de l'objet de données à envoyer
+        var userData = {
+            'email': email,
+            'first_name': prenom,
+            'last_name': nom,
+            'password': password,
+            'password2': verification,
+            'role': role,
+            'droit_acces': accessRights // Ajout de droit_acces
+            // Ajoutez d'autres champs si nécessaire
+        };
+
+        // Fetch access token
+        const accessToken = await getAccessToken();
+
+        // Envoi de la requête Fetch
+        const response = await fetch('http://127.0.0.1:8000/api/v1/auth/add-user/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken // Assurez-vous d'inclure le bon jeton JWT ici
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            // Gérer l'erreur en cas d'échec de la requête
+            var errorMessage = "Une erreur s'est produite lors de l'ajout de l'utilisateur.";
+            if (response.status === 400) {
+                errorMessage = "L'utilisateur existe déjà.";
+            }
+            alert(errorMessage);
+            return;
+        }
+
+        const data = await response.json();
+
+        // Gérer la réponse en cas de succès
+
+        // Masquer la section "ajouter-utilisateur"
+        document.getElementById('ajouter-utilisateur').style.display = 'none';
+        document.getElementById('over').style.display = 'none';
+        // Afficher le message de succès
+        alert("L'utilisateur " + data.first_name + " " + data.last_name + " a été ajouté avec succès.");
+
+        // Actualiser la page (optionnel)
+        location.reload();
+        // Vous pouvez ajouter ici du code pour actualiser la liste des utilisateurs ou rediriger l'utilisateur vers une autre page, etc.
+    });
+
+    // Ajout de l'écouteur d'événements pour le bouton "Annuler"
+    var annulerButton = document.getElementById("annuler-a");
+    annulerButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du lien
+
+        // Effacer les valeurs des champs d'entrée
+        document.getElementById('nom').value = '';
+        document.getElementById('prenom').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('verification').value = '';
+        document.getElementById('role').value = '';
+        document.getElementById('access-rights').value = '';
+        // Effacer le message de succès
+        var successMessage = document.getElementById("success-message");
+        if (successMessage) {
+            successMessage.style.display = 'none';
+        }
+        // Effacer le message d'erreur
+        var errorMessage = document.getElementById("error-message");
+        if (errorMessage) {
+            errorMessage.style.display = 'none';
+        }
+    });
+});
+
+/*document.addEventListener('DOMContentLoaded', async function() {
+    document.getElementById('valider').addEventListener('click', async function(event) {
+        event.preventDefault(); // Empêche le comportement par défaut du formulaire
+
+        // Récupération des valeurs des champs
+        var nom = document.getElementById('nom').value;
+        var prenom = document.getElementById('prenom').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var verification = document.getElementById('verification').value;
+        var role = document.getElementById('role').value;
+        var accessRights = document.getElementById('access-rights').value;
+
+        // Vérification de la correspondance des mots de passe
+        if (password !== verification) {
+            alert("Les mots de passe ne correspondent pas.");
+            return;
+        }
+
+        // Construction de l'objet de données à envoyer
+        var userData = {
+            'email': email,
+            'first_name': prenom,
+            'last_name': nom,
+            'password': password,
+            'password2': verification,
+            'role': role,
+            'droit_acces': accessRights // Ajout de droit_acces
+            // Ajoutez d'autres champs si nécessaire
+        };
+
+        // Fetch access token
+        const accessToken = await getAccessToken();
+
+        // Envoi de la requête Fetch
+        const response = await fetch('http://127.0.0.1:8000/api/v1/auth/add-user/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + accessToken // Assurez-vous d'inclure le bon jeton JWT ici
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Échec de la requête.');
+        }
+
+        const data = await response.json();
+
+        // Masquer la section "ajouter-utilisateur"
+        document.getElementById('ajouter-utilisateur').style.display = 'none';
+        document.getElementById('over').style.display = 'none';
+
+        // Afficher un message de succès
+        var successMessage = document.createElement('div');
+        successMessage.textContent = 'Vous avez ajouté avec succès ' + data.first_name + ' ' + data.last_name;
+        successMessage.style.position = 'fixed';
+        successMessage.style.top = '50%';
+        successMessage.style.left = '50%';
+        successMessage.style.transform = 'translate(-50%, -50%)';
+        successMessage.style.backgroundColor = '#ffffff';
+        successMessage.style.padding = '20px';
+        successMessage.style.border = '1px solid #000000';
+        successMessage.style.borderRadius = '5px';
+        successMessage.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
+        document.body.appendChild(successMessage);
+
+        // Hide the success message after a certain duration
+        setTimeout(function() {
+            document.body.removeChild(successMessage);
+        }, 5000); // Hide after 5 seconds (adjust as needed)
+    });
+});*/
+
+async function getAccessToken() {
+    await refreshAccessToken();
+    return sessionStorage.getItem('access_token');
+}
+
+async function refreshAccessToken() {
+    // Retrieve refresh token from session storage
+    const refresh_token = JSON.parse(sessionStorage.getItem('user_info')).refresh_token;
+    if (refresh_token) {
+        try {
+            const response = await fetch('http://127.0.0.1:8000/api/v1/auth/token/refresh/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ refresh: refresh_token })
+            });
+            const data = await response.json();
+            // Update the access token in session storage
+            const userInfo = JSON.parse(sessionStorage.getItem('user_info'));
+            sessionStorage.setItem('access_token', data.access);
+            sessionStorage.setItem('user_info', JSON.stringify(userInfo)); // Store all updated user information
+            // Retry the original request or perform other actions
+        } catch (error) {
+            // Handle token refresh error
+            console.error(error);
+            // Redirect the user to the login page or display an error message
+        }
+    } else {
+        // Redirect the user to the login page if there is no refresh token
+    }
+}
+
+</script>
+</body>
+</html>

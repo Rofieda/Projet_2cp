@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    <script src="../javascript/stat.js"></script>
+    <link rel="stylesheet" href="../styles/ajout.css">
+    <link rel="stylesheet" href="../styles/stat4.css">
+    <script src="../javascript/BARS.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <title>Lmcs Quest</title>
+</head>
+
+<body>
+
+    <button class="download-button" onclick="downloadExcel()">Exporter</button>
+
+    <button class="left-button" onclick="goBackAndResetForm()"><img src="../images/Left1.png"></button>
+    <div class="stati-title-left">
+        <p>Statistiques filtrées</p>
+        <div class="sous-titre">
+            <p>critère 1 : Chercheur , critère 2 : grade d'enseignement </p>
+        </div>
+    </div>
+    <div class="stati-filtrés-top2 ">
+        <div class="left-content-statii">
+            <div class="left-content-stati-title">
+                <p>Numériques</p>
+            </div>
+            <div class="left-cont-stati2">
+                <p><span class="value1"></span> Directeur de recherche</p>
+                <p><span class="value2"></span> Maitre de recherche</p>
+                <p><span class="value3"></span> Autre</p>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="stati-filtrés-down2">
+        <div class="left-content-stati-title">
+            <p>Graphiques</p>
+        </div>
+        <div class="chart-container">
+            <canvas id="recherchechart"></canvas>
+        </div>
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-circle circle1"></div>
+                <div class="legend-label">Directeur de recherche</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle2"></div>
+                <div class="legend-label">Maitre de recherche</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-circle circle3"></div>
+                <div class="legend-label">Autre</div>
+            </div>
+        </div>
+    </div>
+    <div class="stati-title-right">
+        <p>Statistiques générales</p>
+    </div>
+    <h2 class="titreenplus">Classement des chercheurs</h2>
+    <h2 class="titreenplus"> (critère de classement ; citation )</h2>
+    <div class="stati-générales-top">
+       
+        <div class="right-content-stati">
+            <p>meilleures chercheurs (critère de classement ; citation )</p>
+            <p>#</p>
+            <p>Citations</p>
+        </div>
+    </div>
+
+    <div class="stati-générales-midle">
+        <div class="right-content-stati-mdl">
+            <span class="nombre-chercheurs"></span>
+            <p>chercheurs</p>
+        </div>
+    </div>
+
+    <div class="stati-générales-down">
+        <div class="left-content-stati-title-down">
+            <p>Distribution des chercheurs par qualité :</p>
+        </div>
+        <div class="right-content-stati-down">
+            <canvas id="membership-chart"></canvas>
+            <div class="labels-container">
+                <div class="label-container">
+                    <div class="label label1"></div>
+                    <p class="label-text">Enseignant-chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label2"></div>
+                    <p class="label-text">Chercheur</p>
+                </div>
+                <div class="label-container">
+                    <div class="label label3"></div>
+                    <p class="label-text">Doctorant</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="downloadBtn">Exporter</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../javascript/stat.js"></script>
+   
+   
+    <script src="../javascript/BARSAdmin.js"></script>
+    <script src="../javascript/notificationadmin.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function fetchStatistics() {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'http://127.0.0.1:8000/api/statistics/', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+
+                xhr.onload = function () {
+                    if (xhr.status == 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        updateStatistics(data);
+                        updateDistributionChart(data.distribution);
+                        updateGradeChart(data.grades);
+                        // Update the download button to use the fetched data
+                        document.querySelector('.download-button').addEventListener('click', function () {
+    downloadExcel(data);
+});
+                    }
+                };
+
+                var params = {
+                    critere1: 'chercheur',
+                    critere2: 'grade_recherche'
+                };
+
+                xhr.send(JSON.stringify(params));
+            }
+
+            function updateStatistics(data) {
+                document.querySelector('.nombre-chercheurs').innerText = data.total_researchers;
+                document.querySelector('.value1').innerText = data.grades["Directeur de recherche"] || 0;
+                document.querySelector('.value2').innerText = data.grades["Maître de recherche"] || 0;
+                document.querySelector('.value3').innerText = data.grades["NULL"] || 0;
+
+                var topResearchersContainer = document.querySelector('.stati-générales-top .right-content-stati');
+                topResearchersContainer.innerHTML = '';
+
+                var topResearchers = data.top_researchers;
+                topResearchers.forEach(function (researcher, index) {
+                    var researcherName = Object.keys(researcher)[0];
+                    var citations = researcher[researcherName];
+
+                    var researcherElement = document.createElement('div');
+                    researcherElement.classList.add('researcher');
+                    researcherElement.innerHTML = '<p style="display:inline-block;">' + (index + 1) + '</p><p style="display:inline-block;">' + researcherName + '</p><p style="display:inline-block;">' + citations + '</p>';
+
+                    topResearchersContainer.appendChild(researcherElement);
+                });
+            }
+
+            function updateDistributionChart(distribution) {
+                var labels = Object.keys(distribution);
+                var dataValues = Object.values(distribution);
+                var colors = [
+                    '#C39EF3', // Couleur pour Enseignant-chercheur
+                    '#75E8E7', // Couleur pour Chercheur
+                    '#407BFF'  // Couleur pour Doctorant
+                ];
+
+                var membershipChart = new Chart(document.getElementById('membership-chart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Distribution des chercheurs par qualité :',
+                            data: dataValues,
+                            backgroundColor: colors,
+                            borderColor: colors,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        }
+                    }
+                });
+            }
+
+            function updateGradeChart(grades) {
+                var labels = Object.keys(grades);
+                var dataValues = Object.values(grades);
+                var colors = ['#C39EF3', '#75E8E7', '#407BFF']; // You can adjust colors as needed
+
+                var gradeChart = new Chart(document.getElementById('recherchechart').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dataValues,
+                            backgroundColor: colors
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        legend: {
+                            display: false
+                        },
+                        tooltips: {
+                            enabled: false
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        cutoutPercentage: 70,
+                        elements: {
+                            arc: {
+                                borderRadius: 10
+                            }
+                        }
+                    }
+                });
+
+                var legendItems = document.querySelectorAll('.legend-item');
+                legendItems.forEach(function (item, index) {
+                    var label = item.querySelector('.legend-label');
+                    var colorCircle = item.querySelector('.legend-circle');
+                    var percentage = dataValues[index];
+
+                    colorCircle.style.float = 'left';
+                    colorCircle.style.marginRight = '20px';
+
+                    label.innerHTML = '<span style="color: black;">' + label.textContent + '</span>';
+                    label.innerHTML += '<span style="margin-left: 80px; color: black;">' + percentage + '%</span>';
+                });
+            }
+
+            function downloadExcel(data) {
+                var csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Total Researchers," + data.total_researchers + "\n";
+                csvContent += "Distribution\n";
+                Object.keys(data.distribution).forEach(function (key) {
+                    csvContent += key + "," + data.distribution[key] + "\n";
+                });
+                csvContent += "Top Researchers\n";
+                data.top_researchers.forEach(function (researcher) {
+                    var name = Object.keys(researcher)[0];
+                    var citations = researcher[name];
+                    csvContent += name + "," + citations + "\n";
+                });
+                csvContent += "Grades\n";
+                Object.keys(data.grades).forEach(function (key) {
+                    csvContent += key + "," + data.grades[key] + "\n";
+                });
+
+                var encodedUri = encodeURI(csvContent);
+                var link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", "statistics.csv");
+                document.body.appendChild(link);
+                link.click();
+            }
+
+            fetchStatistics();
+        });
+    </script>
+</body>
+
+</html>

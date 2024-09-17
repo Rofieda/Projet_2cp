@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lmcs Quest</title>
+    <link rel="stylesheet" href="../styles/ajouterChercheur.css">
+    <link rel="stylesheet" href="../styles/BARS.css">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600
+;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="../javaScript/BARS.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+
+    <div class="adminchercheur">
+    <h1  class="Chercheurs"> Liste des chercheurs </h1>
+    <h2 class="sous-titre">
+        <span class="icon-text-container">
+            <img class="ajout-chercheur-icon" src="../images/Profile Add 1.png" alt="chercheur Icon" />
+            <p class="para">Ajouter un chercheur</p>
+        </span>
+    </h2>
+
+
+
+    <button id="ajout-btn"><img class="add-icon" src="../images/Add.png" /></button>
+    
+    <ul class="publication-list">
+        <li>
+          <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+          <span class="nom">
+              <p class="name-chercheur">Medabis Amina</p>
+              <p class="">ma_medabis@evi.dz</p>
+          </span>
+          <span class="role">Professeur</span>
+          <span class="status">active</span>
+          <span class="buttons">
+          
+            <div class="supprimer" id="appear-when-supp">
+                <span id="overlay"></span>
+                <div id="modal" class="modal modal-small">
+                    <div class="modal-content">
+                        <p class="phrase">voulez-vous vraiment activer </p>
+                        <p class="activer-qui">" Medabis Amina " ?</p>
+                        <div class="button-container">
+                            <button id="cancel-reset">Annuler</button>
+                            <button class="dec-btn">Activer</button>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>
+            <button id="button2">Details</button>
+          </span>
+        </li>
+        <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">
+                <p class="name-chercheur">Medabis Amina</p>
+                <p>ma_medabis@evi.dz</p>
+            </span>
+            <span class="role">Professeur</span>
+            <span class="status">active</span>
+            <span class="buttons">
+              
+              
+              <button id="button2">Details</button>
+            </span>
+          </li>
+        <li>
+          <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+          <span class="nom">
+              <p class="name-chercheur">Medabis Amina</p>
+              <p>ma_medabis@evi.dz</p>
+          </span>
+          <span class="role">Professeur</span>
+          <span class="status">active</span>
+          <span class="buttons">
+      
+      
+            <button id="button2">Details</button>
+          </span>
+        </li>
+          <li>
+            <span><img class="profil-pic" src="../images/profil pic.png" alt="profil chercheur" /></span>
+            <span class="nom">
+                <p class="name-chercheur">Medabis Amina</p>
+                <p>ma_medabis@evi.dz</p>
+            </span>
+            <span class="role">Professeur</span>
+            <span class="status">active</span>
+            <span class="buttons">
+             
+              <button id="button2">Details</button>
+            </span>
+          </li>
+      </ul>
+    
+
+
+    <span id="over"      style="display: none;">
+    <div class="ajouter-chercheur"   id="ajouter-chercheur"    style="display: none;">
+    
+      <div class="border">
+        <span class="icon-text-containerr">
+            <img class="ajout-chercheur-iconn" src="../images/Profile 1.png" alt="chercheur Icon" />
+            <p class="paragra">Informations personnelles</p>
+        </span>
+    
+       <div  id="modal" class="modall">
+        <div class="modal-content">
+            
+           <div class="inside">
+            <div class="input-group">
+                <label for="nom">Nom :</label>
+                <div class="custom-input-nom">
+                    <input type="text" id="nom"  class="nom" placeholder="">
+                  
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="prenom">Prénom :</label>
+                <div class="custom-input-prenom">
+                    <input type="text" id="prenom" class="prenom" placeholder="">
+                   
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="Sexe">Sexe :</label>
+                <input type="radio" id="homme" name="sexe" value="Homme" style="margin-left: 40% ;margin-right: 2%;">
+                <label for="homme" style="color: black ; " >Homme </label>
+                
+                <input type="radio" id="femme" name="sexe" value="Femme">
+                <label for="femme"  style="color: black " >Femme </label>
+                
+                
+            </div>
+
+            <div class="input-group custom-select">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" placeholder="">
+                
+              
+            </div>
+
+ 
+            <div class="input-group custom-select">
+                <label for="etablissement">Établissement :</label>
+                <select id="etablissement" name="etablissement" class=" sele">
+                <option value="" disabled selected></option>
+                  <option value="ESI">ESI</option>
+                  <option value="USTHB">USTHB</option>
+                  <option value="AUTRE">Autre</option>
+                </select>
+                <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+
+              
+            </div>
+
+
+            <div class="input-group custom-select">
+                <label for="diplome">Diplôme :</label>
+                <select id="diplome" name="diplome"  class=" sel">
+                  <option value="" disabled selected></option>
+                  <option value="Licence">Licence</option>
+                  <option value="Master">Master</option>
+                  <option value="Ingéniorat">Ingéniorat</option>
+                  <option value="Doctorat">Doctorat</option>
+                  <option value="Diplôme d'Études Supérieures">Diplôme d'Études Supérieures</option>
+                  <option value="Diplôme de Formation Approfondie">Diplôme de Formation Approfondie</option>
+                  <option value="Diplôme d'Études Approfondies">Diplôme d'Études Approfondies</option>
+                  <option value="Autre">Autre</option>
+                </select>
+                <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+
+            </div>
+
+            
+            <div class="input-group">
+                
+                    <label for="hIndex" >H-index:</label><br>
+                    <input type="number" id="hIndex" name="hIndex" placeholder="" required><br>
+              
+            </div>
+           
+            
+        </div>
+            <!-- Boutons de validation et d'annulation -->
+            <button style="display: none;" class="vide"><i class="fa-solid fa-triangle-exclamation" ></i><div id="error-message" class="error-message" style="display: none;">Veuillez remplir tous les champs.</div></button>
+            <button class="annuler-a" id="annuler-a">  Annuler</button>
+
+            <button class="Suivant" id="Suivant">   Suivant </button>
+    
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="ajouter-chercheurSECOND" id="ajouter-chercheurSECOND"  style="display: none;" >
+
+        <div class="border">
+            <span class="icon-text-containerr">
+                <img class="ajout-chercheur-iconn" src="../images/Profile 1.png" alt="chercheur Icon" />
+                <p class="paragra">Informations personnelles</p>
+            </span>
+        
+           <div  id="modal" class="modall">
+            <div class="modal-content">
+                
+                
+               <div class="inside">
+                <div class="input-group">
+                    <label for="phone">Numéro de téléphone :</label>
+                    <input type="tel" id="phone" name="phone" placeholder="">
+        
+                    </div>
+              
+        
+                <div class="input-group">
+                <label for="orcid">ORCID :</label>
+               <input type="text" id="orcid" name="orcid"  class="orcid" placeholder="">
+                </div>
+                <div class="input-group custom-select">
+                    <label for="site_web">site_web :</label>
+                    <input type="site_web" id="site_web" name="site_web" placeholder="">
+                </div>
+                <div class="input-group custom-select">
+                    <label for="google_scholar_lien">google_scholar_lien :</label>
+                    <input type="google_scholar_lien" id="google_scholar_lien" name="google_scholar_lien" placeholder="">
+                    
+                  
+                </div>
+        
+                <div class="input-group">
+                    <label for="dplpLink">DPLP lien :</label>
+                    <input type="text" id="dplpLink" name="dplpLink" placeholder="" class="dplpLink">
+                    
+        
+                </div>
+        
+                <div class="input-group">
+                    <label for="researchGateLink">ResearchGate lien :</label>
+                    <input type="text" id="researchGateLink" name="researchGateLink"  class="researchGateLink"   placeholder="">
+                    
+                   
+                    
+                </div>
+                 
+                <div class="input-group custom-select">
+                    <label for="equipe">Equipe :</label>
+                    <select id="equipe" name="equipe" class=" equipe">  
+                        <option value="" disabled selected></option>
+                        <option value="EIAH">EIAH</option>
+                        <option value="IMAGE">IMAGE</option>
+                        <option value="MSI">MSI</option>
+                        <option value="OPT">OPT</option>
+                        <option value="SURES">SURES</option>
+                        <option value="CoDesign">CoDesign</option>
+                    </select>
+                    <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+        
+                </div>
+        
+        
+                    <div class="input-group custom-select">
+                       
+                        <label for="qualite">Qualité :</label>
+        <select id="qualite" name="qualite" class="qualite">    
+            <option value="" disabled selected></option>
+            <option value="Enseignant-Chercheur">Enseignant-Chercheur</option>
+            <option value="Chercheur">Chercheur</option>
+            <option value="Doctorant">Doctorant</option>
+            <option value="Autre">Autre</option>
+        </select>
+        
+                        <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+                    </div>
+                    
+                    
+                    <div class="input-group custom-select">
+                        <label for="grade">Grade-enseignement :</label>    
+                        <select id="grade" name="grade" class=" grade">
+                            <option value="" disabled selected></option>
+                             <option value="Professeur">Professeur</option>
+                              <option value="MCA">MCA</option>
+                               <option value="MCB">MCB</option>
+                              <option value="MAA">MAA</option>
+                              <option value="MAB">MAB</option>
+                                <option value="Doctorant">Doctorant</option>
+                                <option value="NULL">NULL</option>
+                            </select>
+        
+        
+                        <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+                    </div> 
+        
+        
+                    <div class="input-group custom-select" >
+                    <label for="grade-recherche">Grade-recherche :</label>
+                       <select id="grade-recherche" name="grade-recherche" class=" grade-recherche">    
+                        <option value="" disabled selected></option>
+                         <option value="Directeur de recherche">Directeur de recherche</option>
+                          <option value="Maître de recherche">Maître de recherche</option>
+                          <option value="NULL">NULL</option>
+                          </select>
+                          <img src="../images/Down 3.png" alt="iconn" class="iconnn">
+        
+                     </div> 
+                    </div>
+         
+            </div>
+                <!-- Boutons de validation et d'annulation -->
+                <button style="display: none;" class="vide"><i class="fa-solid fa-triangle-exclamation" ></i><div id="error-message" class="error-message" style="display: none;">Veuillez remplir tous les champs.</div></button>
+                <button class="annuler-a" id="retour">  Retour </button>
+        
+                <button class="ajouter" id="valider" onclick="addResearcher()">    
+                    <img src="../images/Tick white.png" alt="iconn" class="iconn"> Ajouter
+                </button>
+                
+                
+            </div>
+        </div>
+
+    </div>
+
+  
+
+</span>
+
+
+ 
+<script src="../javascript/BARSAdmin.js"></script>
+    <script src="../javascript/notificationadmin.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to send a POST request to add a new researcher
+        function addResearcher(data) {
+            fetch('http://localhost:8000/api/ChercheurCreat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Refresh the page after successful addition
+                    window.location.reload();
+                } else {
+                    // Log the response text for debugging
+                    response.text().then(text => {
+                        console.error('Failed to add researcher:', text);
+                    });
+                    throw new Error('Failed to add researcher');
+                }
+            })
+            .catch(error => console.error('Error adding researcher:', error));
+        }
+
+        // Add event listener to the "Ajouter" button
+        var ajouterButton = document.getElementById("valider");
+        ajouterButton.addEventListener("click", function() {
+            // Retrieve data from the form fields
+            var nom = document.getElementById("nom").value;
+            var prenom = document.getElementById("prenom").value;
+            var sexe = document.querySelector('input[name="sexe"]:checked').value;
+            var email = document.getElementById("email").value;
+            var etablissement = document.getElementById("etablissement").value;
+            var diplome = document.getElementById("diplome").value;
+            var hIndex = document.getElementById("hIndex").value;
+            var orcid = document.getElementById("orcid").value;
+            var dblpLink = document.getElementById("dplpLink").value;
+            var researchGateLink = document.getElementById("researchGateLink").value;
+            var equipe = document.getElementById("equipe").value;
+            var qualite = document.getElementById("qualite").value;
+            var grade = document.getElementById("grade").value;
+            var grade_recherche = document.getElementById("grade-recherche").value;
+            var phone = document.getElementById("phone").value;
+
+            // Validate required fields
+            var googleScholarLink = document.getElementById("googleScholarLink").value;
+            var siteWeb = document.getElementById("siteWeb").value;
+
+            if (!googleScholarLink || !siteWeb) {
+                // Show error message and return if required fields are not filled
+                document.getElementById("red").style.display = "block";
+                return;
+            }
+
+            // Construct the data object
+            var data = {
+                nom_chercheur: nom,
+                prenom_chercheur: prenom,
+                sexe: sexe,
+                email: email,
+                etablissement: etablissement,
+                diplome: diplome,
+                h_index: hIndex,
+                orcid: orcid,
+                dblp_lien: dblpLink,
+                research_gate_lien: researchGateLink,
+                equipe: equipe,
+                Qualite: qualite,
+                grade_ensignement: grade,
+                grade_recherche: grade_recherche,
+                tel: phone,
+                statut: "Active", // Default value for statut
+                google_scholar_lien: googleScholarLink,
+                site_web: siteWeb
+            };
+
+            // Call the function to add the researcher with the data
+            addResearcher(data);
+        });
+    });
+
+    // Add event listener to the "Annuler" buttons inside the "supprimer" divs
+    document.addEventListener("DOMContentLoaded", function() {
+        var cancelButtons = document.querySelectorAll(".button-container button#cancel-reset");
+        cancelButtons.forEach(function(cancelButton) {
+            cancelButton.addEventListener("click", function(event) {
+                // Prevent the click event from bubbling up to the document
+                event.stopPropagation();
+                // Hide the parent "supprimer" div
+                var supprimerDiv = cancelButton.closest(".supprimer");
+                if (supprimerDiv) {
+                    supprimerDiv.style.display = "none";
+                }
+            });
+        });
+
+        // Add event listener to the document
+        document.addEventListener("click", function(event) {
+            // Hide all "supprimer" divs when clicking outside
+            var supprimerDivs = document.querySelectorAll(".supprimer");
+            supprimerDivs.forEach(function(supprimerDiv) {
+                if (!supprimerDiv.contains(event.target)) {
+                    supprimerDiv.style.display = "none";
+                }
+            });
+        });
+    });
+
+    // Add event listener to show/hide the "ajouter-chercheur" and "ajouter-chercheurSECOND" divs
+    document.addEventListener("DOMContentLoaded", function() {
+        var addButton = document.getElementById("ajout-btn");
+        var over = document.getElementById("over");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        addButton.addEventListener("click", function() {
+            // Show the .ajouter-chercheur div
+            ajouterUtilisateurDiv.style.display = "block";
+            ajouterSECOND.style.display = "none";
+          
+
+
+            // Style the overlay
+            over.style.display = "block";
+            over.style.position = "fixed";
+            over.style.top = "0";
+            over.style.left = "0";
+            over.style.width = "100%";
+            over.style.height = "100%";
+            over.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        });
+    });
+
+    // Add event listener to switch between "ajouter-chercheur" and "ajouter-chercheurSECOND" divs
+    document.addEventListener("DOMContentLoaded", function() {
+        var SuivantButton = document.getElementById("Suivant");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        SuivantButton.addEventListener("click", function() {
+            // Show the .ajouter-chercheurSECOND div
+            ajouterUtilisateurDiv.style.display = "none";
+            ajouterSECOND.style.display = "block";
+        });
+    });
+
+    // Add event listener to switch back from "ajouter-chercheurSECOND" to "ajouter-chercheur" div
+    document.addEventListener("DOMContentLoaded", function() {
+        var retourButton = document.getElementById("retour");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        retourButton.addEventListener("click", function() {
+            // Show the .ajouter-chercheur div
+            ajouterUtilisateurDiv.style.display = "block";
+            ajouterSECOND.style.display = "none";
+        });
+    });
+
+    // Add event listener to reset form fields and hide the "ajouter-chercheur" div
+    document.addEventListener("DOMContentLoaded", function() {
+        var annulerButton = document.getElementById("annuler-a");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-utilisateur");
+        var redMessage = document.getElementById("red");
+
+        annulerButton.addEventListener("click", function() {
+            // Reset form fields to their initial state
+            var form = document.getElementById("ajouter-chercheur-form");
+            form.reset();
+
+            ajouterUtilisateurDiv.style.display = "none";
+            redMessage.style.display = "none";
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to send a POST request to add a new researcher
+        function addResearcher(data) {
+            fetch('http://localhost:8000/api/ChercheurCreat/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Refresh the page after successful addition
+                    window.location.reload();
+                } else {
+                    // Log the response text for debugging
+                    response.text().then(text => {
+                        console.error('Failed to add researcher:', text);
+                    });
+                    throw new Error('Failed to add researcher');
+                }
+            })
+            .catch(error => console.error('Error adding researcher:', error));
+        }
+
+        // Add event listener to the "Ajouter" button
+        var ajouterButton = document.getElementById("valider");
+        ajouterButton.addEventListener("click", function() {
+            // Retrieve data from the form fields
+            var nom = document.getElementById("nom").value;
+            var prenom = document.getElementById("prenom").value;
+            var sexe = document.querySelector('input[name="sexe"]:checked').value;
+            var email = document.getElementById("email").value;
+            var etablissement = document.getElementById("etablissement").value;
+            var diplome = document.getElementById("diplome").value;
+            var hIndex = document.getElementById("hIndex").value;
+            var orcid = document.getElementById("orcid").value;
+            var dblpLink = document.getElementById("dplpLink").value;
+            var researchGateLink = document.getElementById("researchGateLink").value;
+            var equipe = document.getElementById("equipe").value;
+            var qualite = document.getElementById("qualite").value;
+            var grade = document.getElementById("grade").value;
+            var grade_recherche = document.getElementById("grade-recherche").value;
+            var phone = document.getElementById("phone").value;
+
+            // Retrieve values for google_scholar_lien and site_web
+            var google_scholar_lien = document.getElementById("google_scholar_lien").value;
+            var site_web = document.getElementById("site_web").value;
+
+            // Construct the data object
+            var data = {
+                nom_chercheur: nom,
+                prenom_chercheur: prenom,
+                sexe: sexe,
+                email: email,
+                etablissement: etablissement,
+                diplome: diplome,
+                h_index: hIndex,
+                orcid: orcid,
+                dblp_lien: dblpLink,
+                research_gate_lien: researchGateLink,
+                equipe: equipe,
+                Qualite: qualite,
+                grade_ensignement: grade,
+                grade_recherche: grade_recherche,
+                tel: phone,
+                statut: "Active", // Assuming this is a required field
+                google_scholar_lien: google_scholar_lien, // Assuming this is a required field
+                site_web: site_web // Assuming this is a required field
+            };
+
+            // Call the function to add the researcher with the data
+            addResearcher(data);
+        });
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        // Make a GET request to the API endpoint
+        fetch('http://localhost:8000/api/ChercheursList/')
+            .then(response => response.json())
+            .then(data => {
+                // Generate the list of researchers dynamically
+                const chercheursList = document.querySelector('.publication-list');
+                chercheursList.innerHTML = ''; // Clear existing list
+                
+                data.forEach(chercheur => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span><img class="profil-pic" src="../images/user profil.png" alt="profil chercheur" /></span>
+                        <span class="nom">
+                            <p class="name-chercheur">${chercheur.nom_chercheur}</p>
+                            <p>${chercheur.email}</p>
+                        </span>
+                        <span class="role">${chercheur.grade_recherche}</span>
+                        <span class="status">${chercheur.statut}</span>
+                        <span class="buttons">
+                            <button class="button2" data-chercheur-id="${chercheur.id_chercheur}">Details</button>
+                        </span>
+                    `;
+                    chercheursList.appendChild(li);
+                });
+
+                // Add event listener to the "Details" buttons
+                document.querySelectorAll('.button2').forEach(button => {
+                    button.addEventListener('click', function() {
+                        // Handle details button clic
+                        const chercheurId = button.getAttribute('data-chercheur-id');
+                        // Redirect to profilchercheurDetail.html with chercheurId as a query parameter
+                        window.location.href = `profilchercheurDetailAdmin.html?id=${chercheurId}`;
+                    });
+                });
+            })
+            .catch(error => console.error('Error fetching chercheurs list:', error));
+    });
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        var addButton = document.getElementById("ajout-btn");
+        var over = document.getElementById("over");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        addButton.addEventListener("click", function() {
+            // Show the .ajouter-utilisateur div on top of the overlay
+            ajouterUtilisateurDiv.style.display = "block";
+            ajouterSECOND.style.display = "none";
+
+            ajouterUtilisateurDiv.style.top = "20%";
+            ajouterUtilisateurDiv.style.zIndex = "1000"; // Higher z-index for .ajouter-utilisateur
+
+            over.style.display = "block";
+            over.style.position = "fixed";
+            over.style.top = "0";
+            over.style.left = "19.5%";
+            over.style.width = "100%";
+            over.style.height = "100%";
+            over.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var SuivantButton = document.getElementById("Suivant");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        SuivantButton.addEventListener("click", function() {
+            // Show the .ajouter-chercheurSECOND div
+            ajouterUtilisateurDiv.style.display = "none";
+            ajouterSECOND.style.display = "block";
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var retourButton = document.getElementById("retour");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-chercheur");
+        var ajouterSECOND = document.querySelector(".ajouter-chercheurSECOND");
+
+        retourButton.addEventListener("click", function() {
+            // Show the .ajouter-chercheur div
+            ajouterUtilisateurDiv.style.display = "block";
+            ajouterSECOND.style.display = "none";
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        var annulerButton = document.getElementById("annuler-a");
+        var over = document.getElementById("over");
+        var ajouterUtilisateurDiv = document.querySelector(".ajouter-utilisateur");
+        var redMessage = document.getElementById("red");
+
+        // Reset form fields to their initial state
+        var nomInput = document.getElementById("nom");
+        var prenomInput = document.getElementById("prenom");
+        var hommeRadio = document.getElementById("homme");
+        var femmeRadio = document.getElementById("femme");
+        var emailInput = document.getElementById("email");
+        var etablissementInput = document.getElementById("etablissement");
+        var diplomeInput = document.getElementById("diplome");
+        var hIndexInput = document.getElementById("hIndex");
+        var orcidInput = document.getElementById("orcid");
+        var dblpLinkInput = document.getElementById("dplpLink");
+        var researchGateLinkInput = document.getElementById("researchGateLink");
+        var equipeInput = document.getElementById("equipe");
+        var qualiteInput = document.getElementById("qualite");
+        var gradeInput = document.getElementById("grade");
+        var grade_rechercheInput = document.getElementById("grade-recherche");
+        var phoneInput = document.getElementById("phone");
+
+        annulerButton.addEventListener("click", function() {
+            // Hide the .ajouter-utilisateur div and overlay
+            ajouterUtilisateurDiv.style.display = "none";
+            over.style.display = "none";
+
+            // Clear form fields
+            nomInput.value = "";
+            prenomInput.value = "";
+            hommeRadio.checked = true;
+            emailInput.value = "";
+            etablissementInput.value = "";
+            diplomeInput.value = "";
+            hIndexInput.value = "";
+            orcidInput.value = "";
+            dblpLinkInput.value = "";
+            researchGateLinkInput.value = "";
+            equipeInput.value = "";
+            qualiteInput.value = "";
+            gradeInput.value = "";
+            grade_rechercheInput.value = "";
+            phoneInput.value = "";
+
+            // Reset red message if it's visible
+            redMessage.style.display = "none";
+        });
+    });
+</script>
+
+
+</body>
+</html>

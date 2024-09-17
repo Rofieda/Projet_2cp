@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche</title>
+    <link rel="stylesheet" href="../styles/aide.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="../styles/visiteurNAV.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600
+;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+    <script src="../javascript/visiteurNAV.js"></script>
+<script src="../javascript/VisiteurNAVsuite.js"></script>
+<div class="aide">
+
+    <h1 class="titre2-aide">Que pouvons-nous faire pour vous ?</h1>
+    <div class="sign">
+        <h1 class="titre1-aide">Signaler un problème dans le site</h1><a href="https://forms.gle/a9RKUUmuZyFYAVPR9" class="signaler" target="_blank">Signaler</a>
+    </div>
+    <div class="fasil">
+        <div class="ou">Ou</div>
+    </div>
+    <div class="consulter">
+        <h1 class="titre1-aide"> Consulter des solutions proposeés</h1>
+            <div class="questions">
+                <div class="question">
+                    <h2>Problème : Comment me connecter à mon compte utilisateur ?</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Assurez-vous d'utiliser les identifiants corrects (nom d'utilisateur et mot de passe) que vous avez créés lors de l'inscription. Si vous avez oublié votre mot de passe, utilisez l'option "Mot de passe oublié" pour réinitialiser votre mot de passe en suivant les instructions fournies par e-mail.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h2>Problème : Comment exporter les statistiques depuis la plateforme ?</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Pour exporter les statistiques, il vous suffit de cliquer sur le bouton "Exporter" dans la section des statistiques puis, téléchargez le fichier exporté selon les options disponibles.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h2>Problème : Je rencontre des difficultés techniques lors de l'utilisation de certaines fonctionnalités de la plateforme.</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Consultez d'abord le guide d'utilisation de la plateforme pour voir s'il contient des instructions ou des solutions aux problèmes techniques que vous rencontrez. Le guide d'utilisation est conçu pour vous aider à naviguer et à résoudre les problèmes courants. Si le problème persiste, contactez le support technique de la plateforme en fournissant autant de détails que possible sur le problème rencontré. Ils seront en mesure de vous aider à résoudre le problème technique.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h2>Problème : Je ne comprends pas comment utiliser certaines fonctionnalités du site.</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Solution : Consultez la section FAQ (Foire Aux Questions) . Vous pouvez également contacter le support technique du site pour obtenir une assistance personnalisée.</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h2>Problème : Je ne trouve pas de réponse à ma question dans la section FAQ.</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Solution : Si vous ne trouvez pas de réponse à votre question dans la FAQ, vous pouvez toujours nous contacter pour obtenir une assistance personnalisée</p>
+                    </div>
+                </div>
+
+                <div class="question">
+                    <h2>Problème : Je souhaite obtenir des informations sur les événements à venir ou les annonces importantes du laboratoire LMCS.</h2>
+                    <button class="btn-plus">+</button>
+                    <div class="solution">
+                        <p>Solution : Consultez la section "Actualités" ou "Événements" sur le site pour obtenir des informations sur les événements à venir et les annonces importantes du laboratoire LMCS. Si vous ne trouvez pas les informations que vous recherchez, contactez l'administrateur du site pour obtenir des détails supplémentaires </p>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+
+</body>
+
+  <script>
+
+
+setInterval(function() {
+  document.querySelector('.signaler').classList.toggle('paused');
+}, 1000);
+
+
+
+
+const questions = document.querySelectorAll('.question');
+const solutions = document.querySelectorAll('.solution');
+
+
+questions.forEach((question, index) => {
+    const btnPlus = question.querySelector('.btn-plus');
+    const solution = solutions[index];
+
+    btnPlus.addEventListener('click', () => {
+        solution.style.display = solution.style.display === 'none' ? 'block' : 'none';
+    });
+});
+
+  </script>
+</body>
+</html>

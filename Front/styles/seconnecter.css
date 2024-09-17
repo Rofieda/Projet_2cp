@@ -1,0 +1,722 @@
+/* style.css */
+body{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.split-screen {
+    display: flex;
+    height: 100vh;
+    display: flex;
+}
+
+.left {
+    flex: 1;
+    position: relative;
+    background-image: url(../images/signup.avif);
+    background-position: center;
+    background-size: cover;
+    padding: 12rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 5rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    overflow: hidden;
+}
+
+.left::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.copy {
+    font-size: 1.2em;
+    margin-bottom: 1rem;
+    text-align: justify;
+    /*pour que l'ombre n' affecte pas le text*/
+    position: relative;
+    z-index: 2;
+}
+
+.copy h1 {
+    color: #FEFDFF;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    top: 100px;
+}
+
+.copy p {
+    background-position: center;
+    color: #FEFDFF;
+    font-size: 19px;
+    font-weight: lighter;
+    line-height: 1.5;
+    margin-bottom: px;
+}
+
+.right {
+    flex: 1;
+    padding: 9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.right h2 {
+    text-align: center;
+    margin-bottom: 0px;
+    color: #64379F;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.copy .login-container p {
+    text-align: center;
+    color: #365486;
+    font-weight: lighter;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-container input {
+    padding-right: 30px;
+}
+
+.input-container .icon1 {
+    position: absolute;
+    top: calc(70% - 10px);
+    /* Position verticale centrée */
+    right: 0px;
+    /* Distance par rapport au bord droit */
+    width: 20px;
+    height: 20px;
+}
+
+
+.input-container .icon2 {
+    position: absolute;
+    top: calc(70% - 9px);
+        right: 0px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+}
+
+
+
+.toggle-password {
+    position: absolute;
+    top: calc(79% - 9px);
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+
+}
+
+
+.visible-password {
+    padding-right: 30px;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    margin-top: 0.25rem;
+
+}
+
+.visible-password:focus {
+    outline: none;
+    border-bottom: 2px solid #64379F;
+    transition: none;
+
+}
+
+
+.input-container label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25rem;
+    font-size: 15.5px;
+}
+
+.input-container a {
+    margin-left: auto;
+    margin-right: 10px;
+    font-weight: lighter;
+    color: #64379F;
+    font-size: 11.75px;
+}
+
+.input-container .cta a {
+    color: #64379F;
+    font-size: 13px;
+}
+
+#save-password-text {
+    font-size: 13px;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    background-color: transparent;
+    margin-top: 0.25rem;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+}
+
+.logo {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    width: 175px;
+    height: auto;
+    margin: 54px;
+    z-index: 1;
+}
+
+.back-arrow-icon {
+    position: absolute;
+    top: 25px;
+    left: 50px;
+    width: 70px;
+    height: auto;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 23px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+.checkmark {
+    font-size: 11px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #FEFDFF;
+    border: 2px solid #64379F;
+    border-radius: 4px;
+}
+
+.checkbox-container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+.checkbox-container input:checked~.checkmark {
+    background-color: #64379F;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 5.5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.signup-btn,
+.signup-btnn {
+    display: inline-block;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 325px;
+}
+
+.separator {
+    margin: 0.25rem 0;
+}
+
+.signup-btn {
+    margin-top: 1.5rem;
+    padding: 0.75rem 4.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 0.75rem;
+}
+
+.signup-btnn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 4rem;
+    background-color: #FEFDFF;
+    color: #365486;
+    border: 2px solid #365486;
+    margin-top: 1.75rem;
+}
+
+.signup-btnn img {
+    margin-right: 5px;
+}
+
+.signup-btn:hover {
+    background-color: #64379fcc;
+}
+
+.signup-btnn:hover {
+    background-color: #3653861d;
+}
+
+.button-container {
+    text-align: center;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-bottom: 2px solid #64379F;
+    transition: border-bottom 0.3s ease;
+}
+
+.input-container a,
+.copy a {
+    transition: color 0.3s ease;
+}
+
+.input-container a:hover,
+.copy a:hover {
+    color: #8557c5;
+}
+
+.back-arrow-icon {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.back-arrow-icon:hover {
+    transform: scale(1.1);
+}
+
+.copy {
+    transition: transform 0.3s ease;
+}
+
+.loading {
+    animation: spin 1s linear infinite;
+}
+
+.checkbox-container:hover .checkmark {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.signup-btn:hover,
+.signup-btnn:hover {
+    transform: translateY(-3px);
+    transition: transform 0.3s ease;
+}
+
+.signup-btn:hover,
+.signup-btnn:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+}
+
+.modal {
+    display: none;
+    font-size: 15px;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 380px;
+    max-height: 400px;
+    overflow: auto;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 12px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.modal-large {
+    display: none;
+    font-family: 'Monsterast', sans-serif;
+    font-size: 15px;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 55%;
+    height: auto;
+    overflow: auto;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.modal-content {
+    color: #595959;
+    font-weight: lighter;
+}
+
+
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 13px;
+    color: #aaa;
+    float: left;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.reset-email {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+
+#reset-email {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+#new-password{
+     display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+#confirm-new-password{
+     display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    border: 1px solid #365486;
+    box-sizing: border-box;
+}
+
+.input-field.error {
+    border-color: red;
+    /* Couleur de la bordure en cas d'erreur */
+}
+
+.error-mess {
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+}
+
+
+#reset-password-btn {
+    margin: 1rem auto;
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 0.25rem;
+}
+
+
+
+
+#reset-password-btn:hover {
+    background-color: #8557c5;
+
+}
+
+
+#forgot-password-title {
+    font-size: 19px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 11px;
+}
+
+.e-mail input {
+    display: block;
+    align-items: center;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: 325px;
+    margin-top: 1rem;
+    padding: 0.75rem 5rem;
+    color: #FEFDFF;
+    margin-bottom: 5rem;
+}
+
+/* Style des champs en erreur */
+.input-container.error input[type="email"],
+.input-container.error input[type="password"] {
+    border-bottom: 1px solid red;
+        /* Bordure inférieure rouge en cas d'erreur */
+}
+
+/* Ajustement de la position verticale des icônes en cas d'erreur */
+.input-container.error .icon1,
+.input-container.error .icon2 {
+    top: calc(50% - 10px);
+    /* Ajustement de la position verticale pour aligner avec le champ */
+}
+
+/* Style du message d'erreur */
+.error-message {
+    color: red;
+        /* Couleur du texte en rouge */
+    font-size: 12px;
+    position: relative;
+    top: 100%;
+            /* Position en dessous du champ */
+    left: 0;
+    margin-top: 4px;
+        /* Marge supérieure pour séparer du champ */
+}
+
+
+#red-password-btn,
+#cancel-reset-btn {
+    margin: 0rem 0.25rem;
+    /* Ajoutez une marge à gauche et à droite des boutons */
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: calc(45% - 0.4rem);
+    padding: 0.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 0.25rem;
+}
+
+#cancel-reset-btn {
+    position: relative;
+    right: -30.5px;
+}
+
+#red-password-btn {
+    position: relative;
+    left: -4px;
+}
+
+#red-password-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: black;
+    margin-bottom: 11px;
+}
+
+#cancel-reset {
+    margin: 1rem 0.25rem;
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: calc(47% - 0.4rem);
+    padding: 0.75rem;
+    background-color: #fefefe;
+    color: #64379F;
+    border: 2px solid #64379F;
+    margin-bottom: 0.25rem;
+}
+
+#dec-btn {
+    margin: 1rem 0.25rem;
+    display: inline-block;
+    align-items: center;
+    line-height: 1;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 8px;
+    height: 44px;
+    width: calc(47% - 0.4rem);
+    padding: 0.75rem;
+    background-color: #64379F;
+    color: #FEFDFF;
+    border: none;
+    margin-bottom: 0.25rem;
+}
+
+#dec-btn {
+    position: relative;
+    right: -14px;
+}
+
+#cancel-reset {
+    position: relative;
+    left: -5px;
+}
+
+#deconnexion {
+    font-size: 19px;
+    font-weight: 500;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 8px;
+
+}
+
+.icon-deconnexion {
+    margin-bottom: 10px;
+    width: 50px;
+    height: auto;
+    margin-top: 10px;
+}
+/* Style pour les conteneurs des champs de mot de passe */
+.password-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+/* Style pour les icônes de visibilité */
+.toggle-password2 {
+    position: absolute;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+/* Style spécifique pour le premier champ de mot de passe */
+.password-container:first-child .toggle-password2{
+    right: 40px;
+    /* Ajuster la position pour le premier champ de mot de passe */
+}
+
+
+/* Style des icônes à l'intérieur des champs de mot de passe */
+.toggle-password2 img {
+    width: 20px;
+    /* Ajuster la largeur de l'icône */
+        height: 20px;
+        /* Ajuster la hauteur de l'icône */
+            position: absolute;
+            top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+}
+
+/* Appliquer une bordure rouge aux champs invalides */
+.password-container.error-border {
+    border-color: red;
+}
